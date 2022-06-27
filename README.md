@@ -80,17 +80,23 @@ mkfontdir
 
 然后添加
 
-`FontPath     "/usr/X11R6/lib/X11/fonts/cm-unicode/" `
+```
+FontPath     "/usr/X11R6/lib/X11/fonts/cm-unicode/" 
+```
 
 到 etc/X11/xorg.conf (/etc/X11/XF86Config) 的“文件”部分。在下一次运行时，X.Org (XFree86) 将加载这些字体。
 
 如果你使用的是 fontconfig（X.Org，XFree86-4.3，可能安装在 XFree86-4.2 上），您应该添加一行
 
-`<dir>/usr/X11R6/lib/X11/fonts/cm-unicode</dir>`
+```
+<dir>/usr/X11R6/lib/X11/fonts/cm-unicode</dir>
+```
 
 到 /etc/fonts/fonts.conf 或更好到 /etc/fonts/local.conf 然后运行
 
-`fc-cache`
+```
+fc-cache
+```
 
 安装 ghostscript
 
@@ -106,7 +112,9 @@ ln -s /usr/X11R6/lib/X11/fonts/cm-unicode/*.pfb .
 
 然后进入ghostscript库目录，例如
 
-`cd /usr/share/ghostscript/?.??/lib`
+```
+cd /usr/share/ghostscript/?.??/lib
+```
 
 ?.?? 是ghostscript版本。从 tarball 复制 Fontmap.CMU：
 
@@ -117,14 +125,18 @@ cp /tmp/cm-unicode-VERSION/Fontmap.CMU
 
 然后将以下行添加到 Fontmap 文件：
 
-`(Fontmap.CMU) .runlibfile`
+```
+(Fontmap.CMU) .runlibfile
+```
 
 ### 警告
 
 
 升级后运行
 
-`fc-cache -f`
+```
+fc-cache -f
+```
 
 要使用 ps2pdf 脚本将这些字体嵌入到 pdf 文件中，你应该使用 ghostscript-8.x（8.15 可以）。
 
