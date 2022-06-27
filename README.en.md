@@ -19,13 +19,21 @@ There is project page for the fonts at [SourceForge.net](https://sourceforge.net
 CM Unicode 0.7.0 (June 18 2009) (Development release)
 
 License changed to OFL 1.1
+
 Converted to lookups for Advanced Typography
+
 Changed building of accented characters, it is now based on anchors
+
 Added special accents for capital letters
+
 Added small serifs to U+26A in sans-serif fonts
+
 Reencoded U+478 and U+479 as U+A46A, U+A46B
+
 Kerning copied to built accented characters
+
 Added experimental truetype fonts with autoconverted instructions
+
 Tarballs now compressed with xz (use xz or 7-Zip for decompression)
 
 ### Installation
