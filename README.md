@@ -50,7 +50,9 @@ cd cm-unicode-VERSION
 
 其中 VERSION 是此字体包的版本号。然后在 X 存储字体的地方创建 cm-unicode/ 目录，例如 /usr/X11R6/lib/X11/fonts ：
 
-`mkdir -p /usr/X11R6/lib/X11/fonts/cm-unicode`
+```
+mkdir -p /usr/X11R6/lib/X11/fonts/cm-unicode
+```
 
 你应该成为 root 才能做到这一点。 然后在那里复制字体文件：
 
