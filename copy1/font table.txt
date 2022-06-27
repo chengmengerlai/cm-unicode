@@ -46,3 +46,5 @@ CMUBright-Bold 	bbx 	+ 	+ 	+ 	+
 CMUBright-BoldOblique 	bxo 	+ 	+ 	+ 	+ 	
 CMUTypewriter-Light 	btl 	+ 	+ 	+ 	
 	
+CMUTypewriter-LightOblique 	bto 	+ 	+ 	+ 	
+	
