@@ -1,0 +1,203 @@
+SplineFontDB: 3.0
+FontName: add_bso
+FullName: add_bso
+FamilyName: add_bso
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 2.0 (http://fontforge.sf.net)
+UComments: "2009-2-14: Created." 
+Version: 001.000
+ItalicAngle: -12
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+LayerCount: 2
+Layer: 0 0 "+BBcEMAQ0BD0EOAQ5 +BD8EOwQwBD0A"  1
+Layer: 1 0 "+BB8ENQRABDUENAQ9BDgEOQAA +BD8EOwQwBD0A"  0
+XUID: [1067 305 2130962764 4382129]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1234611574
+ModificationTime: 1237945935
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+DEI: 91125
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 512 16 13
+BeginChars: 65542 7
+
+StartChar: circumflex.cap
+Encoding: 65536 -1 0
+Width: 525
+Flags: MW
+HStem: 727 170
+VStem: 248 76<727 803> 511 75<727 727>
+DStem2: 248 727 324 727 0.700784 0.713373<53.2596 215.85>
+LayerCount: 2
+Fore
+SplineSet
+248 727 m 1
+ 415 897 l 1
+ 508 897 l 1
+ 586 727 l 1
+ 511 727 l 1
+ 442 839 l 1
+ 324 727 l 1
+ 248 727 l 1
+EndSplineSet
+EndChar
+
+StartChar: dieresis.cap
+Encoding: 65537 -1 1
+Width: 525
+Flags: W
+HStem: 795 94<302 376 506 580>
+VStem: 282 94<795 889> 302 94<795 889> 486 94<795 889> 506 94<795 889>
+LayerCount: 2
+Fore
+SplineSet
+282 795 m 1xc0
+ 302 889 l 1
+ 396 889 l 1xa0
+ 376 795 l 1
+ 282 795 l 1xc0
+486 795 m 1x90
+ 506 889 l 1
+ 600 889 l 1x88
+ 580 795 l 1
+ 486 795 l 1x90
+EndSplineSet
+EndChar
+
+StartChar: dotaccent.cap
+Encoding: 65538 -1 2
+Width: 525
+Flags: W
+HStem: 762 117<391 483>
+VStem: 366 117<762 879> 391 117<762 879>
+LayerCount: 2
+Fore
+SplineSet
+366 762 m 1xc0
+ 391 879 l 1
+ 508 879 l 1xa0
+ 483 762 l 1
+ 366 762 l 1xc0
+EndSplineSet
+EndChar
+
+StartChar: caron.cap
+Encoding: 65539 -1 3
+Width: 525
+Flags: W
+HStem: 727 162
+LayerCount: 2
+Fore
+SplineSet
+274 889 m 1
+ 350 889 l 1
+ 429 782 l 1
+ 554 889 549 889 567 889 c 2
+ 629 889 l 1
+ 459 727 l 1
+ 375 727 l 1
+ 274 889 l 1
+EndSplineSet
+EndChar
+
+StartChar: ring.cap
+Encoding: 65540 -1 4
+Width: 525
+Flags: W
+HStem: 652 75<368.378 471.676> 819 75<381.446 484.957>
+VStem: 307 59<730.037 809.452> 486 60<738.159 816.713>
+LayerCount: 2
+Fore
+SplineSet
+307 748 m 0
+ 307 824 378 894 452 894 c 0
+ 510 894 546 852 546 799 c 0
+ 546 720 472 652 400 652 c 0
+ 344 652 307 693 307 748 c 0
+366 757 m 0
+ 366 740 376 727 410 727 c 2
+ 414 727 l 1
+ 437 728 486 723 486 790 c 0
+ 486 819 463 819 439 819 c 0
+ 415 819 366 823 366 757 c 0
+EndSplineSet
+EndChar
+
+StartChar: breve.cap
+Encoding: 65541 -1 5
+Width: 525
+Flags: W
+HStem: 727 83<363.873 512.978>
+VStem: 265 77<834.047 889> 560 75<814 889>
+LayerCount: 2
+Fore
+SplineSet
+265 859 m 0
+ 265 877 268 886 268 889 c 1
+ 344 889 l 1
+ 343 885 342 880 342 875 c 0
+ 342 835 384 810 435 810 c 0
+ 491 810 548 839 560 889 c 1
+ 635 889 l 1
+ 608 780 501 727 418 727 c 0
+ 331 727 265 780 265 859 c 0
+EndSplineSet
+EndChar
+
+StartChar: uni026A
+Encoding: 618 618 6
+Width: 181
+Flags: HMW
+HStem: 0 75<48 58> 397 75<222 232>
+VStem: 32 216
+LayerCount: 2
+Back
+SplineSet
+42 0 m 1
+ 142 472 l 1
+ 239 472 l 1
+ 138 0 l 1
+ 42 0 l 1
+EndSplineSet
+Fore
+SplineSet
+32 0 m 1
+ 48 75 l 1
+ 58 75 l 1
+ 126 397 l 1
+ 116 397 l 1
+ 132 472 l 1
+ 248 472 l 1
+ 232 397 l 1
+ 222 397 l 1
+ 154 75 l 1
+ 164 75 l 1
+ 148 0 l 1
+ 32 0 l 1
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

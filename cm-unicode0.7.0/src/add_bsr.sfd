@@ -1,0 +1,246 @@
+SplineFontDB: 3.0
+FontName: add_bsr
+FullName: add_bsr
+FamilyName: add_bsr
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 1.0 (http://fontforge.sf.net)
+UComments: "2006-10-26: Created." 
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+LayerCount: 2
+Layer: 0 0 "+BBcEMAQ0BD0EOAQ5 +BD8EOwQwBD0A"  1
+Layer: 1 0 "+BB8ENQRABDUENAQ9BDgEOQAA +BD8EOwQwBD0A"  0
+NeedsXUIDChange: 1
+XUID: [1021 305 2130962764 3538454]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1161857462
+ModificationTime: 1234686544
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+DEI: 91125
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 544 16 14
+BeginChars: 65542 9
+
+StartChar: uni03F5
+Encoding: 1013 1013 0
+Width: 452
+Flags: HMW
+HStem: -8 81<295.5 393> 200 73<135 335> 399 82<295.5 393>
+VStem: 43 92<200 200 200 273 200 309.5>
+LayerCount: 2
+Fore
+SplineSet
+43 236 m 0
+ 43 383 198 481 393 481 c 1
+ 393 399 l 1
+ 293 395 171 376 135 273 c 1
+ 335 273 l 1
+ 335 200 l 1
+ 135 200 l 1
+ 171 97 293 77 393 73 c 1
+ 393 -8 l 1
+ 198 -8 43 89 43 236 c 0
+EndSplineSet
+EndChar
+
+StartChar: longs
+Encoding: 383 383 1
+Width: 321
+Flags: W
+HStem: 0 21G<98 192> 627 76<232.5 328.7>
+VStem: 98 94<0 578>
+LayerCount: 2
+Fore
+SplineSet
+98 0 m 1
+ 98 525 l 2
+ 98 578 105 620 157 662 c 0
+ 194 693 240 703 280 703 c 0
+ 297 703 322 702 363 695 c 1
+ 363 610 l 1
+ 343 617 317 627 278 627 c 0
+ 243 627 192 615 192 564 c 2
+ 192 0 l 1
+ 98 0 l 1
+EndSplineSet
+EndChar
+
+StartChar: circumflex.cap
+Encoding: 65536 -1 2
+Width: 525
+Flags: MW
+HStem: 840 57<224 318>
+VStem: 94 74<727 801> 356 76<727 727>
+DStem2: 94 727 168 727 0.60745 0.794358<44.9513 191.814>
+LayerCount: 2
+Fore
+SplineSet
+94 727 m 1
+ 224 897 l 1
+ 318 897 l 1
+ 432 727 l 1
+ 356 727 l 1
+ 262 840 l 1
+ 168 727 l 1
+ 94 727 l 1
+EndSplineSet
+EndChar
+
+StartChar: dieresis.cap
+Encoding: 65537 -1 3
+Width: 525
+Flags: W
+HStem: 795 94<114 208 318 412>
+VStem: 114 94<795 889> 318 94<795 889>
+LayerCount: 2
+Fore
+SplineSet
+114 795 m 1
+ 114 889 l 1
+ 208 889 l 1
+ 208 795 l 1
+ 114 795 l 1
+318 795 m 1
+ 318 889 l 1
+ 412 889 l 1
+ 412 795 l 1
+ 318 795 l 1
+EndSplineSet
+EndChar
+
+StartChar: dotaccent.cap
+Encoding: 65538 -1 4
+Width: 525
+Flags: W
+HStem: 762 117<204 321>
+VStem: 204 117<762 879>
+LayerCount: 2
+Fore
+SplineSet
+204 762 m 1
+ 204 879 l 1
+ 321 879 l 1
+ 321 762 l 1
+ 204 762 l 1
+EndSplineSet
+EndChar
+
+StartChar: caron.cap
+Encoding: 65539 -1 5
+Width: 525
+Flags: MW
+HStem: 727 55<221 305>
+VStem: 85 355<889 889>
+LayerCount: 2
+Fore
+SplineSet
+85 889 m 1
+ 161 889 l 1
+ 263 782 l 1
+ 365 889 l 1
+ 440 889 l 1
+ 305 727 l 1
+ 221 727 l 1
+ 85 889 l 1
+EndSplineSet
+EndChar
+
+StartChar: ring.cap
+Encoding: 65540 -1 6
+Width: 525
+Flags: W
+HStem: 652 75<209.771 316.765> 819 75<209.269 316.016>
+VStem: 146 59<732.345 813.457> 321 58<732.461 814.028>
+LayerCount: 2
+Fore
+SplineSet
+146 773 m 0
+ 146 834 193 894 263 894 c 0
+ 331 894 379 837 379 773 c 0
+ 379 712 333 652 263 652 c 0
+ 195 652 146 710 146 773 c 0
+205 774 m 0
+ 205 746 212 727 257 727 c 0
+ 301 727 321 731 321 772 c 0
+ 321 810 305 819 265 819 c 0
+ 224 819 205 813 205 774 c 0
+EndSplineSet
+EndChar
+
+StartChar: breve.cap
+Encoding: 65541 -1 7
+Width: 525
+Flags: W
+HStem: 727 82<188.325 336.858>
+VStem: 79 75<841.663 889> 371 75<843.999 889>
+LayerCount: 2
+Fore
+SplineSet
+79 889 m 1
+ 154 889 l 1
+ 160 819 237 809 262 809 c 0
+ 288 809 365 819 371 889 c 1
+ 446 889 l 1
+ 443 786 353 727 263 727 c 0
+ 181 727 82 779 79 889 c 1
+EndSplineSet
+EndChar
+
+StartChar: uni026A
+Encoding: 618 618 8
+Width: 181
+Flags: MW
+HStem: 0 75<32 42 138 148> 397 75<32 42 138 148>
+VStem: 42 96<75 397>
+LayerCount: 2
+Back
+SplineSet
+42 0 m 1
+ 42 472 l 1
+ 138 472 l 1
+ 138 0 l 1
+ 42 0 l 1
+EndSplineSet
+Fore
+SplineSet
+32 0 m 1
+ 32 75 l 1
+ 42 75 l 1
+ 42 397 l 1
+ 32 397 l 1
+ 32 472 l 1
+ 148 472 l 1
+ 148 397 l 1
+ 138 397 l 1
+ 138 75 l 1
+ 148 75 l 1
+ 148 0 l 1
+ 32 0 l 1
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont
