@@ -1,0 +1,81 @@
+#make ps hinting
+if (serifs)
+ SetPref("InstructSerifs",1)
+ SetPref("InstructBallTerminals",1)
+else
+ SetPref("InstructSerifs",0)
+ SetPref("InstructBallTerminals",0)
+endif
+SetPref("DetectDiagonalStems",1)
+SetPref("InterpolateStrongPoints",1)
+PrivateGuess("BlueValues")
+PrivateGuess("OtherBlues")
+PrivateGuess("BlueScale")
+PrivateGuess("BlueShift")
+Select("tse")
+bbox = GlyphInfo("BBox")
+pr_string = GetPrivateEntry("OtherBlues")
+pr_string = Strsub(pr_string,1,Strlen(pr_string)-1)
+private = StrSplit(pr_string," ")
+size_ar = SizeOf(private)
+check = 1
+i = 0
+while (i < size_ar)
+ if ( Strtol(private[i]) <= Round(bbox[1]) && Strtol(private[i+1]) >= Round(bbox[1]))
+  check = 0
+ endif
+ i = i+2
+endloop
+if (check)
+ ChangePrivateEntry("OtherBlues","["+pr_string+" "+ToString(Round(bbox[1]))+" "+ToString(Round(bbox[1]))+"]")
+endif
+SelectWorthOutputting()
+AutoHint()
+PrivateGuess("StdHW")
+PrivateGuess("StdVW")
+PrivateGuess("StemSnapH")
+PrivateGuess("StemSnapV")
+hstems = Array(4)
+vstems = Array(5)
+Select("en")
+bbox = GlyphInfo("BBox")
+y_prof = GlyphInfo("YProfile",Round((bbox[0]+bbox[2])*.5))
+hstems[0]=Round(y_prof[1]-y_prof[0])
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.2))
+vstems[0]=Round((x_prof[1]-x_prof[0]+x_prof[3]-x_prof[2])*0.5)
+Select("o")
+bbox = GlyphInfo("BBox")
+x_max = GlyphInfo("Xextrema", Round(bbox[1]))
+y_prof = GlyphInfo("YProfile",x_max[0])
+hstems[1]=Round(y_prof[1]-y_prof[0])
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.5))
+vstems[1]=Round(x_prof[1]-x_prof[0])
+Select("em")
+bbox = GlyphInfo("BBox")
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.2))
+vstems[2]=Round(x_prof[1]-x_prof[0])
+Select("M")
+bbox = GlyphInfo("BBox")
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.2))
+vstems[3]=Round(x_prof[1]-x_prof[0])
+Select("O")
+bbox = GlyphInfo("BBox")
+x_max = GlyphInfo("Xextrema", Round(bbox[1]))
+y_prof = GlyphInfo("YProfile",x_max[0])
+hstems[2]=Round(y_prof[1]-y_prof[0])
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.5))
+vstems[4]=Round(x_prof[1]-x_prof[0])
+Select("H")
+bbox = GlyphInfo("BBox")
+y_prof = GlyphInfo("YProfile",Round((bbox[0]+bbox[2])*.5))
+if (SizeOf(y_prof)>2)
+ hstems[3]=Round(y_prof[3]-y_prof[2])
+else
+ hstems[3]=Round(y_prof[1]-y_prof[0])
+endif
+#hstems = hstems + 26
+add_private.ff("StemSnapH",hstems,10)
+if ( $italicangle == 0 )
+ add_private.ff("StemSnapV",vstems,10)
+endif
+

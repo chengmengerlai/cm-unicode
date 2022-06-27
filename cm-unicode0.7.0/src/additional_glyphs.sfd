@@ -1,0 +1,110 @@
+SplineFontDB: 1.0
+FontName: Additional_glyphs
+FullName: Additional glyphs for cm-unicode
+FamilyName: Additional_glyphs
+Weight: Medium
+Copyright: Created by Andrey V. Panov,211,310911, with FontForge 1.0 (http://fontforge.sf.net)
+Comments: 2004-11-1: Created.
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+NeedsXUIDChange: 1
+XUID: [102671825]
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+Encoding: UnicodeBmp
+UnicodeInterp: none
+DisplaySize: -24
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 9637 23 4
+BeginChars: 65536 2
+StartChar: .notdef
+Encoding: 0 0 0
+Width: 760
+Flags: HW
+Fore
+105 70 m 1
+ 655 70 l 1
+ 380 346 l 1
+ 105 70 l 1
+70 663 m 1
+ 70 112 l 1
+ 346 388 l 1
+ 70 663 l 1
+655 705 m 1
+ 105 705 l 1
+ 380 429 l 1
+ 655 705 l 1
+10 765 m 1
+ 750 765 l 1
+ 750 10 l 1
+ 10 10 l 1
+ 10 765 l 1
+690 112 m 1
+ 690 663 l 1
+ 414 388 l 1
+ 690 112 l 1
+EndSplineSet
+EndChar
+StartChar: uni262D
+Encoding: 9773 9773 1
+Width: 700
+Flags: HW
+TeX: 117 0 0 0
+Fore
+182 130 m 0
+ 182 126 183 123 183 118 c 0
+ 183 108 178 102 168 102 c 0
+ 131 102 122 0 64 -0 c 0
+ 48 0 40 7 40 18 c 0
+ 40 64 129 102 129 128 c 0
+ 129 148 134 153 148 153 c 0
+ 158 153 161 155 171 166 c 2
+ 182 180 l 1
+ 211 165 l 2
+ 288 126 348 115 390 115 c 0
+ 438 115 463 128 463 129 c 0
+ 463 135 406 186 240 363 c 1
+ 178 301 l 1
+ 123 357 l 1
+ 252 486 l 1
+ 347 470 l 1
+ 271 393 l 1
+ 484 190 l 1
+ 513 165 l 1
+ 519 165 556 218 556 295 c 0
+ 556 409 469 510 363 580 c 0
+ 354 587 346 592 346 593 c 1
+ 394 593 638 478 638 267 c 0
+ 638 212 624 159 592 117 c 2
+ 580 100 l 1
+ 608 72 l 2
+ 626 55 637 42 637 38 c 0
+ 637 17 605 -1 597 -1 c 0
+ 592 -1 585 5 562 29 c 2
+ 529 62 l 1
+ 509 54 l 2
+ 484 44 456 39 428 39 c 0
+ 353 39 273 74 206 128 c 0
+ 197 135 191 138 188 138 c 0
+ 183 138 182 134 182 130 c 0
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

@@ -1,0 +1,95 @@
+% Copyright (C) Andrey Panov
+%
+% All Rights Reserved.
+%
+% Permission is hereby granted, free of charge, to any person obtaining a
+% copy of this software and associated documentation files (the "Software"),
+% to deal in the Software without restriction, including without limitation
+% the rights to use, copy, modify, merge, publish, distribute, sublicense,
+% and/or sell copies of the Software, and to permit persons to whom the
+% Software is furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice (including the next
+% paragraph) shall be included in all copies or substantial portions of the
+% Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+% THE COPYRIGHT OWNER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+% IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+% CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%
+% file conb10pt.mf: dimensions of Computer Concrete Bold Extended 10pt
+
+u#:=23/36pt#;                   % unit width
+width_adj#:=15/36pt#;               % width adjustment for certain characters
+serif_fit#:=1/36pt#;            % extra sidebar near lowercase serifs
+cap_serif_fit#:=3/36pt#;        % extra sidebar near uppercase serifs
+letter_fit#:=0pt#;              % extra space added to all sidebars
+ 
+body_height#:=270/36pt#;        % height of tallest characters
+asc_height#:=250/36pt#;         % height of lowercase ascenders
+cap_height#:=250/36pt#;         % height of caps
+fig_height#:=250/36pt#;         % height of numerals
+x_height#:=170/36pt#;           % height of lowercase without ascenders ?
+math_axis#:=90/36pt#;           % axis of symmetry for math symbols
+bar_height#:=90/36pt#;          % height of crossbar in lowercase e
+comma_depth#:=70/36pt#;         % depth of comma below baseline
+desc_depth#:=70/36pt#;          % depth of lowercase descenders
+acc_height#:=108/36pt#;
+dot_height#:=66/36pt#;		% ?
+ 
+crisp#:=0pt#;                   % diameter of serif corners
+tiny#:=13/36pt#;                % diameter of rounded corners
+fine#:=8/36pt#;                 % diameter of sharply rounded corners
+thin_join#:=17/36pt#;           % width of extrafine details
+hair#:=27/36pt#;                % lowercase hairline breadth
+stem#:=33/36pt#;                % lowercase stem breadth
+curve#:=35/36pt#;               % lowercase curve breadth
+ess#:=33/36pt#;                 % breadth in middle of lowercase s
+flare#:=37/36pt#;               % diameter of bulbs or breadth of terminals
+dot_size#:=48/36pt#;            % diameter of dots
+cap_hair#:=27/36pt#;            % uppercase hairline breadth
+cap_stem#:=35/36pt#;            % uppercase stem breadth
+cap_curve#:=36/36pt#;           % uppercase curve breadth
+cap_ess#:=35/36pt#;             % breadth in middle of uppercase s
+rule_thickness#:=.6pt#;         % thickness of lines in math symbols
+ 
+dish#:=0/36pt#;                 % amount erased at top or bottom of serifs
+bracket#:=10/36pt#;              % vertical distance from serif base to tangent
+jut#:=27/36pt#;                 % protrusion of lowercase serifs
+cap_jut#:=28/36pt#;             % protrusion of uppercase serifs
+beak_jut#:=9/36pt#;            % horizontal protrusion of beak serifs
+beak#:=56/36pt#;                % vertical protrusion of beak serifs
+vair#:=27/36pt#;                % vertical diameter of hairlines
+notch_cut#:=34/36pt#;           % maximum breadth above or below notches
+bar#:=27/36pt#;                 % lowercase bar thickness
+slab#:=27/36pt#;                % serif and arm thickness
+cap_bar#:=27/36pt#;             % uppercase bar thickness
+cap_band#:=27/36pt#;            % uppercase thickness above/below lobes
+cap_notch_cut#:=39/36pt#;           % max breadth above/below uppercase notches
+serif_drop#:=4/36pt#;           % vertical drop of sloped serifs
+stem_corr#:=1/36pt#;            % for small refinements of stem breadth
+vair_corr#:=2/36pt#;            % for small refinements of hairline height
+apex_corr#:=0pt#;               % extra width at diagonal junctions
+ 
+o#:=4/36pt#;                    % amount of overshoot for curves
+apex_o#:=0/36pt#;               % amount of overshoot for diagonal junctions
+ 
+fudge:=.95;                     % factor applied to weights of heavy characters
+math_spread:=0.5;                 % extra openness of math symbols
+superness:=8/11;                % parameter for superellipses
+superpull:=1/15;                % extra openness inside bowls
+beak_darkness:=4/30;            % fraction of triangle inside beak serifs
+% ligs:=2;                        % level of ligatures to be included
+ 
+square_dots:=false;             % should dots be square?
+hefty:=false;                   % should we try hard not to be overweight?
+serifs:=true;                   % should serifs and bulbs be attached?
+monospace:=false;               % should all characters have the same width?
+variant_g:=false;               % should an italic-style g be used?
+low_asterisk:=false;            % should the asterisk be centered at the axis?
+
+endinput;
+
