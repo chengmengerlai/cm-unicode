@@ -112,13 +112,13 @@ ln -s /usr/X11R6/lib/X11/fonts/cm-unicode/*.pfb .
 ```
 
 
-然后进入ghostscript库目录，例如
+然后进入 ghostscript 库目录，例如
 
 ```
 cd /usr/share/ghostscript/?.??/lib
 ```
 
-?.?? 是ghostscript版本。从 tarball 复制 Fontmap.CMU：
+?.?? 是 ghostscript 版本。从 tarball 复制 Fontmap.CMU：
 
 ```
 cp /tmp/cm-unicode-VERSION/Fontmap.CMU
