@@ -110,7 +110,6 @@ Then go to the ghostscript library directory, for example
 where ?.?? is ghostscript version. Copy Fontmap.CMU from tarball:
 
 ```
-
 cp /tmp/cm-unicode-VERSION/Fontmap.CMU
 ```
  .
