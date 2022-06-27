@@ -18,15 +18,15 @@ There is project page for the fonts at [SourceForge.net](https://sourceforge.net
 
 CM Unicode 0.7.0 (June 18 2009) (Development release)
 
-    License changed to OFL 1.1
-    Converted to lookups for Advanced Typography
-    Changed building of accented characters, it is now based on anchors
-    Added special accents for capital letters
-    Added small serifs to U+26A in sans-serif fonts
-    Reencoded U+478 and U+479 as U+A46A, U+A46B
-    Kerning copied to built accented characters
-    Added experimental truetype fonts with autoconverted instructions
-    Tarballs now compressed with xz (use xz or 7-Zip for decompression)
+License changed to OFL 1.1
+Converted to lookups for Advanced Typography
+Changed building of accented characters, it is now based on anchors
+Added special accents for capital letters
+Added small serifs to U+26A in sans-serif fonts
+Reencoded U+478 and U+479 as U+A46A, U+A46B
+Kerning copied to built accented characters
+Added experimental truetype fonts with autoconverted instructions
+Tarballs now compressed with xz (use xz or 7-Zip for decompression)
 
 ### Installation
 
@@ -135,7 +135,7 @@ Currently opentype fonts are not fully supported by X applications. Most ones, f
 
 Look at bug report for libgnomeprint.
 
-OpenOffice.org does not support otf fonts at all ( Issue 16032 ).
+OpenOffice.org does not support otf fonts at all ( [Issue 16032](http://www.openoffice.org/issues/show_bug.cgi?id=16032) ).
 
 qt 4.1, scribus, inkscape and seamonkey (firefox 1.5) have some support for printing with otf fonts.
 
