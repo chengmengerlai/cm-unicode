@@ -1,0 +1,105 @@
+% Copyright (C) 1997, 1999, 2002 Claudio Beccari
+% Copyright (C) 2004 Andrey Panov
+%
+% All Rights Reserved.
+%
+% Permission is hereby granted, free of charge, to any person obtaining a
+% copy of this software and associated documentation files (the "Software"),
+% to deal in the Software without restriction, including without limitation
+% the rights to use, copy, modify, merge, publish, distribute, sublicense,
+% and/or sell copies of the Software, and to permit persons to whom the
+% Software is furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice (including the next
+% paragraph) shall be included in all copies or substantial portions of the
+% Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+% THE COPYRIGHT OWNER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+% IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+% CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%
+% file gsdn v.1.0b 2004/12/20
+% 256 character sans serif upright greek demibold condensed font
+%
+if unknown cmbase: input cmbase fi;
+if unknown cbbase: input cbbase fi;
+font_identifier:="GSDN";
+font_size 10pt#;
+
+ u#:=19/36pt#;            
+ width_adj#:=15/36pt#;    
+ serif_fit#:=-8/36pt#;    
+ cap_serif_fit#:=-9/36pt#;
+ letter_fit#:=0pt#;       
+ body_height#:=270/36pt#; 
+ asc_height#:=250/36pt#;   
+ cap_height#:=250/36pt#;  
+ fig_height#:=250/36pt#;  
+ x_height#:=170/36pt#;    
+ math_axis#:=95/36pt#;    
+ bar_height#:=95/36pt#;    
+ comma_depth#:=40/36pt#;  
+ desc_depth#:=60/36pt#;   
+acc_ht#:=250/36pt#;       
+circ_ht#:=225/36pt#;      
+Circ_ht#:=250/36pt#;      
+iota_dp#:=72/36pt#;       
+ crisp#:=23/36pt#;        
+ tiny#:=23/36pt#;         
+ fine#:=8/36pt#;          
+ thin_join#:=8/36pt#;     
+ hair#:=40/36pt#;         
+ stem#:=40/36pt#;         
+ curve#:=40/36pt#;        
+ ess#:=37/36pt#;          
+ flare#:=31/36pt#;        
+ dot_size#:=38/36pt#;     
+ cap_hair#:=40/36pt#;     
+ cap_stem#:=44/36pt#;     
+ cap_curve#:=44/36pt#;    
+ cap_ess#:=42/36pt#;      
+ rule_thickness#:=.69444pt#;
+ dish#:=0pt#;          
+ bracket#:=0pt#;       
+ jut#:=0pt#;           
+ cap_jut#:=0pt#;       
+ beak_jut#:=0pt#;      
+ beak#:=1.5/36pt#;     
+ vair#:=23/36pt#;      
+ notch_cut#:=40/36pt#; 
+ bar#:=23/36pt#;       
+ slab#:=31/36pt#;      
+ cap_bar#:=29/36pt#;   
+ cap_band#:=27/36pt#;  
+ cap_notch_cut#:=37/36pt#;
+ serif_drop#:=2/36pt#;
+ stem_corr#:=1/36pt#; 
+ vair_corr#:=2/36pt#; 
+ apex_corr#:=14/36pt#;
+ o#:=7/36pt#;         
+ apex_o#:=0/36pt#;    
+%slant:=sind 12/cosd 12;
+slant:=0;
+fudge:=.91;
+math_spread:=.3;                                                                                    
+otilt:=.2;
+superness:=0.74;                                                                                    
+superpull:=1/18;                                                                                    
+beak_darkness:=0;                                                                                   
+square_dots:=true;
+hefty:=true;
+serifs:=false   ;
+monospace:=false;
+variant_g:=false;
+low_asterisk:=false;
+math_fitting:=false;
+slitex:=false;
+straight:=false;
+monowidth:=false;
+clear_extra_memory;
+
+generate cbgreek;
+endinput;

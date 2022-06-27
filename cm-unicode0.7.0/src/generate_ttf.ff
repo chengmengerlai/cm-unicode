@@ -1,0 +1,84 @@
+#!/usr/bin/env fontforge
+#
+# (C) 2009 Andrey Panov
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+font_var = $1
+monospace = font_var == "tt" || font_var == "it" || font_var == "st" || \
+ font_var == "tb" || font_var == "tx" || font_var == "btl" || font_var == "bto"
+serifs = font_var == "bi" || font_var == "bl" || font_var == "bx" || \
+ font_var == "rb" || font_var == "rm" || font_var == "sl" || font_var == \
+ "ti" || font_var == "ui" || font_var == "tt" || font_var == "st" || \
+ font_var == "it" || font_var == "vt" || font_var == "vi" || font_var == \
+ "ci" || font_var == "tx" || font_var == "tb" || \
+ font_var == "orm" || font_var == "oti" || font_var == "obx" || font_var == "obi" \
+ || font_var == "btl" || font_var == "bto"
+
+SetPref("DetectDiagonalStems",1)
+if (monospace)
+ SetPref("CounterControl",0)
+else
+ SetPref("CounterControl",1)
+endif
+if (serifs)
+ SetPref("InstructSerifs",1)
+ SetPref("InstructBallTerminals",1)
+else
+ SetPref("InstructSerifs",0)
+ SetPref("InstructBallTerminals",0)
+endif
+SetPref("DetectDiagonalStems",1) 
+SetPref("InterpolateStrongPoints",1) 
+
+Open("cmun"+font_var+".sfd")
+#Print("!!!! Processing ttf !!!!")
+SetFontOrder(2)
+#Print("!!!! converted to square splines !!!!")
+SelectGlyphsBoth()
+#SelectWorthOutputting()
+UnlinkReference()
+#Save("cmun"+font_var+"__.sfd")
+SelectWorthOutputting()
+# This is workaround for erroneous conversion to square splines
+# RemoveOverlap()
+#Print("!!!! Simplifying !!!!")
+#foreach
+# Print(GlyphInfo("Name"))
+# Simplify()
+#endloop
+#Print("!!!! Canonical !!!!")
+#RoundToInt()
+CanonicalContours()
+CanonicalStart()
+# glyphs with diagonals:
+SelectSingletons("numbersign","slash","seven","less","greater","A","K","M","N","S","V","W","X","Y","Z")
+SelectMoreSingletons("k","s","v","w","x","y","z")
+SelectMoreSingletons("Aring","AE")
+SelectMoreSingletons("Alpha","Zeta","Kappa","Mu","Nu","Chi","chi")
+SelectMoreSingletons(0u410,0u416,0u418,0u419,0u41A,0u41B,0u41C,0u423,0u425,0u42F)
+SelectMoreSingletons(0u436,0u438,0u439,0u43A,0u43B,0u43C,0u443,0u445,0u44F)
+ClearHints()
+#Print("!!!! Rehint diagonals !!!!")
+AutoHint()
+#Save("cmun"+font_var+"_.sfd")
+SelectWorthOutputting()
+#Print("!!!! AutoInstr !!!!")
+AutoInstr()
+#Save("cmun"+font_var+"_.sfd")
+#Print("!!!! Generating ttf !!!!")
+Generate("cmun"+font_var+".ttf","ttf",0x200,-1)
+Close()
+Quit()
