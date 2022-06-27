@@ -79,25 +79,29 @@ Currently mkfontscale and mkfontdir may produce errors, so copy fonts.dir and fo
 
 Then add
 
-FontPath     "/usr/X11R6/lib/X11/fonts/cm-unicode/" 
+`FontPath     "/usr/X11R6/lib/X11/fonts/cm-unicode/" `
 
 to "Files" Section of etc/X11/xorg.conf (/etc/X11/XF86Config). On the next run X.Org (XFree86) will load these fonts.
 
 If you are using fontconfig (X.Org, XFree86-4.3, may be installed on XFree86-4.2) you should add a line
 
-<dir>/usr/X11R6/lib/X11/fonts/cm-unicode</dir>
+`<dir>/usr/X11R6/lib/X11/fonts/cm-unicode</dir>`
 
 to /etc/fonts/fonts.conf or better to /etc/fonts/local.conf then run
 
-fc-cache
+`fc-cache`
 
 Installation for ghostscript
 
 Assuming that you have rather new ghostscript version like 7.x go to default ghostscript font directory, typically /usr/share/ghostscript/fonts, then add links to fonts installed for X or copy them:
 
+
+```
 cd /usr/share/ghostscript/fonts
 ln -s /usr/X11R6/lib/X11/fonts/cm-unicode/*.afm .
 ln -s /usr/X11R6/lib/X11/fonts/cm-unicode/*.pfb .
+```
+
 
 Then go to the ghostscript library directory, for example
 
