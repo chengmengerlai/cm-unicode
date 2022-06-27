@@ -61,7 +61,7 @@ cp *.pfb /usr/X11R6/lib/X11/fonts/cm-unicode/
 ```
 
 
-如果您使用的是 4.3 之前的 XFree86，您还应该将 fonts.scale 复制到那里。  然后将目录更改为 /usr/X11R6/lib/X11/fonts/cm-unicode/ ：
+如果你使用的是 4.3 之前的 XFree86，你还应该将 fonts.scale 复制到那里。  然后将目录更改为 /usr/X11R6/lib/X11/fonts/cm-unicode/ ：
 
 ```
 cd /usr/X11R6/lib/X11/fonts/cm-unicode/
@@ -84,7 +84,7 @@ mkfontdir
 
 到 etc/X11/xorg.conf (/etc/X11/XF86Config) 的“文件”部分。在下一次运行时，X.Org (XFree86) 将加载这些字体。
 
-如果您使用的是 fontconfig（X.Org，XFree86-4.3，可能安装在 XFree86-4.2 上），您应该添加一行
+如果你使用的是 fontconfig（X.Org，XFree86-4.3，可能安装在 XFree86-4.2 上），您应该添加一行
 
 `<dir>/usr/X11R6/lib/X11/fonts/cm-unicode</dir>`
 
