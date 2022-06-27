@@ -113,7 +113,7 @@ ln -s /usr/X11R6/lib/X11/fonts/cm-unicode/*.pfb .
 ```
 cp /tmp/cm-unicode-VERSION/Fontmap.CMU
 ```
- .
+ 。
 
 然后将以下行添加到 Fontmap 文件：
 
