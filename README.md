@@ -94,7 +94,7 @@ mkfontdir
 
 安装 ghostscript
 
-假设您有相当新的 ghostscript 版本，如 7.x，请转到默认的 ghostscript 字体目录，通常是 /usr/share/ghostscript/fonts，然后添加为 X 安装的字体的链接或复制它们：
+假设你有相当新的 ghostscript 版本，如 7.x，请转到默认的 ghostscript 字体目录，通常是 /usr/share/ghostscript/fonts，然后添加为 X 安装的字体的链接或复制它们：
 
 
 ```
@@ -126,7 +126,7 @@ cp /tmp/cm-unicode-VERSION/Fontmap.CMU
 
 `fc-cache -f`
 
-要使用 ps2pdf 脚本将这些字体嵌入到 pdf 文件中，您应该使用 ghostscript-8.x（8.15 可以）。
+要使用 ps2pdf 脚本将这些字体嵌入到 pdf 文件中，你应该使用 ghostscript-8.x（8.15 可以）。
 
 字体 CMUTypewriterVariable 和 CMUTypewriterVariable-Italic 由于家族名称过长，无法在 Windows 下安装。
 
