@@ -1,36 +1,11 @@
-# cm-unicode
+omputer Modern Unicode fonts were converted from metafont sources using mftrace with autotrace backend and fontforge (former pfaedit). Their main purpose is to create free good quality fonts for use in X applications supporting many languages. Currently the fonts contain glyphs from Latin1 (Metafont ec, tc, vnr), Cyrillic (lh) and Greek (cbgreek when available) code sets and IPA extensions (from tipa). Other alphabets are also welcome. Now this set contains 33 fonts. It is better to use these fonts with antialiasing enabled.
 
-#### Description
-这是Computer Modern Unicode字体的镜像仓库。
+Here you can see Unicode glyph coverage in CMUSerif-Roman (pdf ~600kb) and CMUSerif-Italic fonts.
 
-#### Software Architecture
-Software architecture description
+Look at this table for more description.
 
-#### Installation
+The versions of fonts prior to 0.7.0 are distributed under the terms of X11 License with an exception for font embedding into documents. Some scripts for font generation are distributed under the terms of GNU General Public License. The versions 0.2.2 and before were distributed under the terms of Latex Project Public License (LPPL) Version 1.2. Since version 0.7.0 the license is changed to SIL Open Font License (OFL).
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+The latest development version is 0.7.0.
 
-#### Instructions
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+There is project page for the fonts at [SourceForge.net]: https://sourceforge.net/projects/cm-unicode/.
