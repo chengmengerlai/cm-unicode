@@ -5,7 +5,7 @@ Computer Modern Unicode 字体是使用 mftrace 和 autotrace 后端和 fontforg
 
 在这里，你可以看到 [CMUSerif-Roman](https://cm-unicode.sourceforge.io/cmunrm.pdf) (pdf ~600kb) 和 [CMUSerif-Italic](https://cm-unicode.sourceforge.io/cmunti.pdf) 字体中的 Unicode 字形覆盖率。
 
-查看[此表](/copy1/font table.txt)以获取更多说明。
+查看[此表](https://gitee.com/xu-xuancheng/cm-unicode/blob/master/copy1/font%20table.txt)以获取更多说明。
 
 从 0.7.0 版开始，许可证更改为 [SIL 开放字体许可证 (OFL)](https://scripts.sil.org/OFL)。
 
