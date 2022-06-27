@@ -117,3 +117,27 @@ cp /tmp/cm-unicode-VERSION/Fontmap.CMU
 Then add following line to Fontmap file:
 
 `(Fontmap.CMU) .runlibfile`
+
+### Warnings
+
+
+
+
+    After upgrade run
+
+    `fc-cache -f`
+
+    To embed these fonts into pdf files using ps2pdf script you should use ghostscript-8.x (8.15 is OK).
+
+    The fonts CMUTypewriterVariable and CMUTypewriterVariable-Italic cannot be installed under Windows due to long family name.
+
+    The opentype font versions prior to 0.4.1 may cause crashes of applications under Mac OS X 10.4 (Tiger).
+
+    Currently opentype fonts are not fully supported by X applications. Most ones, for example GNOME or qt-3.x based programs (KDE 3.x), can render otf fonts but cannot print.
+    Look at bug report for libgnomeprint.
+    OpenOffice.org does not support otf fonts at all ( Issue 16032 ).
+    qt 4.1, scribus, inkscape and seamonkey (firefox 1.5) have some support for printing with otf fonts.
+    As a workaround for printing with Qt 3.3 call Fontmap.CMU.alias after Fontmap.CMU in ghostscript's Fontmap file. It would substitute some fonts.
+    Outdated mkfontscale does not recognize SemiBold style option in names of Type 1 fonts. Use supplied fonts.scale file.
+
+
