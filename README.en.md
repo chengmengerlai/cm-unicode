@@ -117,4 +117,4 @@ cp /tmp/cm-unicode-VERSION/Fontmap.CMU
 
 Then add following line to Fontmap file:
 
-(Fontmap.CMU) .runlibfile
+`(Fontmap.CMU) .runlibfile`
