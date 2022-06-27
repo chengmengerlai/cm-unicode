@@ -1,0 +1,20 @@
+--- fikparm.mf	2001-12-01 10:00:00.000000000 +1000
++++ fikparm.mf.new	2005-12-19 23:06:53.000000000 +1000
+@@ -165,6 +165,9 @@
+    elseif substring(fonteq-2,fonteq) of jobname = "rx":
+        more_letters:=true;
+        genmode:="ex"; enc_name:="X2";
++   elseif substring(fonteq-2,fonteq) of jobname = "ux":
++       vfcoding:=true; more_letters:=true; other_cyr:=true; old_cyr:=true; unic:=true; enc_name:="Unicode";
++       genmode:="ec"; 
+ %   elseif substring(fonteq-2,fonteq) of jobname = "rs":
+ %       more_letters:=true; old_cyr:=true;
+ %       genmode:="ex"; enc_name:="XS";
+@@ -275,6 +278,7 @@
+         else:  driver_name fi
+   elseif genmode="ec":
+      if driver_name=		"exroman" :	"ldroman"
++        elseif driver_name=	"ebroman" :	"ldbroman" 
+         elseif driver_name=	"extextit":	"ldtextit"
+         elseif driver_name=	"excsc"   : 	"ldcsc"
+         else:  driver_name fi

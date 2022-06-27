@@ -1,0 +1,20 @@
+--- llvligtb.mf	2001-12-01 10:00:00.000000000 +1000
++++ llvligtb.mf.New	2005-03-22 21:49:11.000000000 +1000
+@@ -45,7 +45,7 @@
+ 
+ fi
+ 
+-if genmode="ex": % for T2 only
++if ((genmode="ex") and (unic=false)): % for T2 only
+ 
+    %english quotes
+    ligtable
+@@ -106,7 +106,7 @@
+ k#:=-.5u#; ku#:=-1u#; kk#:=-1.5u#; kkk#:=-2u#; % four degrees of kerning
+ 
+ % kerning for T2 only
+-if genmode="ex":
++if ((genmode="ex") and (unic=false)):
+ 
+       beginligtable
+          labelchar (boundarychar);

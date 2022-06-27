@@ -1,0 +1,20 @@
+--- lgrusu.mf	2001-10-09 10:00:00.000000000 +1100
++++ lgrusu.mf.new	2007-01-09 21:55:14.000000000 +1000
+@@ -989,7 +989,7 @@
+ pos5(fudged.cap_stem,0); pos6(fudged.cap_stem,0);
+ lft x1l=lft x2l=hround max(2u,3u-.5cap_stem); x3=x4=w-x1;
+ top y1=top y3=top y5=h; bot y2=bot y4=bot y6=0;
+-lft x5l=lft x6l=hround (.5[x1,x3]-.5cap_stem); % middle stem point
++lft x5l=lft x6l=hround (.5[x1,x3]-.5fudged.cap_stem); % middle stem point
+ filldraw stroke z1e--z2e; % left stem
+ filldraw stroke z3e--z4e; % right stem
+ filldraw stroke z5e--z6e; % center stem
+@@ -1029,7 +1029,7 @@
+ pos5(fudged.cap_stem,0); pos6(fudged.cap_stem,0);
+ lft x1l=lft x2l=hround max(2u,3u-.5cap_stem); x3=x4=w-x1;
+ top y1=top y3=top y5=h; bot y2=bot y4=bot y6=0;
+-lft x5l=lft x6l=hround (.5[x1,x3]-.5cap_stem); % middle stem point
++lft x5l=lft x6l=hround (.5[x1,x3]-.5fudged.cap_stem); % middle stem point
+ filldraw stroke z1e--z2e; % left stem
+ filldraw stroke z3e--z4e; % right stem
+ filldraw stroke z5e--z6e; % center stem

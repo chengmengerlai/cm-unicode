@@ -1,0 +1,11 @@
+--- mktexnam	2005-02-10 15:44:28.000000000 +1000
++++ mktexnam.New	2005-03-22 21:33:00.000000000 +1000
+@@ -54,7 +54,7 @@
+            fullname=`kpsewhich cscode.mf`
+            ;;
+       # LH fonts get special treatment:
+-      wn[bcdfirstuv]*|rx[bcdfiorstuvx][bcfhilmostx]|l[abcdhl][bcdfiorstuvx]*)
++      wn[bcdfirstuv]*|rx[bcdfiorstuvx][bcfhilmostx]|l[abcdhl][bcdfiorstuvx]*|ux[bcdfiorstuvx][bcfhilmostx]*)
+            lhprefix=`echo $NAME | sed 's/^\(..\).*/\1/'`
+            fullname=`kpsewhich "${lhprefix}codes.mf" 2>/dev/null`;;
+       *)   fullname=`kpsewhich "$rootname.mf" 2>/dev/null`

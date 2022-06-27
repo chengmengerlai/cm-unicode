@@ -1,0 +1,20 @@
+These patches are required for tracing of METAFONT fonts
+
+inst-lh.sh		Modified script installing lh 3.5 fonts (bugs fixed and 
+			support for uc fonts added)
+
+fikparm.mf.patch	patches for installed lh 3.5 fonts
+llvligtb.mf.diff
+
+mktexmf.patch		patches for installed teTeX 3.0
+mktexnam.patch
+
+uxcodes.mf		must to be added into directory with uc/ux metafont sources
+
+lgrusu.mf.SHA.diff	a fix for LH fonts making Cyrillic capital sha and shcha
+			symmetric
+
+Also following (symbolic) links must be created:
+
+uxbegin.mf -> ucbegin.mf
+uxliker.mf -> ucliker.mf

@@ -1,0 +1,20 @@
+--- mktexmf	2005-02-10 15:44:28.000000000 +1000
++++ mktexmf.New	2005-03-22 21:44:15.000000000 +1000
+@@ -42,7 +42,7 @@
+        rootfile=;;
+     cs*|lcsss*|icscsc*|icstt*|ilcsss*)
+        rootfile=`kpsewhich cscode.mf`;;
+-    wn[bcdfirstuv]*|rx[bcdfiorstuvx][bcfhilmostx]|l[abcdhl][bcdfiorstuvx]*)
++    wn[bcdfirstuv]*|rx[bcdfiorstuvx][bcfhilmostx]|l[abcdhl][bcdfiorstuvx]*|ux[bcdfiorstuvx][bcfhilmostx]*)
+        lhprefix=`echo "$name" | sed 's/^\(..\).*/\1/'`
+        rootfile=`kpsewhich ${lhprefix}codes.mf 2>/dev/null`;;
+     *)
+@@ -108,7 +108,7 @@
+ use_driver;
+ END
+     ;;
+-  wn[bcdfirstuv]*|rx[bcdfiorstuvx][bcfhilmostx]*|l[abcdhl][bcdfiorstuvx]*)
++  wn[bcdfirstuv]*|rx[bcdfiorstuvx][bcfhilmostx]*|l[abcdhl][bcdfiorstuvx]*|ux[bcdfiorstuvx][bcfhilmostx]*)
+     cat > "mf$$.tmp" <<END
+ input fikparm;
+ END
