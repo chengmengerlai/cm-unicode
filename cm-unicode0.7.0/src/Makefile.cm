@@ -1,0 +1,913 @@
+copyrightnotice="Converted by Andrey V. Panov from TeX fonts"
+font_version=`cat VERSION`
+font_size=1000
+FONTS=bi bl bx rb rm sl ti ui tt st it vt vi ss ssdc si so sx ci tx tb \
+	obi obx orm oti bbx bmo bmr bso bsr bxo btl bto
+MFFILES=ectb.mf ectx.mf tctb.mf tctx.mf ebxo10.mf tbxo10.mf \
+	 gsdn.mf gtbi.mf gtbn.mf grmk.mf grms.mf \
+	 grmq.mf grxk.mf grxq.mf grmv.mf \
+	 gtbk.mf gttk.mf gttq.mf \
+	 conb10pt.mf conx10pt.mf eobx10.mf gorm10.mf goti10.mf gobi10.mf eobi10.mf \
+	 tobx10.mf tobi10.mf gobx10.mf tipaorm10.mf tipxorm10.mf tipaobx10.mf tipxobx10.mf \
+	 gbbx10.mf gbmr10.mf gbmo10.mf gbso10.mf gbsr10.mf gbxo10.mf gbtl10.mf gbto10.mf \
+	 tipabbx10.mf  tipabmo10.mf  tipabmr10.mf  tipabso10.mf  tipabsr10.mf  tipabxo10.mf \
+	 tipxbbx10.mf  tipxbmo10.mf  tipxbmr10.mf  tipxbso10.mf  tipxbsr10.mf  tipxbxo10.mf \
+	 vnbbx10.mf vnbmr10.mf vnbmo10.mf vnbso10.mf vnbsr10.mf vnbxo10.mf
+FFSCRIPTS=mergefonts.pe dub_glyph.pe make_double.pe make_digraph.pe \
+	 make_bottomaccent.pe make_dup_vertshift.pe make_superscript.pe \
+	 cop_glyph.ff new_glyph.ff simpl.ff recode_extra.ff add_smcp.ff \
+	 hflip_glyph.ff simplify.ff add_anchor_ext.ff add_anchor_y.ff add_anchor_med.ff \
+	 cop_kern.ff add_smcp_gr.ff make_cap_accent.ff combining.ff make_dup_rot.ff \
+	 make_comb.ff add_private.ff case_sub.ff add_ipa.ff add_accented.ff \
+	 dub_aligned.ff make_superscript.ff generate_ttf.ff dub_glyph_ch.ff \
+	 combining_mono.ff autohint.ff cop_kern.ff cop_kern_acc.ff copy_anchors_acc.ff
+
+ENCODINGS=ec.enc la.enc rx.enc tc.enc g.enc tipa.enc tipx.enc lc.enc ld.enc \
+	ux.enc ecsc.enc uxsc.enc lasc.enc lb.enc vn.enc gsc.enc
+SHSCRIPTS=genfonts.sh createtfms.sh create_mf_files.sh create_links.sh 
+SFDFILES= additional_glyphs.sfd pseudographics.sfd add_*.sfd post_*.sfd
+BITMAPS=bitmap/cmuntt-bm.sfd bitmap/cmunbmr-bm.sfd bitmap/recode_bdf.ff
+DOCUMENTS=OFL.txt OFL-FAQ.txt Changes INSTALL README TODO FAQ FontLog.txt
+
+
+
+define merge
+	mergefonts.pe $(fontname) \
+	$(family) \
+$(fullname) \
+$(weight) \
+$(copyrightnotice) \
+$(font_version) \
+$(font_var) \
+$(greek_font_var) \
+$(font_size)\
+$(fontdim3) \
+$(space) \
+$(italic_angle) \
+$(tipa) \
+$(bluesky)
+	generate_ttf.ff $(font_var)
+endef
+
+#all: bi bl bx rb rm sl ti ui tt st it vt vi ss ssdc si so sx ci tx tb obi obx orm oti # lq li lb lo
+all: $(FONTS)
+
+rm: fontname="CMUSerif-Roman"
+rm: fullname="CMU Serif Roman"
+rm: family="CMU Serif"
+rm: weight="Medium"
+rm: font_var=rm
+rm: greek_font_var="rmn"
+rm: fontdim3=167
+rm: space=333
+rm: italic_angle=0
+rm: tipa="r"
+rm: bluesky="r"
+rm:  ecrm$(font_size).tfm ecrm$(font_size).pfb\
+     larm$(font_size).tfm larm$(font_size).pfb\
+     lcrm$(font_size).tfm lcrm$(font_size).pfb\
+     rxrm$(font_size).tfm rxrm$(font_size).pfb\
+     uxrm$(font_size).tfm uxrm$(font_size).pfb\
+     tcrm$(font_size).tfm tcrm$(font_size).pfb\
+     grmn$(font_size).tfm grmn$(font_size).pfb\
+     vnrm10.tfm vnrm10.pfb\
+     tipa10.tfm tipa10.pfb tipx10.tfm tipx10.pfb 
+	$(merge)
+
+bi: fontname="CMUSerif-BoldItalic"
+bi: fullname="CMU Serif Bold Extended Italic"
+bi: family="CMU Serif"
+bi: weight="Bold"
+bi: font_var=bi
+bi: greek_font_var="rxk" #"rxi" 
+bi: fontdim3=177
+bi: space=414
+bi: italic_angle=-1404
+bi: tipa="-"
+bi: bluesky="-"
+bi:  ecbi$(font_size).tfm ecbi$(font_size).pfb\
+     labi$(font_size).tfm labi$(font_size).pfb\
+     lcbi$(font_size).tfm lcbi$(font_size).pfb\
+     rxbi$(font_size).tfm rxbi$(font_size).pfb\
+     uxbi$(font_size).tfm uxbi$(font_size).pfb\
+     tcbi$(font_size).tfm tcbi$(font_size).pfb\
+     vnbi10.tfm vnbi10.pfb\
+     grxk$(font_size).tfm grxi$(font_size).pfb
+	$(merge)     
+
+bl: fontname="CMUSerif-BoldSlanted"
+bl: fullname="CMU Serif Bold Extended Slanted Roman"
+bl: family="CMU Serif Extra"
+bl: weight="Bold"
+bl: font_var=bl
+bl: greek_font_var="rxq" # "rxo"
+bl: fontdim3=192
+bl: space=383
+bl: italic_angle=-946
+bl: tipa="bs"
+bl: bluesky="bxsl"
+bl:  ecbl$(font_size).tfm ecbl$(font_size).pfb\
+     labl$(font_size).tfm labl$(font_size).pfb\
+     lcbl$(font_size).tfm lcbl$(font_size).pfb\
+     rxbl$(font_size).tfm rxbl$(font_size).pfb\
+     uxbl$(font_size).tfm uxbl$(font_size).pfb\
+     tcbl$(font_size).tfm tcbl$(font_size).pfb\
+     vnbl10.tfm vnbl10.pfb\
+     grxq$(font_size).tfm grxq$(font_size).pfb\
+     tipabs10.tfm tipabs10.pfb tipxbs10.tfm tipxbs10.pfb 
+	$(merge)     
+
+bx: fontname="CMUSerif-Bold"
+bx: fullname="CMU Serif Bold Extended Roman"
+bx: family="CMU Serif"
+bx: weight="Bold"
+bx: font_var=bx
+bx: greek_font_var="rxn"
+bx: fontdim3=192
+bx: space=383
+bx: italic_angle=0
+bx: tipa="bx"
+bx: bluesky="bx"
+bx:  ecbx$(font_size).tfm ecbx$(font_size).pfb\
+     labx$(font_size).tfm labx$(font_size).pfb\
+     lcbx$(font_size).tfm lcbx$(font_size).pfb\
+     rxbx$(font_size).tfm rxbx$(font_size).pfb\
+     uxbx$(font_size).tfm uxbx$(font_size).pfb\
+     tcbx$(font_size).tfm tcbx$(font_size).pfb\
+     vnbx10.tfm vnbx10.pfb\
+     grxn$(font_size).tfm grxn$(font_size).pfb\
+     tipabx10.tfm tipabx10.pfb tipxbx10.tfm tipxbx10.pfb 
+	$(merge)     
+
+rb: fontname="CMUSerif-BoldNonextended"
+rb: fullname="CMU Serif Roman Bold Nonextended"
+rb: family="CMU Serif Extra"
+rb: weight="Bold"
+rb: font_var=rb
+rb: greek_font_var=-
+rb: fontdim3=167
+rb: space=333
+rb: italic_angle=0
+rb: tipa="b"
+rb: bluesky="b"
+rb:  ecrb$(font_size).tfm ecrb$(font_size).pfb\
+     larb$(font_size).tfm larb$(font_size).pfb\
+     lcrb$(font_size).tfm lcrb$(font_size).pfb\
+     rxrb$(font_size).tfm rxrb$(font_size).pfb\
+     uxrb$(font_size).tfm uxrb$(font_size).pfb\
+     tcrb$(font_size).tfm tcrb$(font_size).pfb\
+     vnrb10.tfm vnrb10.pfb\
+     tipab10.tfm tipab10.pfb tipxb10.tfm tipxb10.pfb 
+	$(merge)     
+
+sl: fontname="CMUSerif-RomanSlanted"
+sl: fullname="CMU Serif Roman Slanted"
+sl: family="CMU Serif Extra"
+sl: weight="Medium"
+sl: font_var=sl
+sl: greek_font_var="rmq" # "rmo"
+sl: fontdim3=167
+sl: space=333
+sl: italic_angle=-946
+sl: tipa="sl"
+sl: bluesky="sl"
+sl:  ecsl$(font_size).tfm ecsl$(font_size).pfb\
+     lasl$(font_size).tfm lasl$(font_size).pfb\
+     lcsl$(font_size).tfm lcsl$(font_size).pfb\
+     rxsl$(font_size).tfm rxsl$(font_size).pfb\
+     uxsl$(font_size).tfm uxsl$(font_size).pfb\
+     tcsl$(font_size).tfm tcsl$(font_size).pfb\
+     vnsl10.tfm vnsl10.pfb\
+     grmq$(font_size).tfm grmq$(font_size).pfb\
+     tipasl10.tfm tipasl10.pfb tipxsl10.tfm tipxsl10.pfb 
+	$(merge)     
+
+ti: fontname="CMUSerif-Italic"
+ti: fullname="CMU Serif Italic"
+ti: family="CMU Serif"
+ti: weight="Medium"
+ti: font_var=ti
+ti: greek_font_var="rmk" # "rmi"
+ti: fontdim3=153
+ti: space=358
+ti: italic_angle=-1404
+ti: tipa="-"
+ti: bluesky="ti"
+ti:  ecti$(font_size).tfm ecti$(font_size).pfb\
+     lati$(font_size).tfm lati$(font_size).pfb\
+     lcti$(font_size).tfm lcti$(font_size).pfb\
+     rxti$(font_size).tfm rxti$(font_size).pfb\
+     uxti$(font_size).tfm uxti$(font_size).pfb\
+     tcti$(font_size).tfm tcti$(font_size).pfb\
+     vnti10.tfm vnti10.pfb\
+     grmk$(font_size).tfm grmk$(font_size).pfb
+	$(merge)     
+
+ci: fontname="CMUClassicalSerif-Italic"
+ci: fullname="CMU Classical Serif Italic"
+ci: family="CMU Classical Serif"
+ci: weight="Medium"
+ci: font_var=ci
+ci: greek_font_var="rms"
+ci: fontdim3=153
+ci: space=358
+ci: italic_angle=-1404
+ci: tipa="-"
+ci: bluesky="-"
+ci:  ecci$(font_size).tfm ecci$(font_size).pfb\
+     laci$(font_size).tfm laci$(font_size).pfb\
+     lcci$(font_size).tfm lcci$(font_size).pfb\
+     rxci$(font_size).tfm rxci$(font_size).pfb\
+     uxci$(font_size).tfm uxci$(font_size).pfb\
+     tcci$(font_size).tfm tcci$(font_size).pfb\
+     vnci10.tfm vnci10.pfb\
+     grms$(font_size).tfm grms$(font_size).pfb
+	$(merge)     
+
+si: fontname="CMUSansSerif-Oblique"
+si: fullname="CMU Sans Serif Oblique"
+si: family="CMU Sans Serif"
+si: weight="Medium"
+si: font_var=si
+si: greek_font_var="smi"   #   "sme"
+si: fontdim3=167
+si: space=333
+si: italic_angle=-1200
+si: tipa="si"
+si: bluesky="-"
+si:  ecsi$(font_size).tfm ecsi$(font_size).pfb\
+     lasi$(font_size).tfm lasi$(font_size).pfb\
+     lcsi$(font_size).tfm lcsi$(font_size).pfb\
+     rxsi$(font_size).tfm rxsi$(font_size).pfb\
+     uxsi$(font_size).tfm uxsi$(font_size).pfb\
+     tcsi$(font_size).tfm tcsi$(font_size).pfb\
+     gsmi$(font_size).tfm gsmi$(font_size).pfb\
+     vnsi10.tfm vnsi10.pfb\
+     tipasi10.tfm tipasi10.pfb tipxsi10.tfm tipxsi10.pfb 
+	$(merge)     
+
+so: fontname="CMUSansSerif-BoldOblique"
+so: fullname="CMU Sans Serif Bold Extended Oblique"
+so: family="CMU Sans Serif"
+so: weight="Bold"
+so: font_var=so
+so: greek_font_var="sxo" # "sxe"
+so: fontdim3=183
+so: space=367
+so: italic_angle=-1200
+so: tipa="-"
+so: bluesky="-"
+so:  ecso$(font_size).tfm ecso$(font_size).pfb\
+     laso$(font_size).tfm laso$(font_size).pfb\
+     lcso$(font_size).tfm lcso$(font_size).pfb\
+     rxso$(font_size).tfm rxso$(font_size).pfb\
+     uxso$(font_size).tfm uxso$(font_size).pfb\
+     tcso$(font_size).tfm tcso$(font_size).pfb\
+     vnso10.tfm vnso10.pfb\
+     gsxo$(font_size).tfm gsxo$(font_size).pfb
+	$(merge)     
+
+ss: fontname="CMUSansSerif"
+ss: fullname="CMU Sans Serif"
+ss: family="CMU Sans Serif"
+ss: weight="Medium"
+ss: font_var=ss
+ss: greek_font_var="smn"
+ss: fontdim3=167
+ss: space=333
+ss: italic_angle=0
+ss: tipa="ss"
+ss: bluesky="-"
+ss:  ecss$(font_size).tfm ecss$(font_size).pfb\
+     lass$(font_size).tfm lass$(font_size).pfb\
+     lcss$(font_size).tfm lcss$(font_size).pfb\
+     rxss$(font_size).tfm rxss$(font_size).pfb\
+     uxss$(font_size).tfm uxss$(font_size).pfb\
+     tcss$(font_size).tfm tcss$(font_size).pfb\
+     vnss10.tfm vnss10.pfb\
+     gsmn$(font_size).tfm gsmn$(font_size).pfb\
+     tipass10.tfm tipass10.pfb tipxss10.tfm tipxss10.pfb 
+	$(merge)     
+
+ssdc: font_size=10
+ssdc: fontname="CMUSansSerif-DemiCondensed"
+ssdc: fullname="CMU Sans Serif Demi Condensed"
+ssdc: family="CMU Sans Serif Demi Condensed"
+ssdc: weight="Demi"
+ssdc: font_var=ssdc
+ssdc: greek_font_var=sdn
+ssdc: fontdim3=158
+ssdc: space=317
+ssdc: italic_angle=0
+ssdc: tipa="-"
+ssdc: bluesky="ssdc"
+ssdc: ecssdc10.tfm ecssdc10.pfb\
+      lassdc10.tfm lassdc10.pfb\
+      lcssdc10.tfm lcssdc10.pfb\
+      rxssdc10.tfm rxssdc10.pfb\
+      uxssdc10.tfm uxssdc10.pfb\
+      tcssdc10.tfm tcssdc10.pfb\
+      vnssdc10.tfm vnssdc10.pfb\
+      gsdn1000.tfm gsdn1000.pfb
+	$(merge)
+
+
+sx: fontname="CMUSansSerif-Bold"
+sx: fullname="CMU Sans Serif Bold Extended"
+sx: family="CMU Sans Serif"
+sx: weight="Bold"
+sx: font_var=sx
+sx: greek_font_var="sxn"
+sx: fontdim3=183
+sx: space=367
+sx: italic_angle=0
+sx: tipa="sb"
+sx: bluesky="-"
+sx:  ecsx$(font_size).tfm ecsx$(font_size).pfb\
+     lasx$(font_size).tfm lasx$(font_size).pfb\
+     lcsx$(font_size).tfm lcsx$(font_size).pfb\
+     rxsx$(font_size).tfm rxsx$(font_size).pfb\
+     uxsx$(font_size).tfm uxsx$(font_size).pfb\
+     tcsx$(font_size).tfm tcsx$(font_size).pfb\
+     vnsx10.tfm vnsx10.pfb\
+     gsxn$(font_size).tfm gsxn$(font_size).pfb\
+     tipasb10.tfm tipasb10.pfb tipxsb10.tfm tipxsb10.pfb 
+	$(merge)     
+
+it: fontname="CMUTypewriter-Italic"
+it: fullname="CMU Typewriter Text Italic"
+it: family="CMU Typewriter Text"
+it: weight="Medium"
+it: font_var=it
+it: greek_font_var="ttk" # "tti"
+it: fontdim3=0
+it: space=525
+it: italic_angle=-1404
+it: tipa="-"
+it: bluesky="-"
+it:  ecit$(font_size).tfm ecit$(font_size).pfb\
+     lait$(font_size).tfm lait$(font_size).pfb\
+     lcit$(font_size).tfm lcit$(font_size).pfb\
+     rxit$(font_size).tfm rxit$(font_size).pfb\
+     uxit$(font_size).tfm uxit$(font_size).pfb\
+     tcit$(font_size).tfm tcit$(font_size).pfb\
+     vnit10.tfm vnit10.pfb\
+     gttk$(font_size).tfm gttk$(font_size).pfb
+	$(merge)     
+
+#st: fontname="CMUTypewriter-Slanted"
+#st: fullname="CMU Typewriter Text Slanted"
+#st: family="CMU Typewriter Text Slanted"
+st: fontname="CMUTypewriter-Oblique"
+st: fullname="CMU Typewriter Text Oblique"
+st: family="CMU Typewriter Text"
+st: weight="Medium"
+st: font_var=st
+st: greek_font_var="ttq" #"tto"
+st: fontdim3=0
+st: space=525
+st: italic_angle=-946
+st: tipa="ts"
+st: bluesky="sltt"
+st:  ecst$(font_size).tfm ecst$(font_size).pfb\
+     last$(font_size).tfm last$(font_size).pfb\
+     lcst$(font_size).tfm lcst$(font_size).pfb\
+     rxst$(font_size).tfm rxst$(font_size).pfb\
+     uxst$(font_size).tfm uxst$(font_size).pfb\
+     tcst$(font_size).tfm tcst$(font_size).pfb\
+     vnst10.tfm vnst10.pfb\
+     gttq$(font_size).tfm gtto$(font_size).pfb\
+     tipats10.tfm tipats10.pfb tipxts10.tfm tipxts10.pfb 
+	$(merge)     
+
+tt: fontname="CMUTypewriter-Regular"
+tt: fullname="CMU Typewriter Text Regular"
+tt: family="CMU Typewriter Text"
+tt: weight="Medium"
+tt: font_var=tt
+tt: greek_font_var="ttn"
+tt: fontdim3=0
+tt: space=525
+tt: italic_angle=0
+tt: tipa="tt"
+tt: bluesky="tt"
+tt:  ectt$(font_size).tfm ectt$(font_size).pfb\
+     latt$(font_size).tfm latt$(font_size).pfb\
+     lctt$(font_size).tfm lctt$(font_size).pfb\
+     rxtt$(font_size).tfm rxtt$(font_size).pfb\
+     uxtt$(font_size).tfm uxtt$(font_size).pfb\
+     tctt$(font_size).tfm tctt$(font_size).pfb\
+     vntt10.tfm vntt10.pfb\
+     gttn$(font_size).tfm gttn$(font_size).pfb\
+     tipatt10.tfm tipatt10.pfb tipxtt10.tfm tipxtt10.pfb 
+	$(merge)     
+
+vi: fontname="CMUTypewriterVariable-Italic"
+vi: fullname="CMU Typewriter Text Variable Width Italic"
+vi: family="CMU Typewriter Text Variable Width"
+vi: weight="Medium"
+vi: font_var=vi
+vi: greek_font_var=-
+vi: fontdim3=175
+vi: space=433
+vi: italic_angle=-1404
+vi: tipa="-"
+vi: bluesky="-"
+vi:  ecvi$(font_size).tfm ecvi$(font_size).pfb\
+     lavi$(font_size).tfm lavi$(font_size).pfb\
+     lcvi$(font_size).tfm lcvi$(font_size).pfb\
+     rxvi$(font_size).tfm rxvi$(font_size).pfb\
+     uxvi$(font_size).tfm uxvi$(font_size).pfb\
+     vnvi10.tfm vnvi10.pfb\
+     tcvi$(font_size).tfm tcvi$(font_size).pfb
+	$(merge)     
+
+vt: fontname="CMUTypewriterVariable"
+vt: fullname="CMU Typewriter Text Variable Width"
+vt: family="CMU Typewriter Text Variable Width"
+vt: weight="Medium"
+vt: font_var=vt
+vt: greek_font_var=-
+vt: fontdim3=175
+vt: space=350
+vt: italic_angle=0
+vt: tipa="-"
+vt: bluesky="vtt"
+vt:  ecvt$(font_size).tfm ecvt$(font_size).pfb\
+     lavt$(font_size).tfm lavt$(font_size).pfb\
+     lcvt$(font_size).tfm lcvt$(font_size).pfb\
+     rxvt$(font_size).tfm rxvt$(font_size).pfb\
+     uxvt$(font_size).tfm uxvt$(font_size).pfb\
+     vnvt10.tfm vnvt10.pfb\
+     tcvt$(font_size).tfm tcvt$(font_size).pfb
+	$(merge)     
+
+#ui: fontname="CMUSerif-UnslantedItalic"
+#ui: fullname="CMU Serif Unslanted Italic"
+#ui: family="CMU Serif Unslanted Italic"
+ui: fontname="CMUSerif-UprightItalic"
+ui: fullname="CMU Serif Upright Italic"
+ui: family="CMU Serif Upright Italic"
+ui: weight="Medium"
+ui: font_var=ui
+ui: greek_font_var="rmv" # "rmu"
+ui: fontdim3=167
+ui: space=389
+ui: italic_angle=0
+ui: tipa="-"
+ui: bluesky="-"
+ui:  ecui$(font_size).tfm ecui$(font_size).pfb\
+     laui$(font_size).tfm laui$(font_size).pfb\
+     lcui$(font_size).tfm lcui$(font_size).pfb\
+     rxui$(font_size).tfm rxui$(font_size).pfb\
+     uxui$(font_size).tfm uxui$(font_size).pfb\
+     tcui$(font_size).tfm tcui$(font_size).pfb\
+     vnui10.tfm vnui10.pfb\
+     grmu$(font_size).tfm grmu$(font_size).pfb
+	$(merge)     
+    
+tb: fontname="CMUTypewriter-Bold"
+tb: fullname="CMU Typewriter Text Bold"
+tb: family="CMU Typewriter Text"
+tb: weight="Bold"
+tb: font_var=tb
+tb: greek_font_var="tbn"
+tb: fontdim3=0
+tb: space=525
+tb: italic_angle=0
+tb: tipa="-"
+tb: bluesky="-"
+tb:  ectb$(font_size).pfb\
+     latb$(font_size).pfb\
+     lctb$(font_size).pfb\
+     rxtb$(font_size).pfb\
+     uxtb$(font_size).pfb\
+     tctb$(font_size).pfb\
+     vntb10.pfb\
+     gtbn$(font_size).pfb
+	$(merge)     
+
+tx: fontname="CMUTypewriter-BoldItalic"
+tx: fullname="CMU Typewriter Text Bold Italic"
+tx: family="CMU Typewriter Text"
+tx: weight="Bold"
+tx: font_var=tx
+tx: greek_font_var="tbk" # "tbi"
+tx: fontdim3=0
+tx: space=525
+tx: italic_angle=-1404
+tx: tipa="-"
+tx: bluesky="-"
+tx:  ectx$(font_size).pfb\
+     latx$(font_size).pfb\
+     lctx$(font_size).pfb\
+     rxtx$(font_size).pfb\
+     uxtx$(font_size).pfb\
+     tctx$(font_size).pfb\
+     vntx10.pfb\
+     gtbk$(font_size).pfb
+	$(merge)     
+
+orm: font_size=10
+orm: fontname="CMUConcrete-Roman"
+orm: fullname="CMU Concrete Roman"
+orm: family="CMU Concrete"
+orm: weight="Medium"
+orm: font_var=orm
+orm: greek_font_var="orm"
+orm: fontdim3=167
+orm: space=333
+orm: italic_angle=0
+orm: tipa="orm"
+orm: bluesky="-"
+orm:  ecorm10.tfm ecorm10.pfb\
+     laorm10.tfm laorm10.pfb\
+     lcorm10.tfm lcorm10.pfb\
+     rxorm10.tfm rxorm10.pfb\
+     uxorm10.tfm uxorm10.pfb\
+     tcorm10.tfm tcorm10.pfb\
+     vnorm10.tfm vnorm10.pfb\
+     gorm10.tfm gorm10.pfb\
+     tipaorm10.tfm tipaorm10.pfb tipxorm10.tfm tipxorm10.pfb 
+	$(merge)
+
+obi: font_size=10
+obi: fontname="CMUConcrete-BoldItalic"
+obi: fullname="CMU Concrete Bold Extended Italic"
+obi: family="CMU Concrete"
+obi: weight="Bold"
+obi: font_var=obi
+obi: greek_font_var="obi" #"rxi" 
+obi: fontdim3=177
+obi: space=414
+obi: italic_angle=-1404
+obi: tipa="-"
+obi: bluesky="-"
+obi:  ecobi10.tfm ecobi10.pfb\
+     laobi10.tfm laobi10.pfb\
+     lcobi10.tfm lcobi10.pfb\
+     rxobi10.tfm rxobi10.pfb\
+     uxobi10.tfm uxobi10.pfb\
+     tcobi10.tfm tcobi10.pfb\
+     vnobi10.tfm vnobi10.pfb\
+     gobi10.tfm gobi10.pfb
+	$(merge)     
+
+obx: font_size=10
+obx: fontname="CMUConcrete-Bold"
+obx: fullname="CMU Concrete Bold Extended Roman"
+obx: family="CMU Concrete"
+obx: weight="Bold"
+obx: font_var=obx
+obx: greek_font_var="obx"
+obx: fontdim3=192
+obx: space=383
+obx: italic_angle=0
+obx: tipa="obx"
+obx: bluesky="-"
+obx:  ecobx10.tfm ecobx10.pfb\
+     laobx10.tfm laobx10.pfb\
+     lcobx10.tfm lcobx10.pfb\
+     rxobx10.tfm rxobx10.pfb\
+     uxobx10.tfm uxobx10.pfb\
+     tcobx10.tfm tcobx10.pfb\
+     vnobx10.tfm vnobx10.pfb\
+     gobx10.tfm gobx10.pfb\
+     tipaobx10.tfm tipaobx10.pfb tipxobx10.tfm tipxobx10.pfb 
+	$(merge)
+
+oti: font_size=10
+oti: fontname="CMUConcrete-Italic"
+oti: fullname="CMU Concrete Italic"
+oti: family="CMU Concrete"
+oti: weight="Medium"
+oti: font_var=oti
+oti: greek_font_var="oti" #"rxi" 
+oti: fontdim3=153
+oti: space=358
+oti: italic_angle=-1404
+oti: tipa="-"
+oti: bluesky="-"
+oti:  ecoti10.tfm ecoti10.pfb\
+     laoti10.tfm laoti10.pfb\
+     lcoti10.tfm lcoti10.pfb\
+     rxoti10.tfm rxoti10.pfb\
+     uxoti10.tfm uxoti10.pfb\
+     tcoti10.tfm tcoti10.pfb\
+     vnoti10.tfm vnoti10.pfb\
+     goti10.tfm goti10.pfb
+	$(merge)     
+
+bmr: font_size=10
+bmr: fontname="CMUBright-Roman"
+bmr: fullname="CMU Bright Roman"
+bmr: family="CMU Bright"
+bmr: weight="Medium"
+bmr: font_var=bmr
+bmr: greek_font_var="bmr"
+bmr: fontdim3=167
+bmr: space=333
+bmr: italic_angle=0
+bmr: tipa="bmr"
+bmr: bluesky="-"
+bmr:  ecbmr10.tfm ecbmr10.pfb\
+     labmr10.tfm labmr10.pfb\
+     lcbmr10.tfm lcbmr10.pfb\
+     rxbmr10.tfm rxbmr10.pfb\
+     uxbmr10.tfm uxbmr10.pfb\
+     tcbmr10.tfm tcbmr10.pfb\
+     vnbmr10.tfm vnbmr10.pfb\
+     gbmr10.tfm gbmr10.pfb\
+     tipabmr10.tfm tipabmr10.pfb tipxbmr10.tfm tipxbmr10.pfb 
+	$(merge)
+
+bmo: font_size=10
+bmo: fontname="CMUBright-Oblique"
+bmo: fullname="CMU Bright Oblique"
+bmo: family="CMU Bright"
+bmo: weight="Medium"
+bmo: font_var=bmo
+bmo: greek_font_var="bmo"
+bmo: fontdim3=167
+bmo: space=333
+bmo: italic_angle=-1200
+bmo: tipa="bmo"
+bmo: bluesky="-"
+bmo:  ecbmo10.tfm ecbmo10.pfb\
+     labmo10.tfm labmo10.pfb\
+     lcbmo10.tfm lcbmo10.pfb\
+     rxbmo10.tfm rxbmo10.pfb\
+     uxbmo10.tfm uxbmo10.pfb\
+     tcbmo10.tfm tcbmo10.pfb\
+     vnbmo10.tfm vnbmo10.pfb\
+     gbmo10.tfm gbmo10.pfb\
+     tipabmo10.tfm tipabmo10.pfb tipxbmo10.tfm tipxbmo10.pfb 
+	$(merge)
+
+bsr: font_size=10
+bsr: fontname="CMUBright-SemiBold"
+bsr: fullname="CMU Bright SemiBold"
+bsr: family="CMU Bright"
+bsr: weight="SemiBold"
+bsr: font_var=bsr
+bsr: greek_font_var="bsr"
+bsr: fontdim3=167
+bsr: space=333
+bsr: italic_angle=0
+bsr: tipa="bsr"
+bsr: bluesky="-"
+bsr:  ecbsr10.tfm ecbsr10.pfb\
+     labsr10.tfm labsr10.pfb\
+     lcbsr10.tfm lcbsr10.pfb\
+     rxbsr10.tfm rxbsr10.pfb\
+     uxbsr10.tfm uxbsr10.pfb\
+     tcbsr10.tfm tcbsr10.pfb\
+     vnbsr10.tfm vnbsr10.pfb\
+     gbsr10.tfm gbsr10.pfb\
+     tipabsr10.tfm tipabsr10.pfb tipxbsr10.tfm tipxbsr10.pfb 
+	$(merge)
+
+bso: font_size=10
+bso: fontname="CMUBright-SemiBoldOblique"
+bso: fullname="CMU Bright SemiBold Oblique"
+bso: family="CMU Bright"
+bso: weight="SemiBold"
+bso: font_var=bso
+bso: greek_font_var="bso"
+bso: fontdim3=167
+bso: space=333
+bso: italic_angle=-1200
+bso: tipa="bso"
+bso: bluesky="-"
+bso:  ecbso10.tfm ecbso10.pfb\
+     labso10.tfm labso10.pfb\
+     lcbso10.tfm lcbso10.pfb\
+     rxbso10.tfm rxbso10.pfb\
+     uxbso10.tfm uxbso10.pfb\
+     tcbso10.tfm tcbso10.pfb\
+     vnbso10.tfm vnbso10.pfb\
+     gbso10.tfm gbso10.pfb\
+     tipabso10.tfm tipabso10.pfb tipxbso10.tfm tipxbso10.pfb 
+	$(merge)
+
+bbx: font_size=10
+bbx: fontname="CMUBright-Bold"
+bbx: fullname="CMU Bright Bold Extended"
+bbx: family="CMU Bright"
+bbx: weight="Bold"
+bbx: font_var=bbx
+bbx: greek_font_var="bbx"
+bbx: fontdim3=174
+bbx: space=348
+bbx: italic_angle=0
+bbx: tipa="bbx"
+bbx: bluesky="-"
+bbx:  ecbbx10.tfm ecbbx10.pfb\
+     labbx10.tfm labbx10.pfb\
+     lcbbx10.tfm lcbbx10.pfb\
+     rxbbx10.tfm rxbbx10.pfb\
+     uxbbx10.tfm uxbbx10.pfb\
+     tcbbx10.tfm tcbbx10.pfb\
+     vnbbx10.tfm vnbbx10.pfb\
+     gbbx10.tfm gbbx10.pfb\
+     tipabbx10.tfm tipabbx10.pfb tipxbbx10.tfm tipxbbx10.pfb 
+	$(merge)
+
+bxo: font_size=10
+bxo: fontname="CMUBright-BoldOblique"
+bxo: fullname="CMU Bright Bold Extended Oblique"
+bxo: family="CMU Bright"
+bxo: weight="Bold"
+bxo: font_var=bxo
+bxo: greek_font_var="bxo"
+bxo: fontdim3=174
+bxo: space=348
+bxo: italic_angle=-1200
+bxo: tipa="bxo"
+bxo: bluesky="-"
+bxo:  ecbxo10.tfm ecbxo10.pfb\
+     labxo10.tfm labxo10.pfb\
+     lcbxo10.tfm lcbxo10.pfb\
+     rxbxo10.tfm rxbxo10.pfb\
+     uxbxo10.tfm uxbxo10.pfb\
+     tcbxo10.tfm tcbxo10.pfb\
+     vnbxo10.tfm vnbxo10.pfb\
+     gbxo10.tfm gbxo10.pfb\
+     tipabxo10.tfm tipabxo10.pfb tipxbxo10.tfm tipxbxo10.pfb 
+	$(merge)
+
+btl: font_size=10
+btl: fontname="CMUTypewriter-Light"
+btl: fullname="CMU Typewriter Text Light"
+btl: family="CMU Typewriter Text"
+btl: weight="Light"
+btl: font_var=btl
+btl: greek_font_var="btl"
+btl: fontdim3=0
+btl: space=525
+btl: italic_angle=0
+btl: tipa="-"
+btl: bluesky="-"
+btl:  ecbtl10.tfm ecbtl10.pfb\
+     labtl10.tfm labtl10.pfb\
+     lcbtl10.tfm lcbtl10.pfb\
+     rxbtl10.tfm rxbtl10.pfb\
+     uxbtl10.tfm uxbtl10.pfb\
+     tcbtl10.tfm tcbtl10.pfb\
+     vnbtl10.tfm vnbtl10.pfb\
+     gbtl10.tfm gbtl10.pfb
+	$(merge)     
+
+bto: font_size=10
+bto: fontname="CMUTypewriter-LightOblique"
+bto: fullname="CMU Typewriter Text Light Oblique"
+bto: family="CMU Typewriter Text"
+bto: weight="Light"
+bto: font_var=bto
+bto: greek_font_var="bto"
+bto: fontdim3=0
+bto: space=525
+bto: italic_angle=-946
+bto: tipa="-"
+bto: bluesky="-"
+bto:  ecbto10.tfm ecbto10.pfb\
+     labto10.tfm labto10.pfb\
+     lcbto10.tfm lcbto10.pfb\
+     rxbto10.tfm rxbto10.pfb\
+     uxbto10.tfm uxbto10.pfb\
+     tcbto10.tfm tcbto10.pfb\
+     vnbto10.tfm vnbto10.pfb\
+     gbto10.tfm gbto10.pfb
+	$(merge)     
+
+dist: tex-encodings
+	mkdir -p ./cm-unicode-$(font_version)
+	rm -f ./cm-unicode-$(font_version)/*
+	for i in $(FONTS) ; do \
+	 cp -p cmun$$i.pfb cmun$$i.afm cm-unicode-$(font_version) ;  \
+	done 
+	cp -p  $(DOCUMENTS) Fontmap.CMU fonts.scale \
+	 cm-unicode-$(font_version)
+	cp -pr tex/ cm-unicode-$(font_version)
+	cp -pL fonts.dir ./cm-unicode-$(font_version)/
+	#chown root:root cm-unicode-$(font_version)/*
+	tar cvf cm-unicode-$(font_version)-pfb.tar cm-unicode-$(font_version)
+	xz -9 cm-unicode-$(font_version)-pfb.tar
+	rm ./cm-unicode-$(font_version)/*.pfb
+	rm ./cm-unicode-$(font_version)/*.afm
+	rm ./cm-unicode-$(font_version)/tex/*
+	rm -r ./cm-unicode-$(font_version)/tex
+	rm ./cm-unicode-$(font_version)/fonts.dir
+	for i in $(FONTS) ; do \
+	 cp -p cmun$$i.ttf cm-unicode-$(font_version) ;  \
+	done 
+	cp -p fonts.scale.ttf ./cm-unicode-$(font_version)/fonts.scale
+	sed -i -e "s/pfb/ttf/g" ./cm-unicode-$(font_version)/Fontmap.CMU
+	tar cvf cm-unicode-$(font_version)-ttf.tar cm-unicode-$(font_version)
+	xz -9 cm-unicode-$(font_version)-ttf.tar
+	rm ./cm-unicode-$(font_version)/*.ttf
+	for i in $(FONTS) ; do \
+	 cp -p cmun$$i.otf cm-unicode-$(font_version) ;  \
+	done 
+	cp -p fonts.scale.otf ./cm-unicode-$(font_version)/fonts.scale
+	cp -p fonts.dir.otf ./cm-unicode-$(font_version)/fonts.dir
+	cp -p Fontmap.CMU.otf ./cm-unicode-$(font_version)/Fontmap.CMU
+	cp -p Fontmap.CMU.alias ./cm-unicode-$(font_version)/
+	#chown root:root cm-unicode-$(font_version)/*
+	tar cvf cm-unicode-$(font_version)-otf.tar cm-unicode-$(font_version)
+	xz -9 cm-unicode-$(font_version)-otf.tar
+	rm ./cm-unicode-$(font_version)/*.otf
+	for i in $(FONTS) ; do \
+	 cp -p cmun$$i.sfd cm-unicode-$(font_version) ;  \
+	done 
+	cp -pr --parents font_table.ods cm-unicode-$(font_version)
+	#chown root:root cm-unicode-$(font_version)/*
+	tar cvf cm-unicode-$(font_version)-sfd.tar cm-unicode-$(font_version)
+	xz -9 cm-unicode-$(font_version)-sfd.tar
+	rm ./cm-unicode-$(font_version)/*.sfd
+	#rm -r ./cm-unicode-$(font_version)/bitmap
+	cp -pr --parents Makefile.cm VERSION COPYING.scripts \
+	 Fontmap.CMU.otf fonts.scale.otf Fontmap.CMU fonts.scale texenc.sed \
+	 $(FFSCRIPTS) $(ENCODINGS) $(SHSCRIPTS) \
+	 $(SFDFILES) $(MFFILES) $(BITMAPS) \
+	 cm-unicode-$(font_version)
+	cp -pr patches/ cm-unicode-$(font_version)
+	#chown root:root cm-unicode-$(font_version)/*
+	tar cvf cm-unicode-$(font_version)-src.tar cm-unicode-$(font_version)
+	xz -9 cm-unicode-$(font_version)-src.tar
+	rm -r ./cm-unicode-$(font_version)
+
+
+SNAPDATE=`date +"%Y%m%d"`
+dist-scripts:
+	mkdir -p ./cm-unicode-$(SNAPDATE)
+	cp -pr --parents $(DOCUMENTS) Fontmap.CMU fonts.scale \
+	 $(SFDFILES) tex/cmu.map \
+	 $(MFFILES) $(FFSCRIPTS) $(ENCODINGS) $(SHSCRIPTS) \
+	 Fontmap.CMU.otf fonts.scale.otf Fontmap.CMU.alias \
+	 font_table.ods Makefile.cm VERSION COPYING.scripts texenc.sed \
+	 cm-unicode-$(SNAPDATE)
+	tar cvf cm-unicode-$(SNAPDATE)-scripts.tar cm-unicode-$(SNAPDATE)
+	bzip2 -9 cm-unicode-$(SNAPDATE)-scripts.tar
+
+tex-encodings:
+	mkdir -p tex/
+	for i in $(ENCODINGS) ; do \
+	 echo -ne "% Encoding file for Computer Modern Unicode fonts\
+	 version $(font_version)\n" > tex/cmu-$$i ; \
+	 sed -f texenc.sed $$i >> tex/cmu-$$i ; \
+	done
+
+
+#
+TEXFONTS=/usr/share/texmf/fonts/source
+SEDCOMMAND=sed -e s/Computer\ Modern\ /\&Variable\ Width\ / \
+	-e s/TB\"\;/VB\"\;/ \
+	 -e s/TX\"\;/VX\"\;/ \
+	 -e s/TQ\"\;/VQ\"\;/ \
+	 -e s/TN\"\;/VN\"\;/ \
+	 -e s/BN\"\;/VN\"\;/ \
+	 -e s/BK\"\;/VK\"\;/ \
+	 -e s/BX\"\;/VX\"\;/ \
+	 -e s/typewriter\ type/\&variable\ width/ \
+	 -e s/monospace:=true\;/monospace:=false\;/ \
+	 -e s/true_mono:=true\;//
+
+extra-mffiles:
+	$(SEDCOMMAND) < $(TEXFONTS)/public/cbgreek/gttn.mf > gtvn.mf
+	$(SEDCOMMAND) < ectb.mf > ecvb.mf
+	$(SEDCOMMAND) < ectx.mf > ecvx.mf
+	$(SEDCOMMAND) < tctb.mf > tcvb.mf
+	$(SEDCOMMAND) < tctx.mf > tcvx.mf
+	$(SEDCOMMAND) < gttq.mf > gtvq.mf
+	$(SEDCOMMAND) < gtbk.mf > gtvk.mf
+	$(SEDCOMMAND) < gtbn.mf > gtvx.mf
+
+extra-mfbright:
+	for i in bbx bmo bmr bso bsr bxo ; do \
+	 sed -e "1 s/tipa/tipx/" -e s/TIPA/TIPX/ -e "$$ s/tipa/tipx/" \
+	 < tipa$${i}10.mf > tipx$${i}10.mf ; \
+	 echo -ne "ebbase:=1;\ninput fikparm;" >ux$${i}10.mf ; \
+	done
+	for i in la lb lc ld rx ; do \
+	 echo -ne "ebbase:=1;\ninput fikparm;" >$${i}bxo10.mf ; \
+	done
+	echo -ne "ebbase:=0; def cmbright=true enddef;\ninput fikparm;" >uxbtl10.mf
+	cp -p uxbtl10.mf uxbto10.mf
+
+extra-mfvnr:
+	for i in so vi tb tx ci ; do \
+	 echo -ne "gensize:=10;\n input vnbase;\n input ec$${i};\n bye.\n" >vn$${i}10.mf ; \
+	done
+	for i in obi obx orm oti btl bto ; do \
+	 echo -ne "gensize:=10;\n input vnbase;\n input e$${i}10;\n bye.\n" >vn$${i}10.mf ; \
+	done
+
+fix-kern:
+	for i in $(FONTS) ; do \
+	 j=`grep -n ScriptLang: cmun$${i}.sfd | cut -d ":" -f 1 ` ; \
+	 k=`grep -n " 3 cyrl 3 MKD  SRB  dflt .* latn 5 AZE  NLD  TRK  VIT  dflt" cmun$${i}.sfd | cut -d ":" -f 1 ` ; \
+	 #echo -ne "$$((k-j-1))\n" ;\
+	 sed -i -e "/^KernsSLIFO:/ { s/\([0-9]\+ [-]\?[0-9]\+\) \([0-9]\+\) \([0-9]\+\)/\1 $$((k-j-1)) \3/g }" cmun$${i}.sfd; \
+	 fontforge -c "Open(\"cmun$${i}.sfd\"); Generate(\"cmun$${i}.otf\",\"ttf\",0x200200,-1); Close()" ; \
+	done

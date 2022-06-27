@@ -1,0 +1,154 @@
+SplineFontDB: 1.0
+FontName: post_sl
+FullName: post_sl
+FamilyName: post_sl
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 1.0 (http://fontforge.sf.net)
+Comments: 2007-3-11: Created.
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+NeedsXUIDChange: 1
+XUID: [1067 305 2130962764 10174926]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1173617491
+ModificationTime: 1173619668
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 816 16 14
+BeginChars: 65536 3
+StartChar: Pi
+Encoding: 928 928 0
+Width: 750
+Flags: HMW
+TeX: 0 0 0 0
+HStem: 0 31<38 125 236.1 328 426 513 624.1 716> 650 28<141 237.9 333 632 737 824>
+Fore
+33 0 m 1
+ 38 31 l 1
+ 53 31 l 2
+ 125 31 142 38 148 73 c 2
+ 237 608 l 2
+ 238 613 238 617 238 620 c 0
+ 238 645 219 650 156 650 c 2
+ 141 650 l 1
+ 146 680 l 1
+ 146 680 239 678 299 678 c 24
+ 318 678 327 680 347 680 c 10
+ 628 680 l 2
+ 648 680 657 678 676 678 c 24
+ 736 678 829 680 829 680 c 1
+ 824 650 l 1
+ 809 650 l 2
+ 737 650 720 643 714 608 c 2
+ 625 73 l 2
+ 624 68 624 64 624 61 c 0
+ 624 36 643 31 706 31 c 2
+ 721 31 l 1
+ 716 0 l 1
+ 665 2 614 3 570 3 c 0
+ 524 3 472 2 421 0 c 1
+ 426 31 l 1
+ 441 31 l 2
+ 513 31 530 38 536 73 c 2
+ 632 650 l 1
+ 333 650 l 1
+ 237 73 l 2
+ 236 68 236 64 236 61 c 0
+ 236 36 255 31 318 31 c 2
+ 333 31 l 1
+ 328 0 l 1
+ 277 2 226 3 180 3 c 0
+ 136 3 84 2 33 0 c 1
+EndSplineSet
+EndChar
+StartChar: Omega
+Encoding: 937 937 1
+Width: 722
+Flags: HW
+TeX: 0 0 0 0
+HStem: 0 65<124.5 244 499 643> 683 22<340.8 596.9>
+VStem: 71 25<92.7806 162> 127 102<255.8 626> 643 101<302.6 649.7>
+Fore
+71 162 m 1
+ 96 162 l 1
+ 98 107 101 82 108 76 c 0
+ 117 68 125 65 172 65 c 2
+ 244 65 l 1
+ 228 201 127 287 127 418 c 0
+ 127 578 295 705 475 705 c 0
+ 623 705 744 618 744 487 c 0
+ 744 327 568 216 499 65 c 1
+ 554 65 l 2
+ 627 65 639 65 653 100 c 2
+ 653 100 668 134 678 162 c 1
+ 703 162 l 1
+ 643 0 l 1
+ 479 0 l 2
+ 466 0 462 6 462 16 c 0
+ 462 23 464 34 468 48 c 0
+ 507 201 643 350 643 508 c 0
+ 643 617 569 683 476 683 c 0
+ 372 683 229 594 229 391 c 0
+ 229 287 269 185 269 74 c 0
+ 269 4 261 0 243 0 c 2
+ 77 0 l 1
+ 71 162 l 1
+EndSplineSet
+EndChar
+StartChar: tau
+Encoding: 964 964 2
+Width: 458
+Flags: HW
+TeX: 0 0 0 0
+HStem: -11 76<261.7 351.4> 365 65<145 270 295 475.175>
+VStem: 230 34<92 151.801>
+Fore
+89 356 m 0
+ 89 366 104 388 127 410 c 0
+ 140 423 154 430 184 430 c 2
+ 465 430 l 2
+ 478 430 485 429 485 416 c 0
+ 485 414 484 411 484 407 c 2
+ 480 387 l 2
+ 477 367 468 365 454 365 c 2
+ 295 365 l 1
+ 272 230 l 2
+ 269 210 264 179 264 149 c 0
+ 264 106 274 65 315 65 c 0
+ 343 65 361 88 373 88 c 0
+ 378 88 385 84 385 69 c 0
+ 385 33 350 -11 302 -11 c 0
+ 245 -11 230 36 230 92 c 0
+ 230 126 236 164 241 195 c 2
+ 270 365 l 1
+ 177 365 l 2
+ 124 365 115 346 99 346 c 0
+ 94 346 89 350 89 356 c 0
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

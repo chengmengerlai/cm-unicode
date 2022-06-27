@@ -1,0 +1,108 @@
+SplineFontDB: 1.0
+FontName: post_ci
+FullName: post_ci
+FamilyName: post_ci
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 1.0 (http://fontforge.sf.net). This font contains manually edited glyph outlines.
+Comments: 2006-4-17: Created.
+Version: 1
+ItalicAngle: -14.04
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+XUID: [1021 305 2130962764 13460538]
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 32 16 14
+BeginChars: 65536 2
+StartChar: u
+Encoding: 117 117 0
+Width: 537
+Flags: HW
+TeX: 0 0 0 0
+HStem: -11 23<242.5 300.5 443.5 487.5> 410 20G<470 495.5>
+VStem: 154 61<55 137.5> 209 80<368 422>
+Fore
+154 105 m 0
+ 154 198.1 209 321.125 209 371 c 0
+ 209 404 138 375 138 403 c 0
+ 138 420 156 421 159 421 c 0
+ 168 422 268 431 274 431 c 0
+ 285 431 289 427 289 417 c 0xd0
+ 289 406 283 387 276 360 c 0
+ 255 280 215 167 215 90 c 0
+ 215 21 250 12 270 12 c 0
+ 331 12 368 79 373 90 c 1
+ 374 95 381 122 381 122 c 25
+ 445 380 l 2
+ 447 389 453 431 487 431 c 0xe0
+ 504 431 514 416 514 407 c 0
+ 514 392 501 346 452 147 c 0
+ 440 98 433 76 433 52 c 0
+ 433 18 448 12 459 12 c 0
+ 499 12 520 106 526 130 c 0
+ 531 148 539 154 545 154 c 0
+ 553 154 559 146 559 140 c 0
+ 559 136 558 132 557 128 c 0
+ 539 56 518 -11 457 -11 c 0
+ 430 -11 393 3 378 49 c 1
+ 343 9 311 -11 266 -11 c 0
+ 219 -11 154 11 154 105 c 0
+EndSplineSet
+EndChar
+StartChar: y
+Encoding: 121 121 1
+Width: 485
+Flags: MW
+TeX: 0 0 0 0
+HStem: -205 22<167.5 247> -138 81 -11 22<240 299.5> 411 20G<284.5 292.5 473 498>
+VStem: 99 34<-145 -91> 155 61<61.5 152.25> 220 82<348 422>
+Fore
+155 105 m 0
+ 155 199.5 220 321 220 375 c 0
+ 220 396 167 385 155 393 c 0
+ 149 397 149 406 153 412 c 0
+ 158 420 167 421 175 422 c 2
+ 175 422 282 431 287 431 c 0
+ 298 431 302 427 302 417 c 0
+ 302 360.774 216 182.009 216 88 c 0
+ 216 55 225 11 270 11 c 0
+ 329 11 369 71 376 100 c 2
+ 449 394 l 2
+ 451 402 458 431 488 431 c 0
+ 508 431 516 416 516 405 c 0
+ 516 402 514 397 513 391 c 2
+ 415 -3 l 2
+ 390 -102 299 -205 195 -205 c 0
+ 140 -205 99 -171 99 -119 c 0
+ 99 -63 138 -57 150 -57 c 0
+ 168 -57 184 -68 184 -89 c 0
+ 184 -105 172 -132 141 -137 c 0
+ 134 -138 133 -139 133 -140 c 0
+ 133 -145 147 -183 195 -183 c 0
+ 245 -183 319 -139 357 26 c 1
+ 344 13 313 -11 267 -11 c 0
+ 213 -11 155 18 155 105 c 0
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

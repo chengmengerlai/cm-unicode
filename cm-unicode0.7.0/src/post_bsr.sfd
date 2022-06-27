@@ -1,0 +1,72 @@
+SplineFontDB: 1.0
+FontName: post_bsr
+FullName: post_bsr
+FamilyName: post_bsr
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 1.0 (http://fontforge.sf.net)
+Comments: 2006-10-26: Created.
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+NeedsXUIDChange: 1
+XUID: [1021 305 2130962764 7728126]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1161858244
+ModificationTime: 1161858316
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 64 16 14
+BeginChars: 65536 1
+StartChar: f
+Encoding: 102 102 0
+Width: 321
+Flags: HWO
+TeX: 0 0 0 0
+HStem: 0 21G<98 192> 397 75<28 98 190 300> 627 76<260 297.5>
+VStem: 98 92<0 397 472 589.5>
+Fore
+28 397 m 1
+ 28 472 l 1
+ 98 472 l 1
+ 98 525 l 2
+ 98 577.764 105.389 620.315 157 662 c 0
+ 194 693 240 703 280 703 c 0
+ 297 703 322 702 363 695 c 1
+ 363 610 l 1
+ 343 617 317 627 278 627 c 0
+ 243 627 190 615 190 564 c 2
+ 190 472 l 1
+ 300 472 l 1
+ 300 397 l 1
+ 192 397 l 1
+ 192 0 l 1
+ 98 0 l 1
+ 98 397 l 1
+ 28 397 l 1
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

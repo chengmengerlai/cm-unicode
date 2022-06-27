@@ -1,0 +1,221 @@
+SplineFontDB: 1.0
+FontName: post_bso
+FullName: post_bso
+FamilyName: post_bso
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 1.0 (http://fontforge.sf.net)
+Comments: 2007-3-6: Created.
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+NeedsXUIDChange: 1
+XUID: [1067 305 2130962764 684796]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1173188026
+ModificationTime: 1173189202
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 944 16 14
+BeginChars: 65536 7
+StartChar: g
+Encoding: 103 103 0
+Width: 517
+Flags: HMW
+TeX: 0 0 0 0
+HStem: -184 75<134.5 324.3> 25 75<208.2 318.5> 405 75<314 371.5 263 386>
+VStem: 80 98<123.8 329.2>
+Fore
+80 185 m 0
+ 80 318 197 480 329 480 c 0
+ 414 480 442 410 444 410 c 1
+ 459 480 l 1
+ 553 480 l 1
+ 458 32 l 2
+ 450 -3 447 -23 430 -55 c 0
+ 412 -90 345 -184 218 -184 c 0
+ 138 -184 89 -164 43 -139 c 1
+ 60 -57 l 1
+ 114 -90 157 -109 232 -109 c 0
+ 303 -109 339 -50 350 -15 c 0
+ 358 10 364 49 378 114 c 1
+ 350 77 296 25 221 25 c 0
+ 136 25 80 94 80 185 c 0
+178 207 m 0
+ 178 143 225 100 281 100 c 0
+ 332 100 385 142 408 250 c 2
+ 408 250 427 328 427 336 c 0
+ 427 352 414 405 358 405 c 0
+ 270 405 178 301 178 207 c 0
+EndSplineSet
+EndChar
+StartChar: s
+Encoding: 115 115 1
+Width: 402
+Flags: W
+TeX: 0 0 0 0
+HStem: -8 78<127.4 317.2> 410 75<187.684 364.6>
+VStem: 105 92<317 370> 320 91<104.6 169>
+Fore
+105 317 m 0
+ 105 378 152 485 311 485 c 0
+ 381 485 419 470 458 451 c 1
+ 427 369 l 1
+ 380 397 346 410 284 410 c 0
+ 209.911 410 197 364 197 344 c 0
+ 197 338.4 197.842 329.057 209.546 316 c 0
+ 221.542 302.616 239.244 299.904 288 290 c 0
+ 312.985 284.925 411 266 411 169 c 0
+ 411 113 370 -8 205 -8 c 0
+ 138 -8 87 9 37 39 c 1
+ 71 125 l 1
+ 103 99 149 70 221 70 c 0
+ 295 70 320 113 320 141 c 0
+ 320 160 309 174 290 184 c 0
+ 249 204 154 194 116 270 c 0
+ 108 285 105 301 105 317 c 0
+EndSplineSet
+EndChar
+StartChar: w
+Encoding: 119 119 2
+Width: 692
+Flags: HW
+TeX: 0 0 0 0
+HStem: -3 21G<149 245 434 541> 452 20G<115 208 401 486 686 777>
+VStem: 421 86<145.462 223.244>
+Fore
+115 472 m 1
+ 208 472 l 1
+ 223 256 226 193 226 156 c 0
+ 226 136 225 123 225 96 c 1
+ 241 155 388 443 401 472 c 1
+ 486 472 l 1
+ 489 437 507 190 507 119 c 2
+ 507 96 l 1
+ 524 149 676 450 686 472 c 1
+ 777 472 l 1
+ 541 -3 l 1
+ 434 -3 l 1
+ 420 179 417 270 417 317 c 0
+ 417 357 420 366 420 375 c 1
+ 404 310 255 19 245 -3 c 1
+ 149 -3 l 1
+ 115 472 l 1
+EndSplineSet
+EndChar
+StartChar: v
+Encoding: 118 118 3
+Width: 458
+Flags: HW
+TeX: 0 0 0 0
+HStem: -3 21G<174 283> 452 20G<115 209 451 544>
+Fore
+115 472 m 1
+ 209 472 l 1
+ 242 199 l 26
+ 247.918 147.659 249.2 116.6 251 96 c 1
+ 261 124 284 163 318 229 c 2
+ 451 472 l 1
+ 544 472 l 1
+ 283 -3 l 1
+ 174 -3 l 1
+ 115 472 l 1
+EndSplineSet
+EndChar
+StartChar: y
+Encoding: 121 121 4
+Width: 458
+Flags: HWO
+TeX: 0 0 0 0
+HStem: -175 75<41.8713 164.7> 452 20G<116 212 452 544>
+Fore
+71 -175 m 0
+ 41 -175 12 -171 -3 -168 c 1
+ 7 -85 l 1
+ 39 -95 57 -100 88 -100 c 0
+ 147 -100 171 -48 198 -0 c 1
+ 116 472 l 1
+ 212 472 l 1
+ 246 262 l 2
+ 256 200 259 144 259 125 c 0
+ 259 112 258 106 258 97 c 1
+ 276 169 440 448 452 472 c 1
+ 544 472 l 1
+ 259 -33 l 2
+ 207 -125 146 -175 71 -175 c 0
+EndSplineSet
+EndChar
+StartChar: afii10089
+Encoding: 1095 1095 5
+Width: 533
+Flags: W
+TeX: 0 0 0 0
+HStem: 0 21G<374 465> 197 59<238.7 416> 452 20G<167 258 474 566>
+VStem: 374 91<0 14.0198 0 91> 474 92<457.98 472 380 472>
+Fore
+129 291 m 0
+ 129 298 131 302 167 472 c 1
+ 258 472 l 1
+ 228 331 221 302 221 292 c 0
+ 221 289 224 278 227 275 c 0
+ 240 261 248 256 279 256 c 2
+ 429 256 l 1
+ 474 472 l 1
+ 566 472 l 1
+ 465 0 l 1
+ 374 0 l 1
+ 416 197 l 1
+ 263 197 l 2
+ 182 197 129 253 129 291 c 0
+EndSplineSet
+EndChar
+StartChar: afii10094
+Encoding: 1100 1100 6
+Width: 492
+Flags: HW
+TeX: 0 0 0 0
+HStem: -0 78<174 318.854> 230 59<219 328> 452 20G<166 258>
+VStem: 166 92<457.923 472 380 472> 399 91<139.3 223.8>
+Fore
+66 -0 m 1
+ 166 472 l 1
+ 258 472 l 1
+ 219 289 l 1
+ 328 289 l 2
+ 452 289 490 220 490 175 c 0
+ 490 141 469 88 433 54 c 0
+ 385 10 324 -0 261 -0 c 2
+ 66 -0 l 1
+399 164 m 0
+ 399 210 339 230 309 230 c 2
+ 206 230 l 1
+ 174 78 l 1
+ 258 78 l 2
+ 299 78 344 82 374 112 c 0
+ 388 126 399 145 399 164 c 0
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

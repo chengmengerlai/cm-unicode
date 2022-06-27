@@ -1,0 +1,106 @@
+SplineFontDB: 1.0
+FontName: post_bx
+FullName: post_bx
+FamilyName: post_bx
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 1.0 (http://fontforge.sf.net)
+Comments: 2006-12-28: Created.
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+NeedsXUIDChange: 1
+XUID: [1021 305 2130962764 9578063]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1167293717
+ModificationTime: 1167294046
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 800 16 14
+BeginChars: 65536 2
+StartChar: delta
+Encoding: 948 948 0
+Width: 594
+Flags: MW
+TeX: 0 0 0 0
+HStem: -5 47<182.4 393> 404 40<221 274> 647 57<117.1 214.6>
+VStem: 63 114<128 354.7> 418 111<86.8 241.5>
+Fore
+63 226 m 0
+ 63 325 124 390 172 420 c 0
+ 188 430 204 437 221 444 c 1
+ 153 486 78 549 78 619 c 0
+ 78 656 95 704 167 704 c 0
+ 249 704 356 654 473 605 c 1
+ 473 524 l 1
+ 398 554 199 647 147 647 c 0
+ 124 647 122 614 122 604 c 0
+ 122 512 293 456 297 455 c 0
+ 363 429 372 424 390 415 c 0
+ 450 384 529 316 529 210 c 0
+ 529 93 430 -5 300 -5 c 0
+ 163 -5 63 104 63 226 c 0
+177 232 m 0
+ 177 152 210 42 302 42 c 0
+ 372 42 418 109 418 183 c 0
+ 418 228 404 308 299 390 c 0
+ 289 399 281 404 274 404 c 0
+ 246 404 177 355 177 232 c 0
+EndSplineSet
+EndChar
+StartChar: psi
+Encoding: 968 968 1
+Width: 755
+Flags: W
+TeX: 0 0 0 0
+HStem: -5 49<313 349>
+VStem: 64 54<84 366.8> 321 114<-261.8 -194.221 620.92 700.8> 610 81<195.4 378.8>
+Fore
+64 268 m 0
+ 64 344 102 469 164 469 c 0
+ 197 469 227 438 227 405 c 0
+ 227 338 118 368 118 240 c 0
+ 118 120 206 44 313 44 c 0
+ 326 44 340 45 353 48 c 1
+ 353 78 354 98 354 135 c 0
+ 354 401 321 642 321 654 c 0
+ 321 690 348 710 378 710 c 0
+ 408 710 435 690 435 654 c 0
+ 435 642 402 401 402 135 c 0
+ 402 115 402 62 402 62 c 1
+ 522 111 610 229 610 341 c 0
+ 610 395 594 415 594 430 c 0
+ 594 441 605 453 617 453 c 0
+ 648 453 691 353 691 267 c 0
+ 691 107 573 5 406 -5 c 1
+ 424 -187 435 -203 435 -215 c 0
+ 435 -251 408 -271 378 -271 c 0
+ 348 -271 321 -251 321 -215 c 0
+ 321 -203 333 -167 349 -5 c 1
+ 180 5 64 108 64 268 c 0
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

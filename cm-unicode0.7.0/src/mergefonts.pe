@@ -1,0 +1,3001 @@
+#!/usr/bin/env fontforge
+#
+# Copyright (C) 2003, 2004, 2005, 2006, 2007 Andrey V. Panov
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+# This fontforge script proposed for merging of Type 1 fonts derived from
+# METAFONT fonts and further processing. It should be invoked by make utility
+# using Makefile.cm
+# 
+fontname=$1
+family=$2
+fullname=$3
+weight=$4
+copyrightnotice=$5
+font_version=$6
+font_var=$7
+greek_font_var=$8
+font_size=$9 #"1000"
+fontdim3=Strtol($10)
+space=Strtol($11)
+italic_angle=Strtol($12)
+tipa=$13
+bluesky=$14
+#let font_id=4000000+RANDOM*RANDOM/1500
+#pi=3.14159265359
+blueskypath="/usr/share/texmf/fonts/type1/bluesky/cm/"
+pi=4.0*ATan2(1.0,1.0)
+tan_it = 1.0*Tan(italic_angle/100.0*pi/180.0)
+latsc=""
+cyrsc=""
+grksc=""
+#font_base = Array(6)
+font_base = ["ec","tc","la","rx","lc","lb","ux","ld"]
+font_base_size = SizeOf(font_base)
+#copy_kern=Array(2)
+#copy_kern[0]="kern"
+#copy_kern[1]="_krn"
+encodings=["T1Encoding","TCEncoding","T2AEncoding","X2Encoding","T2cEnc",\
+           "T2bEnc","UxEnc","T2DEncoding"]
+monospace = font_var == "tt" || font_var == "it" || font_var == "st" || \
+ font_var == "tb" || font_var == "tx" || font_var == "btl" || font_var == "bto"
+cursive = font_var == "ti" || font_var == "it" || font_var == "bi" || \
+ font_var == "ci" || font_var == "ui" || font_var == "oti" || font_var == "obi"
+
+serifs = font_var == "bi" || font_var == "bl" || font_var == "bx" || \
+ font_var == "rb" || font_var == "rm" || font_var == "sl" || font_var == \
+ "ti" || font_var == "ui" || font_var == "tt" || font_var == "st" || \
+ font_var == "it" || font_var == "vt" || font_var == "vi" || font_var == \
+ "ci" || font_var == "tx" || font_var == "tb" || \
+ font_var == "orm" || font_var == "oti" || font_var == "obx" || font_var == "obi" \
+ || font_var == "btl" || font_var == "bto"
+
+# requires change of height of tilde & macron
+cmtypeface = font_var == "bi" || font_var == "bl" || font_var == "bx" || font_var == "ci" || \
+    font_var == "rb" || font_var == "rm" || font_var == "sl" || font_var == "ti" || \
+    font_var == "ui"
+
+#cyr_lang="cyrl{dflt,MKD ,SRB }"
+#grk_lang="grek{dflt}"
+#lat_lang="latn{dflt,NLD ,VIT ,TRK ,AZE }"
+#lat_tur_lang="latn{dflt,NLD ,VIT }"
+#lc_lang = lat_lang + cyr_lang
+#lgc_lang = lat_lang + grk_lang + cyr_lang
+#srb_lang = "cyrl{MKD ,SRB }"
+
+SetPref("XUID-Base","1067")
+#SetPref("GreekNames",0)
+SetPref("RecognizePUANames",1)
+SetPref("NewFontsQuadratic",0)
+SetPref("NewEmSize",1000)
+SetPref("FoundryName","Computer Modern Unicode")
+SetPref("NewCharset","unicode")
+
+if(bluesky != "-")
+ copyrightnotice += ". Some glyphs are copied from Blue Sky fonts released by AMS."
+endif
+
+New()
+Reencode("unicode")
+if (monospace || font_var == "vt" || font_var == "vi")
+ MergeFonts("pseudographics.sfd")
+else
+ MergeFonts("additional_glyphs.sfd")
+endif
+if (!FileAccess("add_"+font_var+".sfd"))
+ MergeFonts("add_"+font_var+".sfd")
+endif
+SetFontNames(fontname,family,fullname,weight,copyrightnotice,font_version)
+i = 0
+while ( i < font_base_size )
+# MergeFonts(font_base[i]+font_var+font_size+".pfb")
+ Open(font_base[i]+font_var+font_size+".pfb")
+ LoadEncodingFile(font_base[i]+".enc")
+ Reencode(encodings[i],1)
+ if ((font_var == "ti" || font_var == "ci" || font_var == "ui" || \
+      font_var == "bx" || font_var == "bl" || font_var == "rb") && font_base[i] == "tc") # workaround for fractions
+  SelectSingletons("onesuperior","onequarter","onehalf","threequarters")
+  Clear()
+  MergeFonts(font_base[i]+font_var+font_size+".pfa")
+ endif
+ if (!FileAccess(font_base[i]+font_var+font_size+".tfm"))
+  MergeKern(""+font_base[i]+font_var+font_size+".tfm")
+#  Print("Reading kerning info from "+font_base[i]+font_var+font_size+".tfm")
+ endif
+ if (i == 0)
+  bbox = GetFontBoundingBox()
+  ascent = Round(bbox[3])
+  descent = Round(bbox[1])
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts(font_base[i]+font_var+font_size+".pfb")
+ Open(font_base[i]+font_var+font_size+".pfb")
+ Close()
+ i++
+endloop
+
+ Open("vn"+font_var+10+".pfb")
+ LoadEncodingFile("vn.enc")
+ Reencode("VnEnc",1)
+ if (!FileAccess("vn"+font_var+10+".tfm"))
+  MergeKern("vn"+font_var+10+".tfm")
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts("vn"+font_var+10+".pfb")
+ Open("vn"+font_var+10+".pfb")
+ Close()
+
+Open("Untitled1.sfd")
+if (monospace)
+ liga_tag = "dlig"
+ SetPref("CounterControl",0)
+else
+ liga_tag = "liga"
+ SetPref("CounterControl",1)
+endif
+
+lgc_lang_onum = "LGC old numerals subtable"
+AddLookup("LGC old numerals", "gsub_single", 0, [["onum",[["latn",["dflt"]],["grek",["dflt"]],["cyrl",["dflt"]]]]])
+AddLookupSubtable("LGC old numerals", lgc_lang_onum)
+cyr_lang_locl =  "Cyrillic substitutions subtable"
+AddLookup("Cyrillic substitutions", "gsub_single", 0, [["locl",[["cyrl",["dflt","MKD ","SRB "]]]]])
+AddLookupSubtable("Cyrillic substitutions", cyr_lang_locl)
+cyr_lang_salt =  "Cyrillic alternatives subtable"
+AddLookup("Cyrillic alternatives", "gsub_alternate", 0, [["salt",[["cyrl",["dflt","MKD ","SRB "]]]]])
+AddLookupSubtable("Cyrillic alternatives", cyr_lang_salt)
+cyr_lang_aalt =  "Cyrillic all alternatives subtable"
+AddLookup("Cyrillic all alternatives", "gsub_alternate", 0, [["aalt",[["cyrl",["dflt","MKD ","SRB "]]]]])
+AddLookupSubtable("Cyrillic all alternatives", cyr_lang_aalt)
+lat_lang_locl =  "Latin substitutions subtable"
+AddLookup("Latin substitutions", "gsub_single", 0, [["locl",[["latn",["dflt","NLD ","VIT ","TRK ","AZE "]]]]])
+AddLookupSubtable("Latin substitutions", lat_lang_locl)
+lat_vit_lang_locl =  "Latin Vietnamese substitutions subtable"
+AddLookup("Latin Vietnamese substitutions", "gsub_single", 0, [["locl",[["latn",["VIT "]]]]])
+AddLookupSubtable("Latin Vietnamese substitutions", lat_vit_lang_locl)
+ss01 = "Stilistic set 01 subtable"
+AddLookup("Stilistic set 01", "gsub_alternate", 0, [["ss01",[["latn",["dflt"]],["grek",["dflt"]],["cyrl",["dflt"]]]]])
+AddLookupSubtable("Stilistic set 01", ss01)
+lat_lang_salt = "Latin alternatives subtable"
+AddLookup("Latin alternatives", "gsub_alternate", 0, [["salt",[["latn",["dflt"]]]]])
+AddLookupSubtable("Latin alternatives", lat_lang_salt)
+cyr_lang_liga =  "Cyrillic ligatures subtable"
+AddLookup("Cyrillic ligatures", "gsub_ligature", 0, [[liga_tag,[["cyrl",["dflt","MKD ","SRB "]]]]])
+AddLookupSubtable("Cyrillic ligatures", cyr_lang_liga)
+lat_lang_liga =  "Latin ligatures subtable"
+AddLookup("Latin ligatures", "gsub_ligature", 0, [[liga_tag,[["latn",["dflt","NLD ","VIT ","TRK ","AZE "]]]]])
+AddLookupSubtable("Latin ligatures", lat_lang_liga)
+lat_tur_lang_liga =  "Latin ligatures excepting Turkic subtable"
+AddLookup("Latin ligatures excepting Turkic", "gsub_ligature", 0, [[liga_tag,[["latn",["dflt","NLD ","VIT "]]]]])
+AddLookupSubtable("Latin ligatures excepting Turkic", lat_tur_lang_liga)
+lat_nld_lang_liga =  "Latin Dutch ligatures subtable"
+AddLookup("Latin Dutch ligatures", "gsub_ligature", 0, [[liga_tag,[["latn",["NLD "]]]]])
+AddLookupSubtable("Latin Dutch ligatures", lat_nld_lang_liga)
+
+ if (greek_font_var != "-")
+
+ grk_lang_locl = "Greek substitutions subtable"
+ AddLookup("Greek substitutions", "gsub_single", 0, [["locl",[["grek",["dflt"]]]]])
+ AddLookupSubtable("Greek substitutions", grk_lang_locl)
+ grk_lang_salt = "Greek alternatives subtable"
+ AddLookup("Greek alternatives", "gsub_alternate", 0, [["salt",[["grek",["dflt"]]]]])
+ AddLookupSubtable("Greek alternatives", grk_lang_salt)
+
+ Select(0u03bc) # mu
+ Clear()
+## Select("Omega")
+ Select("uni03A9") # Omega
+ Clear()
+ Select("uni0394") # Delta
+ Clear()
+ if (font_var == "ssdc") # workaround
+  font_size="1000"
+#  MergeFonts("g"+greek_font_var+"1000"+".pfb")
+# else
+#  MergeFonts("g"+greek_font_var+font_size+".pfb")
+ endif
+ Open("g"+greek_font_var+font_size+".pfb")
+ LoadEncodingFile("g.enc")
+ Reencode("GrEncoding",1)
+ if (!FileAccess("g"+greek_font_var+font_size+".tfm"))
+  MergeKern("g"+greek_font_var+font_size+".tfm")
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts("g"+greek_font_var+font_size+".pfb")
+ Open("g"+greek_font_var+font_size+".pfb")
+ Close()
+ Open("Untitled1.sfd")
+ 
+# SetPref("GreekNames",1)
+
+ char_number = CharCnt()
+ SetCharCnt(char_number + 3)
+
+ Select(char_number)
+ SetCharName("Delta.greek",0)
+ dub_glyph.pe("uni0394","Delta.greek")
+ dub_glyph.pe("uni0394","uni2206") # Delta
+
+ Select(char_number+1)
+ SetCharName("Omega.greek",0)
+ dub_glyph.pe("uni03A9","Omega.greek")
+
+ Select(char_number+2)
+ SetCharName("mu.greek",0)
+ dub_glyph.pe("uni03BC","mu.greek")
+
+ Reencode("unicode")
+ dub_glyph.pe("theta","theta1")
+
+ if ( SelectIf("u1D703") == 1 && WorthOutputting("u1D703") == 0 )
+  AddLookup("Math substitutions", "gsub_single", 0, [["mgrk",[["latn",["dflt"]],["grek",["dflt"]],["cyrl",["dflt"]]]]])
+  AddLookupSubtable("Math substitutions", "Math substitutions subtable")
+  Select("theta")
+  AddPosSub("Math substitutions subtable", "u1D703")
+ endif
+elseif ( WorthOutputting("Euro") == 0 && SelectIf("Euro.old") == 1)
+ dub_glyph.pe("Euro.old","Euro")
+endif
+
+if (tipa != "-")
+# MergeFonts("tipa"+tipa+10+".pfb")
+# MergeFonts("tipx"+tipa+10+".pfb")
+ Open("tipa"+tipa+10+".pfb")
+ LoadEncodingFile("tipa.enc")
+ Reencode("TipaEncoding",1)
+ if (!FileAccess("tipa"+tipa+10+".tfm"))
+  MergeKern("tipa"+tipa+10+".tfm")
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts("tipa"+tipa+10+".pfb")
+ Open("tipa"+tipa+10+".pfb")
+ Close()
+ Open("tipx"+tipa+10+".pfb")
+ LoadEncodingFile("tipx.enc")
+ Reencode("TipxEncoding",1)
+ if (!FileAccess("tipx"+tipa+10+".tfm"))
+  MergeKern("tipx"+tipa+10+".tfm")
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts("tipx"+tipa+10+".pfb")
+ Open("tipx"+tipa+10+".pfb")
+ Close()
+endif
+
+# Import small capitals
+if (font_var == "rm")
+ latsc="eccc"+font_size
+ cyrsc="uxcc"+font_size
+ grksc="grmc"+font_size
+# lasc="lacc"+font_size
+elseif (font_var == "sl")
+ latsc="ecsc"+font_size
+ cyrsc="uxsc"+font_size
+# lasc="lasc"+font_size
+elseif (font_var == "bl")
+ latsc="ecoc"+font_size
+ cyrsc="uxoc"+font_size
+# lasc="laoc"+font_size
+elseif (font_var == "bx")
+ latsc="ecxc"+font_size
+ cyrsc="uxxc"+font_size
+ grksc="grxc"+font_size
+# lasc="laxc"+font_size
+elseif (font_var == "orm")
+ latsc="eocc10"
+ cyrsc="uxocc10"
+# lasc="laocc"+font_size
+elseif (font_var == "ss")
+ grksc="gsmc"+font_size
+elseif (font_var == "sx")
+ grksc="gsxc"+font_size
+elseif (font_var == "tt")
+ grksc="gttc"+font_size
+else
+ latsc=""
+ cyrsc=""
+ grksc=""
+endif
+
+
+if (latsc != "")
+ Open(latsc+".pfb")
+ LoadEncodingFile("ecsc.enc")
+ Reencode("LatinSCEncoding",1)
+ SelectSingletons(25,26,158) # remove unnecessary Ismall and Jsmall
+ DetachAndRemoveGlyphs()
+ Reencode("LatinSCEncoding")
+ SelectSingletons("Ismall","Jsmall") # remove unnecessary Ismall and Jsmall
+ DetachAndRemoveGlyphs()
+ if (!FileAccess(latsc+".tfm"))
+  MergeKern(latsc+".tfm")
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts(latsc+".pfb")
+ Open(latsc+".pfb")
+ Close()
+endif
+
+#if (lasc != "")
+# Open(lasc+".pfb")
+# LoadEncodingFile("lasc.enc")
+# Reencode("T2AScEncoding",1)
+# if (!FileAccess(lasc+".tfm"))
+#  MergeKern(lasc+".tfm")
+# endif
+# Open("Untitled1.sfd")
+# MergeFonts(lasc+".pfb")
+# Open(lasc+".pfb")
+# Close()
+#endif
+
+if (cyrsc != "")
+ Open(cyrsc+".pfb")
+ LoadEncodingFile("uxsc.enc")
+ Reencode("UxscEnc",1)
+ if (!FileAccess(cyrsc+".tfm"))
+  MergeKern(cyrsc+".tfm")
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts(cyrsc+".pfb")
+ Open(cyrsc+".pfb")
+ Close()
+endif
+
+if (grksc != "")
+ Open(grksc+".pfb")
+ LoadEncodingFile("gsc.enc")
+ Reencode("GrSCEncoding",1)
+ if (!FileAccess(grksc+".tfm"))
+  MergeKern(grksc+".tfm")
+ endif
+ Open("Untitled1.sfd")
+ MergeFonts(grksc+".pfb")
+ Open(grksc+".pfb")
+ Close()
+endif
+
+Open("Untitled1.sfd")
+
+SetItalicAngle(italic_angle,100)
+SetOS2Value("WinAscentIsOffset",0)
+SetOS2Value("WinAscent",ascent)
+SetOS2Value("WinDescentIsOffset",0)
+SetOS2Value("WinDescent",-descent)
+SetOS2Value("HHeadAscentIsOffset",0)
+SetOS2Value("HHeadAscent",ascent)
+SetOS2Value("HHeadDescentIsOffset",0)
+SetOS2Value("HHeadDescent",descent)
+SetOS2Value("TypoLineGap",200) # 20% of em is recommended
+SetOS2Value("HHeadLineGap",200) # 20% of em is recommended
+
+SetTTFName(0x409,12,"http://cm-unicode.sourceforge.net/")
+SetTTFName(0x409,13,"This Font Software is licensed under the SIL Open Font License, Version 1.1.\n\
+This license is copied together with this font package in OFL.txt,\n\
+and is also available with a FAQ at: http://scripts.sil.org/OFL")
+SetTTFName(0x409,14,"http://scripts.sil.org/OFL")
+
+#Save("cmun"+font_var+"_.sfd")
+# move all kerning data into one lookup
+lookups = GetLookups("GPOS")
+kern_table = "LGC kerning subtable"
+kern_look = "LGC kerning"
+AddLookup(kern_look, "gpos_pair", 0, [["kern",[["latn",["dflt"]],["grek",["dflt"]],["cyrl",["dflt"]]]]])
+AddLookupSubtable(kern_look, kern_table)
+size_arr = SizeOf(lookups)
+i = 0
+while (i < size_arr)
+ MergeLookups(kern_look, lookups[i])
+ i++
+endloop
+subtables = GetLookupSubtables(kern_look)
+size_arr = SizeOf(subtables)
+i = 0
+while (i < size_arr)
+ if (subtables[i] != kern_table)
+  MergeLookupSubtables(kern_table, subtables[i])
+ endif
+ i++
+endloop
+# Remove ligatures exported from TFM files
+lookups = GetLookups("GSUB")
+size_arr = SizeOf(lookups)
+i = 0
+while (i < size_arr)
+ if (Strstr(lookups[i],"'liga'") >= 0)
+  RemoveLookup(lookups[i])
+ endif
+ i++
+endloop
+
+# Create ellipsis from points (fixme: should be reworked)
+Select("period")
+width=GlyphInfo("Width")
+elshift=width #+fontdim3
+Copy()
+Select("ellipsis")
+Paste()
+if (monospace)
+ #rbearing = GlyphInfo("RBearing")
+ Move(-150,0)
+ PasteInto()
+ Move(300,0)
+ PasteInto()
+ Move(-150,0)
+ #Select("period")
+ #CopyRBearing()
+ #Select("ellipsis")
+ #PasteInto()
+ SetRBearing(525)
+ SetWidth(525)
+ # The font is monospaced
+ SetPanose(3, 9)
+ # Print ($panose[3])
+ Select(0u266a)
+ Transform(81,0,0,100,0,0)
+# SetRBearing(space)
+ SetWidth(space)
+else
+ Move(elshift,0)
+ PasteInto()
+ Move(elshift,0)
+ PasteInto()
+# SetRBearing(2*elshift,1)
+ SetWidth(3*elshift)
+endif
+# Set space
+Select("space")
+SetWidth(space)
+if (monospace)
+  ScaleToEm(775, 225)
+endif
+
+# spaces
+Select("space")
+CopyReference()
+Select("nonbreakingspace")
+Paste()
+Select("emdash")
+width = GlyphInfo("Width")
+Select("uni2003") # em space
+SelectMore("uni2001") # em quad
+SetWidth(width)
+if(! monospace)
+ Select("uni2002") # en space
+ SelectMore("uni2000") # en quad
+ SetWidth(Round(width/2.0))
+ Select("uni2004") # 1/3 em space
+ SetWidth(Round(width/3.0))
+ Select("uni2005") 
+ SetWidth(Round(width/4.0))
+ Select("uni2006") 
+ SetWidth(Round(width/6.0))
+ Select("uni2009") 
+ SetWidth(Round(width/5.0))
+ Select("uni200B","uni200D") 
+ SetWidth(0)
+ Select("A")
+ width = -GlyphInfo("Kern","C") # Thinest kerning pair
+ if (width > 0)
+  Select("uni200A") 
+  SetWidth(width)
+ endif
+endif
+Select("zero")
+width = GlyphInfo("Width")
+Select("uni2007") # figure space
+SetWidth(width)
+Select("endash")
+width1 = GlyphInfo("Width")
+if (width1 == width)
+ dub_glyph.pe("endash","figuredash")
+endif
+dub_glyph.pe("hyphen",0u2010)
+dub_glyph.pe("hyphen",0u2011)
+Select("period")
+width = GlyphInfo("Width")
+Select("uni2008") # punctuation space
+SetWidth(width)
+
+hflip_glyph.ff("quoteright","quotereversed",italic_angle)
+hflip_glyph.ff("quotedblright","uni201F",italic_angle)
+
+dub_glyph.pe("Eth","Dcroat") #? dub_glyph.pe("Eth","uni0189")
+dub_glyph.pe("uni04E8","afii10147") # Fita 
+if ( font_var == "orm" || font_var == "obx" ) # workaround for lh bug 
+ dub_glyph.pe("J","afii10057") 
+endif
+if ( font_var == "orm" ) # workaround for lh bug 
+ dub_glyph.pe("J.sc","afii10057.sc") 
+endif
+#dub_glyph.pe("dotlessj",0uf6be) #dotlessj is U+237 now
+dub_glyph.pe("uni04D8","uni018F") # capital schwa 
+if (tipa == "-") 
+ dub_glyph.pe("uni04E1","uni0292") # ezh 
+endif
+dub_glyph.pe("uni04E0","uni01B7") # Ezh
+
+#hflip_glyph.ff("S","uni01A7",italic_angle)
+#hflip_glyph.ff("s","uni01A8",italic_angle)
+#hflip_glyph.ff("E","uni018E",italic_angle)
+
+/*
+# Build accented characters
+# Latin
+SetPref("AccentOffsetPercent",9)
+SetPref("AccentCenterLowest",0)
+SetPref("CharCenterHighest",0)
+Select("imacron")
+SelectMoreSingletons("otilde","ntilde","umacron","omacron",\
+ "aemacron","uni1E7D")
+#SelectMore("uni01E3")
+#"utilde","itilde",
+BuildAccented()
+
+SetPref("CharCenterHighest",1)
+Select("a")
+bbox = GlyphInfo("BBox")
+width = bbox[2] - bbox[0]
+SelectSingletons("atilde","amacron")
+BuildAccented()
+MoveReference(width/20,0,"tilde","macron",0u2C9)
+
+SelectSingletons("etilde","emacron") #,"uni1EBD"
+BuildAccented()
+*/
+
+# Redesign these letters of ec fonts
+# bright & tt sans  macron!!
+if (cmtypeface)
+ SelectSingletons("atilde","ntilde","etilde","otilde")
+ Clear()
+endif
+
+
+SetPref("AccentOffsetPercent",5)
+SetPref("AccentCenterLowest",0)
+SetPref("CharCenterHighest",0)
+
+dub_glyph.pe("I","Imacron")
+Select("Imacron")
+AddAccent("macron",0x100)
+
+add_ipa.ff(0,cursive)
+
+if (tipa != "-")
+ if ( monospace )
+  Select("uni02B0","uni02B8")
+  SelectMore("uni02E0","uni02E4")
+  SelectMore("uni1D2C","uni1D6A")
+  SelectMoreSingletons("uni207F","uni1D78")
+  SelectMore("uni1D9C","uni1DBF")
+  foreach
+   if ( WorthOutputting())
+    SetWidth(space)
+   endif
+  endloop
+ endif
+endif
+
+# Build IPA Percussive consonants
+if (tipa != "-")
+ Select("w")
+ Copy()
+ Select("uni02AC")
+ Paste()
+ if ( monospace )
+  Scale(100,50,0,0)
+ else
+  Scale(50,50,0,0)
+ endif
+ bbox = GlyphInfo("BBox")
+ char_height = bbox[3]
+ Copy()
+ del_y = char_height + char_height/4
+ modifier_height = del_y + del_y/3
+ PasteWithOffset (-del_y*tan_it, del_y);
+ width = GlyphInfo("Width")
+
+ Select("space_uni032A")
+ bbox = GlyphInfo("BBox")
+ char_height = bbox[1]
+ Copy()
+ Select("uni02AD")
+ Paste()
+ Move(0,-char_height)
+ bbox = GlyphInfo("BBox")
+ char_height = bbox[3]
+ Copy()
+ del_y = char_height + char_height/3
+ PasteWithOffset (-del_y*tan_it, del_y);
+
+ make_dup_vertshift.pe("uni02BE","uni02D2",-0.5,tan_it)
+ make_dup_vertshift.pe("uni02BF","uni02D3",-0.5,tan_it)
+endif
+ 
+
+if (font_var == "tb" || font_var == "tx" || font_var == "obx" || font_var == "obi") # Workaround
+ Select("Aring")
+ Clear()
+ BuildComposite()
+endif
+
+dub_glyph.pe("guillemotleft.cyr","guillemotleft")
+dub_glyph.pe("guillemotright.cyr","guillemotright")
+
+# ATT
+Select("guillemotleft")
+#AddPosSub(cyr_lang_aalt,"guillemotleft.cyr")
+AddPosSub(lat_lang_locl,"guillemotleft.lat")
+AddPosSub(lat_lang_salt,"guillemotleft.lat")
+if (greek_font_var != "-")
+ AddPosSub(grk_lang_salt,"guillemotleft.gr")
+ AddPosSub(grk_lang_locl,"guillemotleft.gr")
+endif
+Select("guillemotright")
+#AddPosSub(cyr_lang_aalt,"guillemotright.cyr")
+AddPosSub(lat_lang_locl,"guillemotright.lat")
+AddPosSub(lat_lang_salt,"guillemotright.lat")
+if (greek_font_var != "-")
+ AddPosSub(grk_lang_salt,"guillemotright.gr")
+ AddPosSub(grk_lang_locl,"guillemotright.gr")
+endif
+Select("emdash")
+AddPosSub(cyr_lang_salt,"emdash.cyr")
+AddPosSub(cyr_lang_locl,"emdash.cyr")
+
+#if (greek_font_var != "-")
+# Select("uni1FBC")
+# AddATT("Substitution",grk_lang,"case",-1,"uni1FBC.alt")
+# Select("uni1FCC")
+# AddATT("Substitution",grk_lang,"case",-1,"uni1FCC.alt")
+# Select("uni1FFC")
+# AddATT("Substitution",grk_lang,"case",-1,"uni1FFC.alt")
+# Select("uni1FB3")
+# AddATT("Substitution",grk_lang,"case",-1,"uni1FBC.alt")
+# Select("uni1FC3")
+# AddATT("Substitution",grk_lang,"case",-1,"uni1FCC.alt")
+# Select("uni1FF3")
+# AddATT("Substitution",grk_lang,"case",-1,"uni1FFC.alt")
+#endif
+
+###SelectAll()
+###RemoveATT("Ligature","*",liga_tag)
+Select("ff")
+AddPosSub(lat_lang_liga,"f f")
+Select("fi")
+AddPosSub(lat_tur_lang_liga,"f i")
+Select("fl")
+AddPosSub(lat_lang_liga,"f l")
+Select("ffi")
+AddPosSub(lat_tur_lang_liga,"f f i")
+AddPosSub(lat_tur_lang_liga,"ff i")
+Select("ffl")
+AddPosSub(lat_lang_liga,"f f l")
+AddPosSub(lat_lang_liga,"ff l")
+Select("ij")
+##RemoveATT("Ligature",lat_lang,liga_tag)
+AddPosSub(lat_nld_lang_liga,"i j")
+Select("IJ")
+##RemoveATT("Ligature",lat_lang,liga_tag)
+AddPosSub(lat_nld_lang_liga,"I J")
+Select("iacute")
+AddPosSub(lat_tur_lang_liga,"i acutecomb")
+AddPosSub(cyr_lang_liga,"afii10103 acutecomb")
+Select("igrave")
+AddPosSub(lat_tur_lang_liga,"i gravecomb")
+Select("icircumflex")
+AddPosSub(lat_tur_lang_liga,"i uni0302") #circumflexcomb
+Select("imacron")
+AddPosSub(lat_tur_lang_liga,"i uni0304") #macroncomb
+Select("ibreve")
+AddPosSub(lat_tur_lang_liga,"i uni0306") #brevecomb
+Select("idieresis")
+AddPosSub(lat_tur_lang_liga,"i uni0308") #dieresiscomb
+Select("icaron")
+AddPosSub(lat_tur_lang_liga,"i uni030C") #caroncomb
+Select("jcircumflex")
+AddPosSub(lat_lang_liga,"j uni0302") #circumflexcomb
+Select("jcaron")
+AddPosSub(lat_lang_liga,"j uni030C") #caroncomb
+Select("Aogonek")
+AddPosSub(lat_lang_liga,"A uni0328")
+# Adds OpenType substitution for old-style numerals to a font.
+Select("zero","nine");
+foreach
+  name = GlyphInfo("Name");
+  AddPosSub(lgc_lang_onum, name + "oldstyle");
+endloop
+
+if (tipa != "-") # IPA digraphs
+ make_digraph.pe("d","z","uni02A3",-24)
+ make_digraph.pe("d","uni0291","uni02A5",-24)
+ make_digraph.pe("t","uni0255","uni02A8",-33)
+ make_digraph.pe("f","eng","uni02A9",-33)
+ make_digraph.pe("l","s","uni02AA",-42)
+ make_digraph.pe("l","z","uni02AB",-42)
+
+ if (monospace)
+  Select("uni02A3")
+  SelectMore("uni02A5")
+  SelectMore("uni02A8","uni02AB")
+  foreach
+   UnlinkReference()
+   width = GlyphInfo("Width")
+   rate = space*100/width
+   Scale (rate,100,0,0)
+   if(italic_angle != 0)
+    Skew(-italic_angle*rate/10000)
+   endif
+   SetWidth(space)
+  endloop
+ endif
+
+ # Tone bars
+ if (monospace)
+  Select("shortleveltone")
+ else
+  Select("longleveltone")
+ endif
+ bbox = GlyphInfo("BBox")
+ width = GlyphInfo("Width")
+ Select("pipe.var")
+ bbox1 = GlyphInfo("BBox")
+ i = 0
+ while ( i < 5 )
+ del_y = (bbox1[3] - bbox1[1] - bbox[3] + bbox[1])*(1.0 - 0.25*i) - (bbox[3] + bbox[1])*0.5 + bbox1[1] - bbox[1]
+ Select("pipe.var")
+ Copy()
+ Select(0u2E5+i)
+ PasteWithOffset (bbox[2] - bbox1[2] - (bbox1[3] - bbox[3])*tan_it, 0);
+ if (monospace)
+  Select("shortleveltone")
+ else
+  Select("longleveltone")
+ endif
+ Copy()
+ Select(0u2E5+i)
+ PasteWithOffset (-del_y*tan_it, del_y);
+ SetWidth(width)
+ i++
+ endloop
+endif
+
+# make_dup_vertshift.pe("grave","uni02CE",1.1,tan_it)
+# make_dup_vertshift.pe("acute","uni02CF",1.1,tan_it)
+
+# Copy combining glyphs to spacing ones (for compatibility with TeX)
+i = 0u300 # Select(0u300,0u34E)
+while ( i <= 0u34E )
+ Select(i)
+ if ( WorthOutputting() )
+  glyph_name = GlyphInfo("Name")
+  new_glyph_name = "space_" + glyph_name
+  new_glyph.ff(new_glyph_name)
+  cop_glyph.ff(glyph_name,new_glyph_name)
+ endif
+ i++
+endloop
+i = 0u0484 # Select(0u0484,0u0489)
+while ( i <= 0u0489 )
+ Select(i)
+ if ( WorthOutputting() )
+  glyph_name = GlyphInfo("Name")
+  new_glyph_name = "space_" + glyph_name
+  new_glyph.ff(new_glyph_name)
+  cop_glyph.ff(glyph_name,new_glyph_name)
+ endif
+ i++
+endloop
+i = 0u1dc0 # Select(0u0484,0u0489)
+while ( i <= 0u01dff )
+ Select(i)
+ if ( WorthOutputting() )
+  glyph_name = GlyphInfo("Name")
+  new_glyph_name = "space_" + glyph_name
+  new_glyph.ff(new_glyph_name)
+  cop_glyph.ff(glyph_name,new_glyph_name)
+ endif
+ i++
+endloop
+
+# Make some capital accents
+make_cap_accent.ff("acute.uc","acute.cap","Aacute",tan_it)
+make_cap_accent.ff("grave.uc","grave.cap","Agrave",tan_it)
+make_cap_accent.ff("hungarumlaut.uc","hungarumlaut.cap","Uhungarumlaut",tan_it)
+make_cap_accent.ff("tilde.uc","tilde.cap","Atilde",tan_it)
+make_cap_accent.ff("ring.uc","ring.cap","Uring",tan_it) # !!! rework it
+if (greek_font_var != "-")
+ dub_aligned.ff("macron.gr","macron.cap","dieresis.cap",tan_it)
+ if (!monospace)
+  Select("dieresis.cap")
+  width=GlyphInfo("Width")
+  Select("macron.cap")
+  SetWidth(width)
+  CenterInWidth()
+ endif
+else
+ dub_aligned.ff("macron.uc","macron.cap","dieresis.cap",tan_it) # !!! rework it
+endif
+
+# Make some combining glyphs
+make_dup_vertshift.pe("comma","uni0326",1.2,tan_it)
+Select("uni0326")
+UnlinkReference()
+Scale(70)
+if ( monospace )
+ SetWidth(space)
+ CenterInWidth()
+endif
+
+#Save("cmun"+font_var+"_.sfd")
+simplify.ff()
+
+# workarounds for accents
+if (cmtypeface)
+ dub_aligned.ff("tilde","uni0303","acute",tan_it)
+ dub_aligned.ff("macron","uni0304","acute",tan_it)
+endif
+# align uni0304 (macroncomb) with tilde
+if (!serifs || monospace)
+ dub_aligned.ff("macron","uni0304","tilde",tan_it)
+endif
+
+if ( !monospace )
+ combining.ff()
+ # Move combining glyphs to left and set their width to zero if non-zero
+# workarounds 
+ Select(0u361)
+ SelectMore(0u035C,0u035D) 
+ foreach
+ if ( WorthOutputting() )
+  width = GlyphInfo ("Width")
+  Move(-width*1.1,0)
+  SetWidth(0)
+ endif
+ endloop
+
+ Select(0u31A)
+  if ( WorthOutputting() )
+   width = GlyphInfo ("Width")
+   Move(-width/2,0)
+   SetWidth(0)
+  endif
+else
+ combining_mono.ff()
+endif # combining
+
+if (cursive) # Some italic Serbian letters differ from Russian
+
+ srb_lang =  "Italic substitutions cyr"
+ AddLookup("Italic substitutions", "gsub_single", 0, [["locl",[["cyrl",["MKD ","SRB "]]]]])
+ AddLookupSubtable("Italic substitutions", srb_lang)
+ 
+ SetPref("AccentOffsetPercent",9)
+ SetPref("AccentCenterLowest",0)
+ SetPref("CharCenterHighest",0)
+
+# Serbian ge
+# if (font_var != "ci")
+#  dub_glyph.pe("imacron","afii10063")
+# endif
+ if ( !WorthOutputting("afii10063"))
+  dub_glyph.pe("afii10068","afii10063")
+  Select("afii10063")
+  AddAccent("macron",0x100)
+ endif
+ Select("afii10063")
+ SetCharName("afii10063",0)
+ SetUnicodeValue(0uF6C4,0)
+ Select("afii10068") # Cyrillic g
+ AddPosSub(srb_lang,"afii10063") # afii10063
+# AddPosSub(srb_lang,"uniF6C4") # afii10063
+# Serbian de
+ dub_glyph.pe("g","afii10192")
+ Select("afii10192")
+ SetCharName("afii10192",0)
+ SetUnicodeValue(0uF6C6,0)
+ Select("uni0434") # Cyrillic d
+ AddPosSub(srb_lang,"afii10192") # afii10192
+# AddPosSub(srb_lang,"uniF6C6") # afii10192
+
+# Serbian pe "afii10831" 
+ if ( !WorthOutputting("afii10831"))
+  dub_glyph.pe("uni0438","afii10831")
+  Select("afii10831")
+  AddAccent("macron",0x100)
+ else
+  Select("afii10831")
+ endif
+ SetCharName("afii10831",0)
+ SetUnicodeValue(0uF6C7,0)
+ Select("uni043f")
+ AddPosSub(srb_lang,"afii10831")
+# AddPosSub(srb_lang,"uniF6C7")
+
+# Serbian te afii10832
+ if ( !WorthOutputting("afii10832"))
+  dub_glyph.pe("uni0448","afii10832")
+  Select("afii10832")
+  AddAccent("macron.uc",0x100)
+ else
+  Select("afii10832")
+ endif
+ SetCharName("afii10832",0)
+ SetUnicodeValue(0uF6C8,0)
+ Select("uni0442")
+ AddPosSub(srb_lang,"afii10832")
+# AddPosSub(srb_lang,"uniF6C8")
+
+endif
+
+# These characters depend on combining glyphs:
+/*
+SetPref("AccentOffsetPercent",5)
+SetPref("AccentCenterLowest",0)
+SetPref("CharCenterHighest",0)
+#SelectMore("uni0200","uni0201")
+#SelectMore("uni0202","uni0203")
+#SelectMore("uni0200","uni0201")
+#SelectMore("uni0206","uni0207")
+#SelectMore("uni020A","uni020B")
+#SelectMore("uni020E","uni020F")
+#SelectMore("uni0216","uni0217")
+#SelectMore("Scommaaccent","uni021B")
+Select("uni0200","uni0217")
+BuildAccented()
+*/
+
+Select("S")
+CopyReference()
+Select("Scommaaccent")
+Paste()
+AddAccent("uni0326",0x200)
+Select("s")
+CopyReference()
+Select("scommaaccent")
+Paste()
+AddAccent("uni0326",0x200)
+Select("T")
+CopyReference()
+Select("uni021A")
+Paste()
+AddAccent("uni0326",0x200)
+Select("t")
+CopyReference()
+Select("uni021B")
+Paste()
+AddAccent("uni0326",0x200)
+
+if (latsc != "" && cyrsc != "")
+ lc_lang_c2sc = "LC caps to smallcaps subtable"
+ AddLookup("LC caps to smallcaps", "gsub_single", 0, [["c2sc",[["latn",["dflt"]],["cyrl",["dflt"]]]]])
+ AddLookupSubtable("LC caps to smallcaps", lc_lang_c2sc)
+ lc_lang_smcp = "LC small to smallcaps subtable"
+ AddLookup("LC small to smallcaps", "gsub_single", 0, [["smcp",[["latn",["dflt"]],["cyrl",["dflt"]]]]])
+ AddLookupSubtable("LC small to smallcaps", lc_lang_smcp)
+ Select("A.sc","Z.sc")
+ SelectMore("Abreve.sc","uni04F8.sc")
+ SelectMore("Agrave.sc","Ydieresis.sc")
+ selection=$selection
+ j=SizeOf(selection)
+ SelectNone()
+ i=0
+ while(i<j)
+  if ( selection[i] && SelectIf(i) == 1)
+   name = GlyphInfo ("Name")
+   cap_end=Strstr(name, ".sc")
+   if (cap_end > 0)
+    cap_name=Strsub(name, 0, cap_end)
+    if (SelectIf(cap_name) == 1)
+     AddPosSub(lc_lang_c2sc, name);
+    endif
+   endif
+  endif
+ i++ 
+ endloop
+# selection=[0]
+ add_smcp.ff(lc_lang_smcp, lc_lang_smcp)
+Select("Dcroat"); AddPosSub(lc_lang_c2sc, "Eth.sc");
+endif
+if (grksc != "")
+ grk_lang_c2sc = "Greek caps to smallcaps subtable"
+ AddLookup("Greek caps to smallcaps", "gsub_single", 0, [["c2sc",[["grek",["dflt"]]]]])
+ AddLookupSubtable("Greek caps to smallcaps", grk_lang_c2sc)
+ grk_lang_smcp = "Greek small to smallcaps subtable"
+ AddLookup("Greek small to smallcaps", "gsub_single", 0, [["smcp",[["grek",["dflt"]]]]])
+ AddLookupSubtable("Greek small to smallcaps", grk_lang_smcp)
+ Select("Alpha.sc","Rho.sc")
+ SelectMore("Sigma.sc","uni03DC.sc")
+ selection=$selection
+ j=SizeOf(selection)
+ SelectNone()
+ i=0
+ while(i<j)
+  if ( selection[i] && SelectIf(i) == 1)
+   name = GlyphInfo ("Name")
+   cap_end = Strstr(name, ".sc")
+   if (cap_end > 0)
+    cap_name=Strsub(name, 0, cap_end)
+    if(cap_name == "Mu")
+     low_name = "uni03BC"
+    elseif(cap_name == "uni1FBE")
+     low_name = "uni037A"
+    elseif(Strstr(cap_name, "uni") > -1)
+     Select(ToLower(UnicodeFromName(cap_name)))
+     low_name = GlyphInfo ("Name")
+    else
+     low_name = ToLower(cap_name)
+    endif
+    #Print(cap_name," ",low_name)
+    if (SelectIf(cap_name) == 1)
+     AddPosSub(grk_lang_c2sc, name);
+    endif
+    Select(low_name) 
+    AddPosSub(grk_lang_smcp, name);
+   endif
+  endif
+ i++ 
+ endloop
+ selection=[0]
+ add_smcp_gr.ff(grk_lang_smcp,grk_lang_c2sc)
+endif
+if (greek_font_var != "-" && tipa != "-")
+ Select("beta"); AddPosSub(lat_lang_locl,"beta.ipa");
+ Select("theta"); AddPosSub(lat_lang_locl,"theta.ipa");
+ Select("chi"); AddPosSub(lat_lang_locl,"chi.ipa");
+ Select("omega"); AddPosSub(lat_lang_locl,"omega.ipa");
+ Select("lambda"); AddPosSub(lat_lang_locl,"lambda.ipa");
+ Select("gamma"); AddPosSub(lat_lang_locl,"gamma.ipa");
+endif
+
+# Opentype tags for Vietnamese language
+ Select("Dcroat.vn","yacute.vn")
+ selection=$selection
+ SelectNone()
+ i=0
+ while(i<SizeOf(selection))
+  if ( selection[i] && SelectIf(i) == 1)
+   name = GlyphInfo ("Name")
+   cap_end=Strstr(name, ".vn")
+   if (cap_end > 0)
+   cap_name=Strsub(name, 0, cap_end)
+   if (SelectIf(cap_name) == 1)
+    AddPosSub(lat_vit_lang_locl, name);
+    AddPosSub(lat_lang_salt, name);
+    AddPosSub(ss01, name);
+   endif
+   endif
+  endif
+ i++ 
+ endloop
+ selection=[0]
+
+# Build Serbo-Croatian digraphs
+Select(0u01C4,0U01CC)
+SelectMore(0u01F1,0u01F3)
+foreach
+ BuildComposite()
+ if (monospace)
+  UnlinkReference()
+  Transform(50,0,0,100,0,0)
+  if(italic_angle != 0)
+   Skew(-italic_angle*0.005)
+  endif
+  Simplify()
+  RoundToInt()
+  SetWidth(space)
+ endif
+endloop 
+
+# Greek accented characters
+if (greek_font_var != "-")
+
+ Select(0u0384) # tonos
+ tonos_width = GlyphInfo("Width")
+
+ Select("Alpha") 
+ CopyReference()
+ Select(0u0386) # Alphatonos
+ Paste()
+ if (monospace)
+  Move(space/25+tonos_width/3,0)
+ else
+#  Move(tonos_width,0)
+ endif
+  Select(0u0384) # tonos
+  CopyReference()
+ Select(0u0386) # Alphatonos
+ PasteInto()
+ if (monospace)
+  PasteInto()
+  Move(-tonos_width/3,0)
+  SetWidth(space)
+ endif
+ dub_glyph.pe("uni0386","uni1FBB")
+
+ Select("Epsilon") # Epsilon
+ CopyReference()
+ Select(0u0388) # Epsilontonos
+ Paste()
+ if (monospace)
+  Move(space/25+tonos_width/2+space/25,0)
+ else
+  Move(tonos_width,0)
+ endif
+ Select(0u0384) # tonos
+ CopyReference()
+ Select(0u0388) # Epsilontonos
+ PasteInto()
+ if (monospace)
+  PasteInto()
+  Move(-tonos_width/2-space/25,0)
+  SetWidth(space)
+ endif
+ dub_glyph.pe("uni0388","uni1FC9")
+
+ Select("Eta") 
+ CopyReference()
+ Select(0u0389) # Etatonos
+ Paste()
+ if (monospace)
+  Move(space/25+tonos_width/2+space/25,0)
+ else
+  Move(tonos_width,0)
+ endif
+ Select(0u0384) # tonos
+ CopyReference()
+ Select(0u0389) # Etatonos
+ PasteInto()
+ if (monospace)
+  PasteInto()
+  Move(-tonos_width/2-space/25,0)
+  SetWidth(space)
+ endif
+ dub_glyph.pe("uni0389","uni1FCB")
+
+ Select("Iota") 
+ CopyReference()
+ Select(0u038a) # Iotatonos
+ Paste()
+ if (monospace)
+  Move(3*space/20+tonos_width/2-tonos_width/10,0)
+ else
+  Move(tonos_width,0)
+ endif
+ Select(0u0384) # tonos
+ CopyReference()
+ Select(0u038a) # Iotatonos
+ PasteInto()
+ if (monospace)
+  PasteInto()
+  Move(-tonos_width/2+tonos_width/10,0)
+  SetWidth(space)
+ endif
+ dub_glyph.pe("uni038A","uni1FDB")
+
+ Select("Upsilon") 
+ CopyReference()
+ Select(0u038e) # Upsilontonos
+ Paste()
+ if (monospace)
+  Move(space/25+tonos_width/2,0)
+ else
+  Move(tonos_width,0)
+ endif
+ Select(0u0384) # tonos
+ CopyReference()
+ Select(0u038e) # Upsilontonos
+ PasteInto()
+ if (monospace)
+  PasteInto()
+  Move(-tonos_width/2,0)
+  SetWidth(space)
+ endif
+ dub_glyph.pe("uni038E","uni1FEB")
+
+ Select("Omicron") 
+ CopyReference()
+ Select(0u038c) # Omicrontonos
+ Paste()
+ if (monospace)
+  Move(2*space/20+tonos_width/2-tonos_width/20,0)
+ else
+  Move(tonos_width/2,0)
+ endif
+ Select(0u0384) # tonos
+ CopyReference()
+ Select(0u038c) # Omicrontonos
+ PasteInto()
+ if (monospace)
+  PasteInto()
+  Move(-tonos_width/2+tonos_width/20,0)
+  SetWidth(space)
+ endif
+ dub_glyph.pe("uni038C","uni1FF9")
+
+ Select("Omega") 
+ CopyReference()
+ Select(0u038f) # Omegatonos
+ Paste()
+ if (monospace)
+  Move(space/25+tonos_width/2,0)
+ else
+  Move(tonos_width/2,0)
+ endif
+ Select(0u0384) # tonos
+ CopyReference()
+ Select(0u038f) # Omegatonos
+ PasteInto()
+ if (monospace)
+  PasteInto()
+  Move(-tonos_width/2,0)
+  SetWidth(space)
+ endif
+ dub_glyph.pe("uni038F","uni1FFB")
+ dub_glyph.pe("uni1FBF","uni1FBD") # Coronis
+ dub_glyph.pe("uni0384","uni1FFD") # Oxia
+ dub_glyph.pe("uni0385","uni1FEE")
+
+ dub_glyph.pe("uni1F71","alphatonos")
+ dub_glyph.pe("uni1F75","etatonos")
+ dub_glyph.pe("uni1F7D","omegatonos")
+ dub_glyph.pe("uni1F77","iotatonos")
+ dub_glyph.pe("uni1F7B","upsilontonos")
+ dub_glyph.pe("uni1F73","epsilontonos")
+ dub_glyph.pe("uni1F79","omicrontonos")
+ dub_glyph.pe("uni1FD3","iotadieresistonos")
+ dub_glyph.pe("uni1FE3","upsilondieresistonos")
+
+# Select("uni1FBC")
+# SetCharName("uni1FBC.alt") # Alphaprosgegrammeni
+# Select("uni1FCC")
+# SetCharName("uni1FCC.alt") # Etaprosgegrammeni
+# Select("uni1FFC")
+# SetCharName("uni1FFC.alt") # Omegaprosgegrammeni
+# Reencode("unicode")
+ new_glyph.ff("uni1FBC.alt"); new_glyph.ff("uni1FCC.alt"); new_glyph.ff("uni1FFC.alt")
+ make_bottomaccent.pe("Alpha","uni037A","uni1FBC.alt",50,30,tan_it) # uni1FBE
+ make_bottomaccent.pe("Eta","uni037A","uni1FCC.alt",50,30,tan_it)
+ make_bottomaccent.pe("Omega","uni037A","uni1FFC.alt",50,30,tan_it)
+ Select("uni1FBC"); AddPosSub(grk_lang_salt,"uni1FBC.alt")
+ Select("uni1FCC"); AddPosSub(grk_lang_salt,"uni1FCC.alt")
+ Select("uni1FFC"); AddPosSub(grk_lang_salt,"uni1FFC.alt")
+
+ if ( !monospace )
+  make_double.pe("uni1FBF","Alpha","uni1F08")
+  make_double.pe("uni1FFE","Alpha","uni1F09")
+  make_double.pe("uni1FCD","Alpha","uni1F0A")
+  make_double.pe("uni1FDD","Alpha","uni1F0B")
+  make_double.pe("uni1FCE","Alpha","uni1F0C")
+  make_double.pe("uni1FDE","Alpha","uni1F0D")
+  make_double.pe("uni1FCF","Alpha","uni1F0E")
+  make_double.pe("uni1FDF","Alpha","uni1F0F")
+  make_double.pe("uni1FBF","Epsilon","uni1F18")
+  make_double.pe("uni1FFE","Epsilon","uni1F19")
+  make_double.pe("uni1FCD","Epsilon","uni1F1A")
+  make_double.pe("uni1FDD","Epsilon","uni1F1B")
+  make_double.pe("uni1FCE","Epsilon","uni1F1C")
+  make_double.pe("uni1FDE","Epsilon","uni1F1D")
+  make_double.pe("uni1FBF","Eta","uni1F28")
+  make_double.pe("uni1FFE","Eta","uni1F29")
+  make_double.pe("uni1FCD","Eta","uni1F2A")
+  make_double.pe("uni1FDD","Eta","uni1F2B")
+  make_double.pe("uni1FCE","Eta","uni1F2C")
+  make_double.pe("uni1FDE","Eta","uni1F2D")
+  make_double.pe("uni1FCF","Eta","uni1F2E")
+  make_double.pe("uni1FDF","Eta","uni1F2F")
+  make_double.pe("uni1FBF","Iota","uni1F38")
+  make_double.pe("uni1FFE","Iota","uni1F39")
+  make_double.pe("uni1FCD","Iota","uni1F3A")
+  make_double.pe("uni1FDD","Iota","uni1F3B")
+  make_double.pe("uni1FCE","Iota","uni1F3C")
+  make_double.pe("uni1FDE","Iota","uni1F3D")
+  make_double.pe("uni1FCF","Iota","uni1F3E")
+  make_double.pe("uni1FDF","Iota","uni1F3F")
+  make_double.pe("uni1FBF","Omicron","uni1F48")
+  make_double.pe("uni1FFE","Omicron","uni1F49")
+  make_double.pe("uni1FCD","Omicron","uni1F4A")
+  make_double.pe("uni1FDD","Omicron","uni1F4B")
+  make_double.pe("uni1FCE","Omicron","uni1F4C")
+  make_double.pe("uni1FDE","Omicron","uni1F4D")
+  make_double.pe("uni1FFE","Upsilon","uni1F59")
+  make_double.pe("uni1FDD","Upsilon","uni1F5B")
+  make_double.pe("uni1FDE","Upsilon","uni1F5D")
+  make_double.pe("uni1FDF","Upsilon","uni1F5F")
+  make_double.pe("uni1FBF","Omega","uni1F68")
+  make_double.pe("uni1FFE","Omega","uni1F69")
+  make_double.pe("uni1FCD","Omega","uni1F6A")
+  make_double.pe("uni1FDD","Omega","uni1F6B")
+  make_double.pe("uni1FCE","Omega","uni1F6C")
+  make_double.pe("uni1FDE","Omega","uni1F6D")
+  make_double.pe("uni1FCF","Omega","uni1F6E")
+  make_double.pe("uni1FDF","Omega","uni1F6F")
+  make_double.pe("uni1FBF","uni1FBC.alt","uni1F88"); AddPosSub(ss01,"uni1F88.alt")
+  make_double.pe("uni1FFE","uni1FBC.alt","uni1F89"); AddPosSub(ss01,"uni1F89.alt")
+  make_double.pe("uni1FCD","uni1FBC.alt","uni1F8A"); AddPosSub(ss01,"uni1F8A.alt")
+  make_double.pe("uni1FDD","uni1FBC.alt","uni1F8B"); AddPosSub(ss01,"uni1F8B.alt")
+  make_double.pe("uni1FCE","uni1FBC.alt","uni1F8C"); AddPosSub(ss01,"uni1F8C.alt")
+  make_double.pe("uni1FDE","uni1FBC.alt","uni1F8D"); AddPosSub(ss01,"uni1F8D.alt")
+  make_double.pe("uni1FCF","uni1FBC.alt","uni1F8E"); AddPosSub(ss01,"uni1F8E.alt")
+  make_double.pe("uni1FDF","uni1FBC.alt","uni1F8F"); AddPosSub(ss01,"uni1F8F.alt")
+  make_double.pe("uni1FBF","uni1FCC.alt","uni1F98"); AddPosSub(ss01,"uni1F98.alt")
+  make_double.pe("uni1FFE","uni1FCC.alt","uni1F99"); AddPosSub(ss01,"uni1F99.alt")
+  make_double.pe("uni1FCD","uni1FCC.alt","uni1F9A"); AddPosSub(ss01,"uni1F9A.alt")
+  make_double.pe("uni1FDD","uni1FCC.alt","uni1F9B"); AddPosSub(ss01,"uni1F9B.alt")
+  make_double.pe("uni1FCE","uni1FCC.alt","uni1F9C"); AddPosSub(ss01,"uni1F9C.alt")
+  make_double.pe("uni1FDE","uni1FCC.alt","uni1F9D"); AddPosSub(ss01,"uni1F9D.alt")
+  make_double.pe("uni1FCF","uni1FCC.alt","uni1F9E"); AddPosSub(ss01,"uni1F9E.alt")
+  make_double.pe("uni1FDF","uni1FCC.alt","uni1F9F"); AddPosSub(ss01,"uni1F9F.alt")
+  make_double.pe("uni1FBF","uni1FFC.alt","uni1FA8"); AddPosSub(ss01,"uni1FA8.alt")
+  make_double.pe("uni1FFE","uni1FFC.alt","uni1FA9"); AddPosSub(ss01,"uni1FA9.alt")
+  make_double.pe("uni1FCD","uni1FFC.alt","uni1FAA"); AddPosSub(ss01,"uni1FAA.alt")
+  make_double.pe("uni1FDD","uni1FFC.alt","uni1FAB"); AddPosSub(ss01,"uni1FAB.alt")
+  make_double.pe("uni1FCE","uni1FFC.alt","uni1FAC"); AddPosSub(ss01,"uni1FAC.alt")
+  make_double.pe("uni1FDE","uni1FFC.alt","uni1FAD"); AddPosSub(ss01,"uni1FAD.alt")
+  make_double.pe("uni1FCF","uni1FFC.alt","uni1FAE"); AddPosSub(ss01,"uni1FAE.alt")
+  make_double.pe("uni1FDF","uni1FFC.alt","uni1FAF"); AddPosSub(ss01,"uni1FAF.alt")
+  
+  new_glyph.ff("uni1F88.alt") 
+  new_glyph.ff("uni1F89.alt") 
+  new_glyph.ff("uni1F8A.alt")
+  new_glyph.ff("uni1F8B.alt")
+  new_glyph.ff("uni1F8C.alt")
+  new_glyph.ff("uni1F8D.alt")
+  new_glyph.ff("uni1F8E.alt")
+  new_glyph.ff("uni1F8F.alt")
+  new_glyph.ff("uni1F98.alt")
+  new_glyph.ff("uni1F99.alt")
+  new_glyph.ff("uni1F9A.alt")
+  new_glyph.ff("uni1F9B.alt")
+  new_glyph.ff("uni1F9C.alt")
+  new_glyph.ff("uni1F9D.alt")
+  new_glyph.ff("uni1F9E.alt")
+  new_glyph.ff("uni1F9F.alt")
+  new_glyph.ff("uni1FA8.alt")
+  new_glyph.ff("uni1FA9.alt")
+  new_glyph.ff("uni1FAA.alt")
+  new_glyph.ff("uni1FAB.alt")
+  new_glyph.ff("uni1FAC.alt")
+  new_glyph.ff("uni1FAD.alt")
+  new_glyph.ff("uni1FAE.alt")
+  new_glyph.ff("uni1FAF.alt")
+  make_double.pe("uni1FBF","uni1FBC","uni1F88.alt")
+  make_double.pe("uni1FFE","uni1FBC","uni1F89.alt")
+  make_double.pe("uni1FCD","uni1FBC","uni1F8A.alt")
+  make_double.pe("uni1FDD","uni1FBC","uni1F8B.alt")
+  make_double.pe("uni1FCE","uni1FBC","uni1F8C.alt")
+  make_double.pe("uni1FDE","uni1FBC","uni1F8D.alt")
+  make_double.pe("uni1FCF","uni1FBC","uni1F8E.alt")
+  make_double.pe("uni1FDF","uni1FBC","uni1F8F.alt")
+  make_double.pe("uni1FBF","uni1FCC","uni1F98.alt")
+  make_double.pe("uni1FFE","uni1FCC","uni1F99.alt")
+  make_double.pe("uni1FCD","uni1FCC","uni1F9A.alt")
+  make_double.pe("uni1FDD","uni1FCC","uni1F9B.alt")
+  make_double.pe("uni1FCE","uni1FCC","uni1F9C.alt")
+  make_double.pe("uni1FDE","uni1FCC","uni1F9D.alt")
+  make_double.pe("uni1FCF","uni1FCC","uni1F9E.alt")
+  make_double.pe("uni1FDF","uni1FCC","uni1F9F.alt")
+  make_double.pe("uni1FBF","uni1FFC","uni1FA8.alt")
+  make_double.pe("uni1FFE","uni1FFC","uni1FA9.alt")
+  make_double.pe("uni1FCD","uni1FFC","uni1FAA.alt")
+  make_double.pe("uni1FDD","uni1FFC","uni1FAB.alt")
+  make_double.pe("uni1FCE","uni1FFC","uni1FAC.alt")
+  make_double.pe("uni1FDE","uni1FFC","uni1FAD.alt")
+  make_double.pe("uni1FCF","uni1FFC","uni1FAE.alt")
+  make_double.pe("uni1FDF","uni1FFC","uni1FAF.alt")
+  make_double.pe("uni1FEF","Alpha","uni1FBA")
+  make_double.pe("uni1FEF","Epsilon","uni1FC8")
+  make_double.pe("uni1FEF","Eta","uni1FCA")
+  make_double.pe("uni1FEF","Iota","uni1FDA")
+  make_double.pe("uni1FEF","Upsilon","uni1FEA")
+  make_double.pe("uni1FEF","Omicron","uni1FF8")
+  make_double.pe("uni1FEF","Omega","uni1FFA")
+  make_double.pe("uni1FFE","Rho","uni1FEC")
+ endif
+
+ SetPref("CharCenterHighest",0)
+ Select("alpha")
+ CopyReference()
+ Select("uni1FB0")
+ Paste()
+ AddAccent("breve.gr",0x100)
+ Select("uni1FB1")
+ Paste()
+ AddAccent("macron.gr",0x100)
+ Select("Alpha")
+ CopyReference()
+ Select("uni1FB8")
+ Paste()
+ AddAccent("breve.gr",0x100)
+ Select("uni1FB9")
+ Paste()
+ AddAccent("macron.gr",0x100)
+ Select("Iota")
+ CopyReference()
+ Select("uni1FD8")
+ Paste()
+ AddAccent("breve.gr",0x100)
+ Select("uni1FD9")
+ Paste()
+ AddAccent("macron.gr",0x100)
+ Select("upsilon")
+ CopyReference()
+ Select("uni1FE0")
+ Paste()
+ AddAccent("breve.gr",0x100)
+ Select("uni1FE1")
+ Paste()
+ AddAccent("macron.gr",0x100)
+ Select("Upsilon")
+ CopyReference()
+ Select("uni1FE8")
+ Paste()
+ AddAccent("breve.gr",0x100)
+ Select("uni1FE9")
+ Paste()
+ AddAccent("macron.gr",0x100)
+ SetPref("CharCenterHighest",1)
+ Select("iota")
+ CopyReference()
+ Select("uni1FD0")
+ Paste()
+ AddAccent("breve.gr",0x100) # too wide?
+ Select("uni1FD1")
+ Paste()
+ AddAccent("macron.gr",0x100) # too wide?
+
+endif
+
+dub_glyph.pe("quoteright","uni02BC",1,kern_table) # 'MODIFIER LETTER APOSTROPHE' (U+02BC), former afii57929
+if (greek_font_var != "-")
+ dub_glyph.pe("tonos","uni02B9") # 'MODIFIER LETTER PRIME'
+else
+ dub_glyph.pe("acute.ts1","uni02B9") # 'MODIFIER LETTER PRIME'
+endif
+#dub_glyph.pe("exclam","uni01C3")
+
+
+# Russian accented vowels
+#if(!monospace)
+ new_glyph.ff("uni0410_acutecomb")
+ dub_glyph.pe("Aacute","uni0410_acutecomb",0)
+ cop_kern.ff("uni0410", "uni0410_acutecomb")
+ Select("uni0410_acutecomb")
+ #RemoveATT("Ligature","*","*")
+ #AddPosSub(cyr_lang_liga,"uni0410 acutecomb")
+ AddPosSub(cyr_lang_liga,"afii10017 acutecomb")
+ Select("uni0410") 
+ AddPosSub(cyr_lang_aalt,"uni0410_acutecomb")
+ 
+ new_glyph.ff("uni0430_acutecomb")
+ dub_glyph.pe("aacute","uni0430_acutecomb",0)
+ cop_kern.ff("uni0430", "uni0430_acutecomb")
+ Select("uni0430_acutecomb")
+ AddPosSub(cyr_lang_liga,"uni0430 acutecomb")
+ Select("uni0430") 
+ AddPosSub(cyr_lang_aalt,"uni0430_acutecomb")
+ 
+ new_glyph.ff("uni041E_acutecomb")
+ dub_glyph.pe("Oacute","uni041E_acutecomb",0)
+ cop_kern.ff("uni041E", "uni041E_acutecomb")
+ Select("uni041E_acutecomb")
+ AddPosSub(cyr_lang_liga,"uni041E acutecomb")
+ Select("uni041E")
+ AddPosSub(cyr_lang_aalt,"uni041E_acutecomb")
+ 
+ new_glyph.ff("uni043E_acutecomb")
+ dub_glyph.pe("oacute","uni043E_acutecomb",0)
+ cop_kern.ff("uni043E", "uni043E_acutecomb")
+ Select("uni043E_acutecomb")
+ AddPosSub(cyr_lang_liga,"uni043E acutecomb")
+ Select("uni043E") 
+ AddPosSub(cyr_lang_aalt,"uni043E_acutecomb")
+ 
+ new_glyph.ff("uni0435_acutecomb")
+ dub_glyph.pe("eacute","uni0435_acutecomb",0)
+ cop_kern.ff("uni0435", "uni0435_acutecomb")
+ Select("uni0435_acutecomb")
+ AddPosSub(cyr_lang_liga,"uni0435 acutecomb")
+ Select("uni0435")
+ AddPosSub(cyr_lang_aalt,"uni0435_acutecomb")
+ 
+ SetPref("AccentOffsetPercent",5)
+ SetPref("AccentCenterLowest",0)
+ SetPref("CharCenterHighest",0)
+ Select("acute.uc")
+ bbox = GlyphInfo("BBox")
+ width = bbox[2] - bbox[0]
+ char_height = bbox[3] - bbox[1]
+ new_glyph.ff("uni0418_acutecomb")
+ dub_glyph.pe("uni0418","uni0418_acutecomb")
+ Select("uni0418_acutecomb")
+ AddAccent("acute.uc",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute.uc")
+ Select("uni0418"); AddPosSub(cyr_lang_aalt,"uni0418_acutecomb")
+ new_glyph.ff("uni0415_acutecomb")
+ dub_glyph.pe("uni0415","uni0415_acutecomb")
+ Select("uni0415_acutecomb")
+ AddAccent("acute.uc",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute.uc")
+ Select("uni0415"); AddPosSub(cyr_lang_aalt,"uni0415_acutecomb")
+ new_glyph.ff("uni0423_acutecomb")
+ dub_glyph.pe("uni0423","uni0423_acutecomb")
+ Select("uni0423_acutecomb")
+ AddAccent("acute.uc",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute.uc")
+ Select("uni0423"); AddPosSub(cyr_lang_aalt,"uni0423_acutecomb")
+ new_glyph.ff("uni042B_acutecomb")
+ dub_glyph.pe("uni042B","uni042B_acutecomb")
+ Select("uni042B_acutecomb")
+ AddAccent("acute.uc",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute.uc")
+ Select("uni042B"); AddPosSub(cyr_lang_aalt,"uni042B_acutecomb")
+ new_glyph.ff("uni042D_acutecomb")
+ dub_glyph.pe("uni042D","uni042D_acutecomb")
+ Select("uni042D_acutecomb")
+ AddAccent("acute.uc",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute.uc")
+ Select("uni042D"); AddPosSub(cyr_lang_aalt,"uni042D_acutecomb")
+ new_glyph.ff("uni042E_acutecomb")
+ dub_glyph.pe("uni042E","uni042E_acutecomb")
+ Select("uni042E_acutecomb")
+ AddAccent("acute.uc",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute.uc")
+ Select("uni042E"); AddPosSub(cyr_lang_aalt,"uni042E_acutecomb")
+ new_glyph.ff("uni042F_acutecomb")
+ dub_glyph.pe("uni042F","uni042F_acutecomb")
+ Select("uni042F_acutecomb")
+ AddAccent("acute.uc",0x100)
+ MoveReference((width+char_height*tan_it)/3,0,"acute.uc")
+ Select("uni042F"); AddPosSub(cyr_lang_aalt,"uni042F_acutecomb")
+
+ Select("acute")
+ bbox = GlyphInfo("BBox")
+ width = bbox[2] - bbox[0]
+ char_height = bbox[3] - bbox[1]
+ new_glyph.ff("uni0438_acutecomb")
+ dub_glyph.pe("uni0438","uni0438_acutecomb")
+ Select("uni0438_acutecomb")
+ AddAccent("acute",0x100)
+ MoveReference((width+char_height*tan_it)/10,0,"acute")
+ Select("uni0438"); AddPosSub(cyr_lang_aalt,"uni0438_acutecomb")
+ #new_glyph.ff("uni0435_acutecomb")
+ #dub_glyph.pe("uni0435","uni0435_acutecomb")
+ #Select("uni0435_acutecomb")
+ #AddAccent("acute",0x100)
+ #MoveReference((width+char_height*tan_it)/20,0,"acute")
+ #Select("uni0435"); AddPosSub(cyr_lang_aalt,"uni0435_acutecomb")
+ new_glyph.ff("uni0443_acutecomb")
+ dub_glyph.pe("uni0443","uni0443_acutecomb")
+ Select("uni0443_acutecomb")
+ AddAccent("acute",0x100)
+ if(cursive)
+  elshift=4
+ else
+  elshift=1
+ endif
+ MoveReference((width+char_height*tan_it)*elshift/10,0,"acute")
+ Select("uni0443"); AddPosSub(cyr_lang_aalt,"uni0443_acutecomb")
+ new_glyph.ff("uni044B_acutecomb")
+ dub_glyph.pe("uni044B","uni044B_acutecomb")
+ Select("uni044B_acutecomb")
+ AddAccent("acute",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute")
+ Select("uni044B"); AddPosSub(cyr_lang_aalt,"uni044B_acutecomb")
+ new_glyph.ff("uni044D_acutecomb")
+ dub_glyph.pe("uni044D","uni044D_acutecomb")
+ Select("uni044D_acutecomb")
+ AddAccent("acute",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute")
+ Select("uni044D"); AddPosSub(cyr_lang_aalt,"uni044D_acutecomb")
+ new_glyph.ff("uni044E_acutecomb")
+ dub_glyph.pe("uni044E","uni044E_acutecomb")
+ Select("uni044E_acutecomb")
+ AddAccent("acute",0x100)
+ MoveReference((width+char_height*tan_it)/20,0,"acute")
+ Select("uni044E"); AddPosSub(cyr_lang_aalt,"uni044E_acutecomb")
+ new_glyph.ff("uni044F_acutecomb")
+ dub_glyph.pe("uni044F","uni044F_acutecomb")
+ Select("uni044F_acutecomb")
+ AddAccent("acute",0x100)
+ MoveReference((width+char_height*tan_it)*2/5,0,"acute")
+ Select("uni044F"); AddPosSub(cyr_lang_aalt,"uni044F_acutecomb")
+#endif
+
+Reencode("unicode")
+recode_extra.ff()
+Reencode("unicode")
+
+
+
+#make ps hinting
+if (serifs)
+ SetPref("InstructSerifs",1)
+ SetPref("InstructBallTerminals",1)
+else
+ SetPref("InstructSerifs",0)
+ SetPref("InstructBallTerminals",0)
+endif
+SetPref("DetectDiagonalStems",1)
+SetPref("InterpolateStrongPoints",1)
+PrivateGuess("BlueValues")
+PrivateGuess("OtherBlues")
+PrivateGuess("BlueScale")
+PrivateGuess("BlueShift")
+Select("tse")
+bbox = GlyphInfo("BBox")
+pr_string = GetPrivateEntry("OtherBlues")
+length = Strlen(pr_string)
+if (length > 2)
+ pr_string = Strsub(pr_string,1,length-1)
+endif
+private = StrSplit(pr_string," ")
+size_ar = SizeOf(private)
+check = 1
+i = 0
+while (i < size_ar)
+ if ( Strtol(private[i]) <= Round(bbox[1]) && Strtol(private[i+1]) >= Round(bbox[1]))
+  check = 0
+ endif
+ i = i+2
+endloop
+if (check)
+ ChangePrivateEntry("OtherBlues","["+pr_string+" "+ToString(Round(bbox[1]))+" "+ToString(Round(bbox[1]))+"]")
+endif
+SelectWorthOutputting()
+AutoHint()
+PrivateGuess("StdHW")
+PrivateGuess("StdVW")
+PrivateGuess("StemSnapH")
+PrivateGuess("StemSnapV")
+hstems = Array(4)
+vstems = Array(5)
+Select("en")
+bbox = GlyphInfo("BBox")
+y_prof = GlyphInfo("YProfile",Round((bbox[0]+bbox[2])*.5))
+hstems[0]=Round(y_prof[1]-y_prof[0])
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.2))
+vstems[0]=Round((x_prof[1]-x_prof[0]+x_prof[3]-x_prof[2])*0.5)
+Select("o")
+bbox = GlyphInfo("BBox")
+x_max = GlyphInfo("Xextrema", Round(bbox[1]))
+y_prof = GlyphInfo("YProfile",x_max[0])
+hstems[1]=Round(y_prof[1]-y_prof[0])
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.5))
+vstems[1]=Round(x_prof[1]-x_prof[0])
+Select("em")
+bbox = GlyphInfo("BBox")
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.2))
+vstems[2]=Round(x_prof[1]-x_prof[0])
+Select("M")
+bbox = GlyphInfo("BBox")
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.2))
+vstems[3]=Round(x_prof[1]-x_prof[0])
+Select("O")
+bbox = GlyphInfo("BBox")
+x_max = GlyphInfo("Xextrema", Round(bbox[1]))
+y_prof = GlyphInfo("YProfile",x_max[0])
+hstems[2]=Round(y_prof[1]-y_prof[0])
+x_prof = GlyphInfo("XProfile",Round((bbox[1]+bbox[3])*.5))
+vstems[4]=Round(x_prof[1]-x_prof[0])
+Select("H")
+bbox = GlyphInfo("BBox")
+y_prof = GlyphInfo("YProfile",Round((bbox[0]+bbox[2])*.5))
+if (SizeOf(y_prof)>2)
+ hstems[3]=Round(y_prof[3]-y_prof[2])
+else
+ hstems[3]=Round(y_prof[1]-y_prof[0])
+endif
+#hstems = hstems + 26
+add_private.ff("StemSnapH",hstems,10)
+if ( $italicangle == 0 )
+ add_private.ff("StemSnapV",vstems,10)
+endif
+# A fix for x-height in italic faces
+if (cursive)
+ Select(0u43C) # em
+ bbox = GlyphInfo("BBox")
+ height = Round(bbox[3])
+ pr_string = GetPrivateEntry("BlueValues")
+ pr_string = Strsub(pr_string,1,Strlen(pr_string)-1)
+ private = StrSplit(pr_string," ")
+ size_ar = SizeOf(private)
+ private_int = Array(size_ar)
+ i = 0
+ while (i < size_ar)
+  private_int[i] = Strtol(private[i])
+  i++
+ endloop
+ if ((private_int[2] - height) < 50)
+  private_int[2] = height
+ string = "[" + ToString(private_int[0])
+ i = 1
+ while (i < size_ar)
+  string += " " + ToString(private_int[i])
+  i++
+ endloop
+ string += "]"
+ ChangePrivateEntry("BlueValues",string)
+ endif
+endif
+
+
+#AddExtrema()
+
+#ControlAfmLigatureOutput("latn","dflt","liga,rlig")
+
+# Substitute some glyphs from bluesky fonts
+if (bluesky != "-")
+ blueskyname=blueskypath+"cm"+bluesky+"10.pfb"
+ Print("substituting glyphs from ", blueskyname)
+ Select("zero","nine")
+ SelectMore("parenleft","asterisk")
+ SelectMore("percent","ampersand")
+ SelectMore("comma")
+ SelectMore("colon")
+ SelectMore("question","Z")
+ SelectMore("a","l")
+ SelectMore("n","z")
+ SelectMore("dotlessi")
+ SelectMore("dotlessj")
+ if ( !monospace )
+  SelectMore("m")
+  SelectMore("endash","emdash")
+ endif
+ foreach
+  name = GlyphInfo("Name");
+  Open(blueskyname)
+  Select(name)
+  Copy()
+  Open("Untitled1.sfd")
+  Select(name)
+  Paste()
+  CanonicalStart()
+  CanonicalContours()
+ endloop
+ Open(blueskyname)
+ Close()
+ Open("Untitled1.sfd")
+ SelectWorthOutputting()
+ ReplaceWithReference(1.0)
+endif
+Open("Untitled1.sfd")
+SelectWorthOutputting()
+ReplaceWithReference(1.0)
+
+# At last build problematic accented characters
+/*
+SetPref("AccentOffsetPercent",5)
+SetPref("AccentCenterLowest",0)
+SetPref("CharCenterHighest",1)
+Select("Jcircumflex")
+SelectMore("uni1E89")
+BuildAccented()
+*/
+
+postname = "post_"+font_var+".sfd"
+if (!FileAccess(postname))
+ Open(postname)
+ SelectWorthOutputting()
+ ClearBackground()
+ foreach
+  Open(postname)
+  name = GlyphInfo("Name");
+  Select(name)
+  if (WorthOutputting(name))
+   Copy()
+   Open("Untitled1.sfd")
+   Select(name)
+   Paste()
+  endif
+ endloop
+ Open(postname)
+ Close()
+endif
+Open("Untitled1.sfd")
+
+# the begin of anchors block
+affricate_above = WorthOutputting(0u361)
+
+ AddLookup("Anchor marks", "gpos_mark2base", 0, [["mark",[["cyrl",["dflt"]],["grek",["dflt"]],["latn",["dflt"]]]]])
+ AddLookupSubtable("Anchor marks", "Anchor marks subtable")
+ AddAnchorClass("above", "default", "Anchor marks subtable")
+ AddAnchorClass("below", "default", "Anchor marks subtable")
+ if (affricate_above) # combining 
+  AddAnchorClass("affricate-above", "default", "Anchor marks subtable")
+  AddAnchorClass("affricate-below", "default", "Anchor marks subtable")
+ endif
+ if (WorthOutputting(0u328)) # combining ogonek
+  AddAnchorClass("ogonek", "default", "Anchor marks subtable")
+ endif
+ AddLookup("Anchor mark to marks", "gpos_mark2mark", 0, [["mkmk",[["cyrl",["dflt"]],["grek",["dflt"]],["latn",["dflt"]]]]])
+ AddLookupSubtable("Anchor mark to marks", "Anchor mark to marks subtable")
+ AddAnchorClass("above-mark", "mk-mk", "Anchor mark to marks subtable")
+
+if (italic_angle != 0)
+ char_number = CharCnt()
+ SetCharCnt(char_number + 1)
+
+ Select(char_number)
+ SetCharName("temporary_glyph",0)
+# New() # temporary font
+# # to prevent warnings
+# AddAnchorClass("above", "default", lgc_lang, "mark", -1, "above")
+# AddAnchorClass("below", "default", lgc_lang, "mark", -1, "below")
+# AddAnchorClass("above-mark", "mk-mk", lgc_lang, "mkmk", -1, "above-mark")
+# Open("Untitled1.sfd")
+endif
+
+Select("space")
+space=GlyphInfo("Width")
+
+acute_shift = -space/20
+acutecap_shift = -space/18
+dblacute_shift = -space/25
+dblacutecap_shift = -space/20
+#if ($argc = 4)
+# acute_shift = $1
+# cutecap_shift = $2
+#else
+# acute_shift = space/20
+# cutecap_shift = space/20
+#endif
+
+Select("h")
+bbox = GlyphInfo("BBox")
+h_height = Round(bbox[3])
+
+Select("t")
+bbox = GlyphInfo("BBox")
+t_height = Round(bbox[3])
+
+Select("x")
+bbox = GlyphInfo("BBox")
+x_height = Round(bbox[3])
+
+Select("o")
+bbox = GlyphInfo("BBox")
+o_height = Round(bbox[3])
+o_depth = Round(bbox[1])
+
+Select("O")
+bbox = GlyphInfo("BBox")
+O_height = Round(bbox[3])
+O_depth = Round(bbox[1])
+
+Select("X")
+bbox = GlyphInfo("BBox")
+X_height = Round(bbox[3])
+
+Select("p")
+bbox = GlyphInfo("BBox")
+p_depth = Round(bbox[1])
+
+Select("l")
+x_max = GlyphInfo("Xextrema", h_height/2)
+stem_width = (x_max[1] - x_max[0])
+
+SelectSingletons("a","c","e","o","ccedilla","aogonek","eogonek",\
+0u1DD,0u254,0u259,0u25B)
+SelectMoreSingletons("omicron","rho",\
+0u430,0u435,0u437,0u43B,0u43E,0u441,0u44D,0u454,0u4D9,0u4E9)
+SelectMoreSingletons(0u255,0u258,0u25C,0u25D,0u25E,0u275,0u277,0u28C,\
+0u290,0u291,0u29A)
+if (font_var != "ci")
+ SelectMore("epsilon")
+endif
+foreach
+ add_anchor_ext.ff("above", "basechar", 3, o_height, tan_it)
+endloop
+
+SelectSingletons("g","m","n","p","q","u","w","y",\
+"dotlessi","eng",0u237,"alpha","eta","iota","omega")
+SelectMoreSingletons(0u436,0u438,0u43C,0u43D,0u43F,\
+0u440,0u442,0u443,0u445,0u446,0u448,0u449,0u44B,0u44E,0u4CA)
+SelectMoreSingletons(0u251,0u252,0u25F,0u261,0u265,0u269,0u26A,0u26F,0u270,0u271,\
+0u272,0u273,0u274,0u285,0u289,0u28B,0u28D,0u29C,0u2AE,0u2AF)
+if ( !cursive )
+ SelectMore(0u434)
+endif
+foreach
+ add_anchor_y.ff("above", "basechar", x_height/2, o_height, tan_it)
+endloop
+
+SelectSingletons(0u294,0u295,0u297,0u2A1,0u2A2)
+foreach
+ add_anchor_ext.ff("above", "basechar", 3, h_height, tan_it)
+endloop
+
+SelectSingletons("r","v","ae","oe",0u27C,0u27D,0u4D5)
+foreach
+ add_anchor_y.ff("above", "basechar", x_height-2, o_height, tan_it)
+endloop
+
+if (WorthOutputting("izhitsa"))
+ Select("v")
+ CopyAnchors()
+ Select("izhitsa")
+ PasteInto()
+endif
+
+SelectSingletons("b","d","h","l","lslash",0u253,0u256,0u266,0u267,0u26B,\
+0u26C,0u26D,0u278,0u286,0u444)
+foreach
+ add_anchor_y.ff("above", "basechar", x_height/2, h_height, tan_it)
+endloop
+
+SelectSingletons("t",0u288)
+foreach
+ add_anchor_y.ff("above", "basechar", x_height/2, t_height, tan_it)
+endloop
+
+SelectSingletons("s",0u25A,0u262,0u282,0u455)
+foreach
+ add_anchor_ext.ff("above", "basechar", 3, o_height, tan_it, 0, 0)
+endloop
+
+SelectSingletons("A","O","Q","Aogonek",0u186,0u18F,0u190,0u410,0u41E,\
+0u42D,0u4D8,0u4E8,0u298)
+foreach
+ add_anchor_ext.ff("above", "basechar", 3, O_height, tan_it)
+endloop
+
+SelectSingletons("C","G","S","Ccedilla",0u404,0u405,0u421)
+foreach
+ add_anchor_ext.ff("above", "basechar", 3, O_height, tan_it, 0, 0)
+endloop
+
+SelectSingletons(0u417)
+foreach
+ add_anchor_ext.ff("above", "basechar", 3, O_height, tan_it, 1, 0)
+endloop
+
+SelectSingletons("H","I","J","M","N","T","U","V","W","Y","Iota","Upsilon")
+SelectMoreSingletons(0u406,0u414,0u416,0u418,0u41B,0u41C,0u41D,0u41F,0u422,0u424,0u425,0u426,0u428,\
+0u429,0u42B,0u42E,0u4AE,0u4B0,0u4C9)
+foreach
+ add_anchor_y.ff("above", "basechar", X_height/2, O_height, tan_it)
+endloop
+
+if (WorthOutputting("Izhitsa"))
+ Select("V")
+ CopyAnchors()
+ Select("Izhitsa")
+ PasteInto()
+endif
+
+SelectSingletons("k",0u431)
+SelectMoreSingletons(0u257,0u260,0u26E,0u27A,0u283,0u284,0u28E,0u296,0u29B,0u2A0)
+if (cursive)
+ SelectMore(0u434)
+endif
+foreach
+ add_anchor_med.ff("above", "basechar", h_height, italic_angle)
+endloop
+
+SelectSingletons("x","z",0u292,"upsilon",0u433,0u43A,0u447,0u44A,0u44C,0u4AF,0u4B1)
+SelectMoreSingletons(0u250,0u263,0u264,0u276,0u279,0u27B,0u27E,0u27F,\
+0u280,0u281,0u287,0u28A,0u28F,0u299,0u29E,0u29F)
+if ( cursive )
+ SelectMore(0u44F)
+endif
+if (font_var == "ci")
+ SelectMore("epsilon")
+endif
+foreach
+ add_anchor_med.ff("above", "basechar", o_height, italic_angle)
+endloop
+
+SelectSingletons("E","F","K","L","X","Z",0u1B7,0u411,0u413,0u415,0u41A,\
+0u423,0u427,0u42A,0u42C) # ,"AE",0u4D4
+foreach
+ add_anchor_med.ff("above", "basechar", O_height, italic_angle)
+endloop
+
+SelectSingletons("AE",0u4D4,"OE")
+foreach
+ if ( WorthOutputting() )
+  x_prof = GlyphInfo("XProfile",O_height/4)
+  AddAnchorPoint("above", "basechar", \
+  Round((x_prof[2] + x_prof[3])*0.5 - O_height*tan_it*0.75), O_height)
+ endif
+endloop
+
+SelectSingletons("B","D","P",0u412,0u420)
+foreach
+ add_anchor_med.ff("above", "basechar", O_height, italic_angle, -space/15)
+endloop
+
+SelectSingletons(0u42F)
+foreach
+ add_anchor_med.ff("above", "basechar", O_height, italic_angle, space/8)
+endloop
+
+SelectSingletons(0u462) # Yat
+add_anchor_y.ff("above", "basechar", X_height, O_height, tan_it)
+
+SelectSingletons(0u463) # yat
+bbox = GlyphInfo("BBox")
+ymax = GlyphInfo("Yextrema", Floor(bbox[2]))
+if (cursive)
+ add_anchor_y.ff("above", "basechar", ymax[0], o_height, tan_it)
+else
+ add_anchor_y.ff("above", "basechar", ymax[0], (o_height + 2*h_height)/3, tan_it)
+endif
+
+
+
+
+# "below" mark
+
+SelectSingletons("H","I","M","N","T","W","Y")
+foreach
+ add_anchor_y.ff("below", "basechar", X_height/2, 0, tan_it)
+endloop
+
+SelectSingletons("A","E","F","J","K","L","X","Z","AE","d","k","x","z","ae","oe")
+SelectMoreSingletons(0u250,0u276,0u277,0u279,0u27A,0u27E,0u27F,0u280,0u281,\
+0u28A,0u28E,0u28F,0u299,0u29F,0u2A1,0u2A2)
+foreach
+ add_anchor_med.ff("below", "basechar", 0, italic_angle)
+endloop
+
+SelectSingletons("B","D","P")
+foreach
+ add_anchor_med.ff("below", "basechar", 0, italic_angle, -space/15)
+endloop
+
+SelectSingletons("C","G","O","U","V","c","e","o","r","v","w",\
+0u18F,0u190,0u1DD,0u254,0u258,0u259,0u25B,0u298)
+SelectMoreSingletons(0u25A,0u25C,0u25D,0u25E,0u262,0u264,0u275,0u28B,0u296,\
+0u298,0u29A,0u29B)
+foreach
+ add_anchor_ext.ff("below", "basechar", 1, 0, tan_it)
+endloop
+
+SelectSingletons("a")
+foreach
+ add_anchor_ext.ff("below", "basechar", 3, 0, tan_it)
+endloop
+
+Select("t")
+bbox = GlyphInfo("BBox")
+add_anchor_ext.ff("below", "basechar", 1, 0, tan_it, -space/15)
+#add_anchor_ext.ff("above", "basechar", 3, Round(bbox[3]), tan_it)
+
+SelectSingletons("S","s")
+foreach
+ add_anchor_ext.ff("below", "basechar", 1, 0, tan_it, 0, 1)
+endloop
+
+SelectSingletons("b","h","i","l","m","n","u","dotlessi")
+SelectMoreSingletons(0u251,0u252,0u253,0u257,0u266,0u268,0u269,0u26A,0u26B,\
+0u26C,0u26f,0u274,0u289,0u28C,0u28D,0u294,0u295,0u29C)
+if (!cursive)
+ SelectMoreSingletons("f","longs")
+endif
+foreach
+ add_anchor_y.ff("below", "basechar", x_height/2, 0, tan_it)
+endloop
+
+SelectSingletons("p","q","eng",0u265,0u267,0u26D,0u270,0u271,0u273,0u286,0u2A0,0u2AE,\
+0u2AF)
+foreach
+ add_anchor_y.ff("below", "basechar", x_height/2, p_depth, tan_it)
+endloop
+
+SelectSingletons("Q")
+foreach
+ add_anchor_y.ff("below", "basechar", X_height/2, p_depth, tan_it)
+endloop
+
+SelectSingletons("g",0u260,0u261,0u263,0u297)
+foreach
+ add_anchor_ext.ff("below", "basechar", 1, p_depth, tan_it)
+endloop
+SelectSingletons("j",0u237,0u25F,0u292)
+foreach
+ add_anchor_ext.ff("below", "basechar", 1, p_depth, tan_it, space/10)
+endloop
+if (cursive)
+ Select("y")
+ add_anchor_ext.ff("below", "basechar", 1, p_depth, tan_it, -space/20)
+ SelectSingletons("f","longs")
+ foreach
+  add_anchor_ext.ff("below", "basechar", 1, p_depth, tan_it, space/15)
+  add_anchor_ext.ff("above", "basechar", 3, h_height, tan_it, -space/20)
+ endloop
+ Select(0u432)
+ add_anchor_ext.ff("above", "basechar", 3, o_height, tan_it)
+else
+ Select(0u44F)
+ add_anchor_med.ff("above", "basechar", o_height, italic_angle, space/20)
+ Select(0u432)
+ add_anchor_med.ff("above", "basechar", o_height, italic_angle, -space/20)
+ SelectSingletons("f","longs")
+ foreach
+  add_anchor_ext.ff("above", "basechar", 3, h_height, tan_it)
+ endloop
+ SelectSingletons("y",0u256,0u26E,0u272,0u278,0u27B,0u27C,0u27D,0u282,0u283,\
+ 0u284,0u285,0u287,0u288,0u290,0u291,0u29D,0u29E)
+ foreach
+  add_anchor_med.ff("below", "basechar", p_depth, italic_angle)
+ endloop
+endif
+
+SelectSingletons(0u401,0u407,0u451,0u457)
+foreach
+ bbox = GlyphInfo("BBox")
+ add_anchor_ext.ff("above", "basechar", 3, Round(bbox[3]), tan_it)
+endloop
+Select("Eogonek")
+bbox = GlyphInfo("BBox")
+add_anchor_y.ff("above", "basechar", Round(bbox[3] - 2), O_height, tan_it)
+
+if (affricate_above)
+Select("a","z")
+SelectMoreSingletons("eng")
+SelectMore(0u250,0u292)
+SelectMore(0u294,0u2A2)
+foreach
+ if (WorthOutputting())
+  width = GlyphInfo("Width")
+  AddAnchorPoint("affricate-above", "basechar", Round(width - tan_it*h_height), h_height)
+  AddAnchorPoint("affricate-below", "basechar", Round(width - tan_it*p_depth), p_depth)
+ endif
+endloop
+ endif
+
+Select("P")
+CopyAnchors()
+Select("R")
+PasteInto()
+if (WorthOutputting("Ohorn"))
+Select("O")
+CopyAnchors()
+Select("Ohorn")
+PasteInto()
+endif
+if (WorthOutputting("Uhorn"))
+Select("U")
+CopyAnchors()
+Select("Uhorn")
+PasteInto()
+endif
+if (WorthOutputting("ohorn"))
+Select("o")
+CopyAnchors()
+Select("ohorn")
+PasteInto()
+endif
+if (WorthOutputting("uhorn"))
+Select("u")
+CopyAnchors()
+Select("uhorn")
+PasteInto()
+endif
+if (WorthOutputting(0u293))
+ Select(0u292)
+ CopyAnchors()
+ Select(0u293)
+ PasteInto()
+endif
+
+if (WorthOutputting(0u328)) # combining ogonek
+  SelectSingletons("O","U","e","o")
+  if ( cursive )
+  SelectMore("i")
+  endif
+  foreach
+  add_anchor_ext.ff("ogonek", "basechar", 1, 0, tan_it)
+  endloop
+
+  SelectSingletons("E","I")
+  if ( !cursive )
+  SelectMore("i")
+  endif
+  foreach
+  add_anchor_med.ff("ogonek", "basechar", 0, italic_angle)
+  endloop
+
+  SelectSingletons("a","u")
+  foreach
+  if ( cursive )
+    add_anchor_ext.ff("ogonek", "basechar", 1, 0, tan_it, 0, 1)
+  else
+    x_max = GlyphInfo("Xextrema", x_height/2)
+    AddAnchorPoint("ogonek", "basechar", \
+    Round(x_max[1] - stem_width*0.5 + x_height/2*tan_it), 0)
+  endif
+  endloop
+
+ SelectSingletons("A")
+ if ( WorthOutputting() )
+  x_prof = GlyphInfo("XProfile",O_height/10)
+  AddAnchorPoint("ogonek", "basechar", \
+  Round((x_prof[2] + x_prof[3])*0.5 - O_height*tan_it*0.1), 0)
+ endif
+endif
+
+del_y = 50
+del_mark = 20
+del_y_cap = 36
+
+# Shifts for acute and grave are based on existing (capital) oacute and ograve
+if ( WorthOutputting("oacute") )
+ Select("oacute")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", o_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("acute") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ acute_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(acute_shift)
+endif
+
+if ( WorthOutputting("ograve") )
+ Select("ograve")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", o_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("grave") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ grave_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(grave_shift)
+else
+ grave_shift = -acute_shift
+endif
+
+if ( WorthOutputting("ohungarumlaut") )
+ Select("ohungarumlaut")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", o_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("hungarumlaut") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ dblacute_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(dblacute_shift)
+endif
+
+if ( WorthOutputting("odblgrave") && WorthOutputting("uni030F"))
+ Select("odblgrave")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", o_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("uni030F") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ dblgrave_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(dblgrave_shift)
+else
+ dblgrave_shift = -dblacute_shift
+endif
+
+if (InFont("acute.cap"))
+if ( WorthOutputting("Oacute") )
+ Select("Oacute")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", O_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("acute.cap") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ acutecap_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(acutecap_shift)
+endif
+endif
+
+if (InFont("grave.cap"))
+if ( WorthOutputting("Ograve") )
+ Select("Ograve")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", O_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("grave.cap") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ gravecap_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(gravecap_shift)
+else
+ gravecap_shift = -acutecap_shift
+endif
+endif
+
+if (InFont("hungarumlaut.cap"))
+if ( WorthOutputting("Ohungarumlaut") )
+ Select("Ohungarumlaut")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", O_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("hungarumlaut.cap") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ dblacutecap_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(dblacutecap_shift)
+else
+ dblacutecap_shift = acutecap_shift
+endif
+endif
+
+if (InFont("space_uni030F.cap"))
+if ( WorthOutputting("Odblgrave") )
+ Select("Odblgrave")
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ oacutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ ox_ymax = GlyphInfo("Xextrema", O_height)
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ Select("space_uni030F.cap") 
+ if(italic_angle != 0)
+  CopyUnlinked()
+  Select("temporary_glyph")
+  Paste()
+  Skew(italic_angle/100.0,0,0)
+ endif 
+ bbox = GlyphInfo("BBox")
+ acutex_ymax = GlyphInfo("Xextrema", Floor(bbox[3]))
+ if(italic_angle != 0)
+  Clear()
+ endif 
+ width = Round((bbox[2] + bbox[0])/2 - acutex_ymax[0])
+ dblgravecap_shift = (ox_ymax[0] - oacutex_ymax[0]) - width
+ #Print(dblgravecap_shift)
+else
+ dblgravecap_shift = -dblacutecap_shift
+endif
+endif
+
+Select("acutecomb"); bbox = GlyphInfo("BBox")
+#x_ymax = GlyphInfo("Xextrema", Round(bbox[3]))
+#x_ymin = GlyphInfo("Xextrema", Round(bbox[1]))
+#y_xmax = GlyphInfo("Yextrema", Round(bbox[2]))
+#y_xmin = GlyphInfo("Yextrema", Round(bbox[0]))
+#acute_shift = Round(Sin(ATan2(bbox[3] - y_xmin[0], x_ymax[0] - bbox[0]) + ATan2(y_xmax[0] - bbox[1], bbox[2] - x_ymin[0]))*(bbox[2] - bbox[0])*0.14)
+#Print(acute_shift)
+# acute_shift = space/20
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle, acute_shift)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle, acute_shift)
+add_anchor_med.ff("above", "mark", o_height, italic_angle, acute_shift)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle, acute_shift)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle, acute_shift)
+acute_height = Round(bbox[3] - bbox[1])
+Select("gravecomb"); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle, grave_shift)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle, grave_shift)
+add_anchor_med.ff("above", "mark", o_height, italic_angle, grave_shift)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle, grave_shift)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle, grave_shift)
+Select(0u302); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u303); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u304); bbox = GlyphInfo("BBox")
+del_y_line = del_y + (acute_height - Round(bbox[3] - bbox[1]))/2
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_line), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_line), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u305); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_line), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_line), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u306); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u307); bbox = GlyphInfo("BBox")
+del_y_dot = del_y + (acute_height - Round(bbox[3] - bbox[1]))/2
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_dot), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_dot), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u308); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_dot), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_dot), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u309); bbox = GlyphInfo("BBox")
+#add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y), tan_it)
+#add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y), tan_it)
+add_anchor_ext.ff("above", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "mark", 1, o_height, tan_it)
+Select(0u30A); bbox = GlyphInfo("BBox")
+#add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y), tan_it)
+#add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y), tan_it)
+add_anchor_ext.ff("above", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "basemark", 3, Round(bbox[3] - del_mark), tan_it)
+Select(0u30B); bbox = GlyphInfo("BBox")
+#add_anchor_y.ff("above", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y), tan_it, dblacute_shift)
+#add_anchor_y.ff("above-mark", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y), tan_it, dblacute_shift)
+add_anchor_med.ff("above", "mark", o_height, italic_angle, dblacute_shift)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle, dblacute_shift)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle, dblacute_shift)
+Select(0u30C); bbox = GlyphInfo("BBox")
+#add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y), tan_it)
+#add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y), tan_it)
+add_anchor_ext.ff("above", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "basemark", 1, Round(bbox[3] - del_mark), tan_it)
+Select(0u30D); bbox = GlyphInfo("BBox")
+#add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y), tan_it)
+#add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y), tan_it)
+add_anchor_ext.ff("above", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "mark", 1, o_height, tan_it)
+Select(0u30E); bbox = GlyphInfo("BBox")
+#add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y), tan_it)
+#add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y), tan_it)
+add_anchor_ext.ff("above", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "mark", 1, o_height, tan_it)
+add_anchor_ext.ff("above-mark", "basemark", 3, Round(bbox[3] - del_mark), tan_it)
+Select(0u30F); bbox = GlyphInfo("BBox")
+#add_anchor_y.ff("above", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y), tan_it, dblgrave_shift)
+#add_anchor_y.ff("above-mark", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y), tan_it, dblgrave_shift)
+add_anchor_med.ff("above", "mark", o_height, italic_angle, dblgrave_shift)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle, dblgrave_shift)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), -italic_angle, dblacute_shift)
+
+Select(0u311); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u316); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle, grave_shift)
+Select(0u317); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle, acute_shift)
+Select(0u318); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle)
+Select(0u319); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle)
+Select(0u31C); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle)
+Select(0u31D); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y), tan_it)
+Select(0u31E); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y), tan_it)
+Select(0u31F); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y), tan_it)
+
+Select(0u320); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y), tan_it)
+Select(0u323); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y_dot - o_depth), tan_it)
+Select(0u324); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y_dot - o_depth), italic_angle)
+Select(0u325); bbox = GlyphInfo("BBox")
+add_anchor_ext.ff("below", "mark", 3, Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u326); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u327); bbox = GlyphInfo("BBox") # cedilla
+height = Round(bbox[3])
+if (height > 0)
+ if (height > 30)
+  height = height - 30
+ else
+  height = 0
+ endif
+endif
+add_anchor_ext.ff("below", "mark", 3, height, tan_it)
+Select(0u328)
+add_anchor_y.ff("ogonek", "mark", 0, 0, tan_it)
+Select(0u329); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u32A); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u32B); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u32C); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u32D); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u32E); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u32F); bbox = GlyphInfo("BBox")
+add_anchor_ext.ff("below", "mark", 3, Round(bbox[3] + del_y - o_depth), tan_it)
+
+Select(0u330); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y - o_depth), italic_angle)
+Select(0u331); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y_line - o_depth), italic_angle)
+Select(0u332); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y_line - o_depth), italic_angle)
+Select(0u339); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y - o_depth), italic_angle)
+Select(0u33A); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u33B); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u33C); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y - o_depth), tan_it)
+Select(0u33D); bbox = GlyphInfo("BBox")
+#add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+#add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "mark", o_height, italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+
+Select(0u346); bbox = GlyphInfo("BBox")
+add_anchor_y.ff("above", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y), tan_it)
+add_anchor_y.ff("above-mark", "basemark", Round(bbox[1] + 2), Round(bbox[3] - del_mark), tan_it)
+Select(0u347); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle)
+Select(0u348); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle)
+Select(0u349); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle)
+Select(0u34D); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y), italic_angle)
+
+Select(0u1DC5); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u1DC6); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u1DC8); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+Select(0u1DC9); bbox = GlyphInfo("BBox")
+add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y), italic_angle)
+add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+
+Select(0u361)
+add_anchor_med.ff("affricate-above", "mark", o_height, italic_angle)
+Select(0u35C)
+add_anchor_med.ff("affricate-below", "mark", p_depth, italic_angle)
+
+
+# Combining diacritics for capitals
+if (SelectIf("uni0301.cap") > 0)
+ bbox = GlyphInfo("BBox")
+# x_ymax = GlyphInfo("Xextrema", Round(bbox[3]))
+# x_ymin = GlyphInfo("Xextrema", Round(bbox[1]))
+# y_xmax = GlyphInfo("Yextrema", Round(bbox[2]))
+# y_xmin = GlyphInfo("Yextrema", Round(bbox[0]))
+# acutecap_shift = Round(Sin(ATan2(bbox[3] - y_xmin[0], x_ymax[0] - bbox[0]) + ATan2(y_xmax[0] - bbox[1], bbox[2] - x_ymin[0]))*(bbox[2] - bbox[0])*0.14)
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap), italic_angle, acutecap_shift)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap), italic_angle, acutecap_shift)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle, acutecap_shift)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle, acutecap_shift)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle, acutecap_shift)
+endif
+if (SelectIf("uni0300.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap), italic_angle, gravecap_shift)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap), italic_angle, gravecap_shift)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle, gravecap_shift)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle, gravecap_shift)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle, gravecap_shift)
+acute_height = Round(bbox[3] - bbox[1])
+endif
+if (SelectIf("uni0302.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0303.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0304.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ del_y_cap_line = del_y_cap + (acute_height - Round(bbox[3] - bbox[1]))/2
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap_line), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap_line), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0305.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ del_y_cap_line = del_y_cap + (acute_height - Round(bbox[3] - bbox[1]))/2
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap_line), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap_line), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0306.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0307.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ del_y_cap_dot = del_y_cap + (acute_height - Round(bbox[3] - bbox[1]))/2
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap_dot), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap_dot), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0308.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ del_y_cap_dot = del_y_cap + (acute_height - Round(bbox[3] - bbox[1]))/2
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap_dot), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap_dot), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0309.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y_cap), tan_it)
+ #add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y_cap), tan_it)
+ add_anchor_ext.ff("above", "mark", 1, O_height, tan_it)
+ add_anchor_ext.ff("above-mark", "mark", 1, O_height, tan_it)
+endif
+if (SelectIf("uni030A.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y_cap), tan_it)
+ #add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y_cap), tan_it)
+ add_anchor_ext.ff("above", "mark", 1, O_height, tan_it)
+ add_anchor_ext.ff("above-mark", "mark", 1, O_height, tan_it)
+ add_anchor_ext.ff("above-mark", "basemark", 3, Round(bbox[3] - del_mark), tan_it)
+endif
+if (SelectIf("uni030B.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_y.ff("above", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y_cap), tan_it, dblacutecap_shift)
+ #add_anchor_y.ff("above-mark", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y_cap), tan_it, dblacutecap_shift)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle, dblacutecap_shift)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle, dblacutecap_shift)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle, dblacutecap_shift)
+endif
+if (SelectIf("uni030C.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_ext.ff("above", "mark", 1, Round(bbox[1] - del_y_cap), tan_it)
+ #add_anchor_ext.ff("above-mark", "mark", 1, Round(bbox[1] - del_y_cap), tan_it)
+ add_anchor_ext.ff("above", "mark", 1, O_height, tan_it)
+ add_anchor_ext.ff("above-mark", "mark", 1, O_height, tan_it)
+ add_anchor_ext.ff("above-mark", "basemark", 1, Round(bbox[3] - del_mark), tan_it)
+endif
+if (SelectIf("uni030F.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_y.ff("above", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y_cap), tan_it, dblgravecap_shift)
+ #add_anchor_y.ff("above-mark", "mark", Round(bbox[1] + 2), Round(bbox[1] - del_y_cap), tan_it, dblgravecap_shift)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle, dblgravecap_shift)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle, dblgravecap_shift)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle, dblgravecap_shift)
+endif
+if (SelectIf("uni0311.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ #add_anchor_med.ff("above", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ #add_anchor_med.ff("above-mark", "mark", Round(bbox[1] - del_y_cap), italic_angle)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "mark", O_height, italic_angle)
+ add_anchor_med.ff("above-mark", "basemark", Round(bbox[3] - del_mark), italic_angle)
+endif
+if (SelectIf("uni0323.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y_cap_dot - O_depth), tan_it)
+endif
+if (SelectIf("uni0324.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y_cap_dot - O_depth), italic_angle)
+endif
+if (SelectIf("uni0325.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ add_anchor_ext.ff("below", "mark", 3, Round(bbox[3] + del_y_cap - O_depth), tan_it)
+endif
+if (SelectIf("uni032D.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y_cap - O_depth), tan_it)
+endif
+if (SelectIf("uni032E.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ add_anchor_y.ff("below", "mark", Round(bbox[3] - 2), Round(bbox[3] + del_y_cap - O_depth), tan_it)
+endif
+if (SelectIf("uni0330.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y_cap - O_depth), italic_angle)
+endif
+if (SelectIf("uni0331.cap") > 0)
+ bbox = GlyphInfo("BBox")
+ add_anchor_med.ff("below", "mark", Round(bbox[3] + del_y_cap_line - O_depth), italic_angle)
+endif
+
+if (SelectIf("grave.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle, gravecap_shift)
+endif
+if (SelectIf("acute.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle, acutecap_shift)
+endif
+if (SelectIf("circumflex.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+if (SelectIf("tilde.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+if (SelectIf("macron.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+if (SelectIf("breve.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+if (SelectIf("dotaccent.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+if (SelectIf("dieresis.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+if (SelectIf("ring.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+if (SelectIf("hungarumlaut.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle, dblacutecap_shift)
+endif
+if (SelectIf("caron.cap") > 0)
+ add_anchor_med.ff("above", "mark", O_height, italic_angle)
+endif
+
+SelectSingletons("i","idieresis")
+foreach
+ bbox = GlyphInfo("BBox")
+ add_anchor_y.ff("above", "basechar", x_height/2, Round(bbox[3] - del_mark), tan_it)
+endloop
+
+
+if(italic_angle != 0)
+ Select("temporary_glyph")
+ Reencode("unicode")
+# Open("Untitled2.sfd")
+# Close() # temporary font
+# Open("Untitled1.sfd")
+endif
+# the end of anchors block
+
+case_sub.ff()
+add_accented.ff()
+
+SelectWorthOutputting()
+CanonicalContours()
+CanonicalStart()
+RoundToInt()
+DefaultUseMyMetrics()
+SelectNone()
+
+# import BDF files
+i = 12
+while (i < 26)
+ #Print("bitmap/"+fontname+"-"+ToString(i)+".bdf")
+ if (!FileAccess("bitmap/"+fontname+"-"+ToString(i)+".bdf"))
+  Import("bitmap/"+fontname+"-"+ToString(i)+".bdf")
+ endif
+ i++
+endloop
+
+SetUniqueID(0)
+Save("cmun"+font_var+".sfd")
+Generate("cmun"+font_var+".otf","ttf",0x200200,-1)
+#Reencode("AdobeStandardEncoding")
+Generate("cmun"+font_var+".pfb","",0x200021)
+# "unhinted/" directory must exist
+#Generate("unhinted/cmun"+font_var+".pfb","",0x280000)
+/*
+Close()
+Open("cmun"+font_var+".sfd")
+Print("!!!! Processing ttf !!!!")
+SetFontOrder(2)
+Print("!!!! converted to square splines !!!!")
+SelectGlyphsBoth()
+#SelectWorthOutputting()
+UnlinkReference()
+Save("cmun"+font_var+"__.sfd")
+SelectWorthOutputting()
+Print("!!!! Simplifying !!!!")
+foreach
+ Print(GlyphInfo("Name"))
+ Simplify()
+endloop
+Print("!!!! Canonical !!!!")
+RoundToInt()
+CanonicalContours()
+CanonicalStart()
+# glyphs with diagonals:
+SelectSingletons("numbersign","slash","seven","less","greater","A","K","M","N","S","V","W","X","Y","Z")
+SelectMoreSingletons("k","s","v","w","x","y","z")
+SelectMoreSingletons("Aring","AE")
+SelectMoreSingletons("Alpha","Zeta","Kappa","Mu","Nu","Chi","chi")
+SelectMoreSingletons(0u410,0u416,0u418,0u419,0u41A,0u41B,0u41C,0u423,0u425,0u42F)
+SelectMoreSingletons(0u436,0u438,0u439,0u43A,0u43B,0u43C,0u443,0u445,0u44F)
+ClearHints()
+Print("!!!! Rehint diagonals !!!!")
+AutoHint()
+Save("cmun"+font_var+"_.sfd")
+SelectWorthOutputting()
+Print("!!!! AutoInstr !!!!")
+AutoInstr()
+Save("cmun"+font_var+"_.sfd")
+Print("!!!! Generating ttf !!!!")
+Generate("cmun"+font_var+".ttf","ttf",0x200,-1)
+*/
+
+Close()
+Quit()
