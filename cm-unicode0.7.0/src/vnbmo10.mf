@@ -1,0 +1,42 @@
+% Copyright (C) 2006 Andrey Panov
+%
+% All Rights Reserved.
+%
+% Permission is hereby granted, free of charge, to any person obtaining a
+% copy of this software and associated documentation files (the "Software"),
+% to deal in the Software without restriction, including without limitation
+% the rights to use, copy, modify, merge, publish, distribute, sublicense,
+% and/or sell copies of the Software, and to permit persons to whom the
+% Software is furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice (including the next
+% paragraph) shall be included in all copies or substantial portions of the
+% Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+% THE COPYRIGHT OWNER(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+% IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+% CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%
+gensize:=10;
+input vnbase;
+
+%if unknown ebbase: input ebbase fi
+
+font_identifier:="VNBMO"; font_size 10pt#;
+input br10pt;
+
+slant:=sind 12/cosd 12;      % tilt ratio $(\Delta x/\Delta y)$
+variant_g:=true;    % should an italic-style g be used?
+low_asterisk:=false;    % should the asterisk be centered at the axis?
+math_fitting:=false;    % should math-mode spacing be used?
+%ligs:=2;
+acc_height#:=70/36pt#; % ?
+dot_height#:=66.5/36pt#;
+ldot_height#:=66.5/36pt#; % ok 
+
+
+generate ebroman      % switch to the driver file
+bye.
