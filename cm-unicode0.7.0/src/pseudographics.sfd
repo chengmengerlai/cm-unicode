@@ -1,0 +1,867 @@
+SplineFontDB: 1.0
+FontName: pseudographics
+FullName: pseudographics
+FamilyName: typewriter text
+Weight: Medium
+Copyright: Created by Andrey V. Panov,211,310911, with FontForge 1.0 (http://fontforge.sf.net)
+Comments: 2004-5-11: Created.
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 775
+Descent: 225
+NeedsXUIDChange: 1
+FSType: 8
+PfmFamily: 49
+TTFWeight: 500
+TTFWidth: 5
+LineGap: 90
+VLineGap: 0
+Panose: 2 0 6 9 0 0 0 0 0 0
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+Encoding: UnicodeBmp
+UnicodeInterp: none
+DisplaySize: -36
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 9744 16 12
+TeXData: 1 0 0 346030 173015 115343 0 1048576 115343 783286 444596 497025 792723 393216 433062 380633 303038 157286 324010 404750 52429 2506097 1059062 262144
+BeginChars: 65536 41
+StartChar: .notdef
+Encoding: 0 0 0
+Width: 525
+Flags: HW
+Fore
+105 70 m 1
+ 420 70 l 1
+ 262 337 l 1
+ 105 70 l 1
+70 663 m 1
+ 70 112 l 1
+ 232 388 l 1
+ 70 663 l 1
+420 705 m 1
+ 105 705 l 1
+ 262 438 l 1
+ 420 705 l 1
+10 765 m 1
+ 515 765 l 1
+ 515 10 l 1
+ 10 10 l 1
+ 10 765 l 1
+455 112 m 1
+ 455 663 l 1
+ 292 388 l 1
+ 455 112 l 1
+EndSplineSet
+EndChar
+StartChar: SF100000
+Encoding: 9472 9472 1
+Width: 525
+Flags: HW
+Fore
+-0 240 m 5
+ -0 310 l 5
+ 525 310 l 5
+ 525 240 l 5
+ -0 240 l 5
+EndSplineSet
+EndChar
+StartChar: SF110000
+Encoding: 9474 9474 2
+Width: 525
+Flags: HW
+Fore
+227 837 m 5
+ 297 837 l 5
+ 297 -355 l 5
+ 227 -355 l 5
+ 227 837 l 5
+EndSplineSet
+EndChar
+StartChar: SF010000
+Encoding: 9484 9484 3
+Width: 525
+Flags: HW
+Fore
+297 240 m 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 297 240 l 1
+EndSplineSet
+EndChar
+StartChar: SF030000
+Encoding: 9488 9488 4
+Width: 525
+Flags: HW
+Fore
+227 240 m 1
+ 0 240 l 1
+ 0 310 l 1
+ 297 310 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 240 l 1
+EndSplineSet
+EndChar
+StartChar: SF020000
+Encoding: 9492 9492 5
+Width: 525
+Flags: HW
+Fore
+297 310 m 1
+ 525 310 l 1
+ 525 240 l 1
+ 227 240 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 310 l 1
+EndSplineSet
+EndChar
+StartChar: SF040000
+Encoding: 9496 9496 6
+Width: 525
+Flags: HW
+Fore
+227 310 m 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 240 l 1
+ 0 240 l 1
+ 0 310 l 1
+ 227 310 l 1
+EndSplineSet
+EndChar
+StartChar: SF080000
+Encoding: 9500 9500 7
+Width: 525
+Flags: HW
+Fore
+227 -355 m 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 297 240 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+EndSplineSet
+EndChar
+StartChar: SF090000
+Encoding: 9508 9508 8
+Width: 525
+Flags: HW
+Fore
+297 837 m 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 240 l 1
+ 0 240 l 1
+ 0 310 l 1
+ 227 310 l 1
+ 227 837 l 1
+ 297 837 l 1
+EndSplineSet
+EndChar
+StartChar: SF060000
+Encoding: 9516 9516 9
+Width: 525
+Flags: HW
+Fore
+0 310 m 1
+ 525 310 l 1
+ 525 240 l 1
+ 297 240 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 240 l 1
+ 0 240 l 1
+ 0 310 l 1
+EndSplineSet
+EndChar
+StartChar: SF070000
+Encoding: 9524 9524 10
+Width: 525
+Flags: HW
+Fore
+525 240 m 1
+ 0 240 l 1
+ 0 310 l 1
+ 227 310 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+EndSplineSet
+EndChar
+StartChar: SF050000
+Encoding: 9532 9532 11
+Width: 525
+Flags: HW
+Fore
+227 240 m 1
+ -0 240 l 1
+ -0 310 l 1
+ 227 310 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 297 240 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 240 l 1
+EndSplineSet
+EndChar
+StartChar: SF430000
+Encoding: 9552 9552 12
+Width: 525
+Flags: HW
+Fore
+0 160 m 1
+ 0 230 l 1
+ 525 230 l 1
+ 525 160 l 1
+ 0 160 l 1
+0 320 m 1
+ 0 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 0 320 l 1
+EndSplineSet
+EndChar
+StartChar: SF240000
+Encoding: 9553 9553 13
+Width: 525
+Flags: HW
+Fore
+147 837 m 1
+ 217 837 l 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 837 l 1
+307 837 m 1
+ 377 837 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 837 l 1
+EndSplineSet
+EndChar
+StartChar: SF510000
+Encoding: 9554 9554 14
+Width: 525
+Flags: HW
+Fore
+297 320 m 1
+ 297 230 l 1
+ 525 230 l 1
+ 525 160 l 1
+ 297 160 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 297 320 l 1
+EndSplineSet
+EndChar
+StartChar: SF520000
+Encoding: 9555 9555 15
+Width: 525
+Flags: HW
+Fore
+307 240 m 1
+ 217 240 l 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 377 240 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 240 l 1
+EndSplineSet
+EndChar
+StartChar: SF390000
+Encoding: 9556 9556 16
+Width: 525
+Flags: HW
+Fore
+217 320 m 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 217 320 l 1
+377 160 m 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 230 l 1
+ 525 230 l 1
+ 525 160 l 1
+ 377 160 l 1
+EndSplineSet
+EndChar
+StartChar: SF220000
+Encoding: 9557 9557 17
+Width: 525
+Flags: HW
+Fore
+227 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 297 390 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+ 227 230 l 1
+ 227 320 l 1
+EndSplineSet
+EndChar
+StartChar: SF210000
+Encoding: 9558 9558 18
+Width: 525
+Flags: HW
+Fore
+217 240 m 5
+ 217 -355 l 5
+ 147 -355 l 5
+ 147 240 l 5
+ 0 240 l 1
+ 0 310 l 1
+ 377 310 l 5
+ 377 -355 l 5
+ 307 -355 l 5
+ 307 240 l 5
+ 217 240 l 5
+EndSplineSet
+EndChar
+StartChar: SF250000
+Encoding: 9559 9559 19
+Width: 525
+Flags: HW
+Fore
+307 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 377 390 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 320 l 1
+147 160 m 1
+ 0 160 l 1
+ 0 230 l 1
+ 217 230 l 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 160 l 1
+EndSplineSet
+EndChar
+StartChar: SF500000
+Encoding: 9560 9560 20
+Width: 525
+Flags: HW
+Fore
+297 230 m 1
+ 525 230 l 1
+ 525 160 l 1
+ 227 160 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 297 320 l 1
+ 297 230 l 1
+EndSplineSet
+EndChar
+StartChar: SF490000
+Encoding: 9561 9561 21
+Width: 525
+Flags: HW
+Fore
+307 310 m 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 147 240 l 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 310 l 1
+ 307 310 l 1
+EndSplineSet
+EndChar
+StartChar: SF380000
+Encoding: 9562 9562 22
+Width: 525
+Flags: HW
+Fore
+217 230 m 1
+ 525 230 l 1
+ 525 160 l 1
+ 147 160 l 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 230 l 1
+377 390 m 1
+ 525 390 l 1
+ 525 320 l 1
+ 307 320 l 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 390 l 1
+EndSplineSet
+EndChar
+StartChar: SF280000
+Encoding: 9563 9563 23
+Width: 525
+Flags: HW
+Fore
+227 230 m 1
+ 227 320 l 1
+ 0 320 l 1
+ 0 390 l 1
+ 227 390 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+ 227 230 l 1
+EndSplineSet
+EndChar
+StartChar: SF270000
+Encoding: 9564 9564 24
+Width: 525
+Flags: HW
+Fore
+217 310 m 1
+ 307 310 l 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 240 l 1
+ 0 240 l 1
+ 0 310 l 1
+ 147 310 l 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 310 l 1
+EndSplineSet
+EndChar
+StartChar: SF260000
+Encoding: 9565 9565 25
+Width: 525
+Flags: HW
+Fore
+307 230 m 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+ 307 230 l 1
+147 390 m 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 320 l 1
+ 0 320 l 1
+ 0 390 l 1
+ 147 390 l 1
+EndSplineSet
+EndChar
+StartChar: SF360000
+Encoding: 9566 9566 26
+Width: 525
+Flags: HW
+Fore
+227 -355 m 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 297 320 l 1
+ 297 230 l 1
+ 525 230 l 1
+ 525 160 l 1
+ 297 160 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+EndSplineSet
+EndChar
+StartChar: SF370000
+Encoding: 9567 9567 27
+Width: 525
+Flags: HW
+Fore
+217 837 m 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 837 l 1
+ 217 837 l 1
+307 -355 m 5
+ 307 837 l 1
+ 377 837 l 1
+ 377 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 377 240 l 1
+ 377 -355 l 1
+ 307 -355 l 5
+EndSplineSet
+EndChar
+StartChar: SF420000
+Encoding: 9568 9568 28
+Width: 525
+Flags: HW
+Fore
+307 320 m 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 307 320 l 1
+217 837 m 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 837 l 1
+ 217 837 l 1
+307 230 m 1
+ 525 230 l 1
+ 525 160 l 1
+ 377 160 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 230 l 1
+EndSplineSet
+EndChar
+StartChar: SF190000
+Encoding: 9569 9569 29
+Width: 525
+Flags: HW
+Fore
+227 160 m 1
+ 0 160 l 1
+ 0 230 l 1
+ 227 230 l 1
+ 227 320 l 1
+ 0 320 l 1
+ 0 390 l 1
+ 227 390 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 160 l 1
+EndSplineSet
+EndChar
+StartChar: SF200000
+Encoding: 9570 9570 30
+Width: 525
+Flags: HW
+Fore
+307 837 m 1
+ 377 837 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 837 l 1
+217 -355 m 1
+ 147 -355 l 1
+ 147 240 l 1
+ 0 240 l 1
+ 0 310 l 1
+ 147 310 l 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 -355 l 1
+EndSplineSet
+EndChar
+StartChar: SF230000
+Encoding: 9571 9571 31
+Width: 525
+Flags: HW
+Fore
+217 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 147 390 l 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 320 l 1
+307 837 m 1
+ 377 837 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 837 l 1
+217 230 m 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+ 217 230 l 1
+EndSplineSet
+EndChar
+StartChar: SF470000
+Encoding: 9572 9572 32
+Width: 525
+Flags: HW
+Fore
+525 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+0 230 m 1
+ 525 230 l 1
+ 525 160 l 1
+ 297 160 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+EndSplineSet
+EndChar
+StartChar: SF480000
+Encoding: 9573 9573 33
+Width: 525
+Flags: HW
+Fore
+377 240 m 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 240 l 1
+ 217 240 l 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 240 l 1
+ 0 240 l 1
+ 0 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 377 240 l 1
+EndSplineSet
+EndChar
+StartChar: SF410000
+Encoding: 9574 9574 34
+Width: 525
+Flags: HW
+Fore
+217 230 m 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+ 217 230 l 1
+525 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+307 230 m 1
+ 525 230 l 1
+ 525 160 l 1
+ 377 160 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 230 l 1
+EndSplineSet
+EndChar
+StartChar: SF450000
+Encoding: 9575 9575 35
+Width: 525
+Flags: HW
+Fore
+0 230 m 1
+ 525 230 l 1
+ 525 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+525 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 227 390 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+EndSplineSet
+EndChar
+StartChar: SF460000
+Encoding: 9576 9576 36
+Width: 525
+Flags: HW
+Fore
+147 310 m 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 310 l 1
+ 307 310 l 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 0 240 l 1
+ 0 310 l 1
+ 147 310 l 1
+EndSplineSet
+EndChar
+StartChar: SF400000
+Encoding: 9577 9577 37
+Width: 525
+Flags: HW
+Fore
+217 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 147 390 l 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 320 l 1
+0 230 m 1
+ 525 230 l 1
+ 525 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+307 320 m 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 307 320 l 1
+EndSplineSet
+EndChar
+StartChar: SF540000
+Encoding: 9578 9578 38
+Width: 525
+Flags: HW
+Fore
+227 320 m 1
+ 0 320 l 1
+ 0 390 l 1
+ 227 390 l 1
+ 227 837 l 1
+ 297 837 l 1
+ 297 390 l 1
+ 525 390 l 1
+ 525 320 l 1
+ 297 320 l 1
+ 297 230 l 1
+ 525 230 l 1
+ 525 160 l 1
+ 297 160 l 1
+ 297 -355 l 1
+ 227 -355 l 1
+ 227 160 l 1
+ 0 160 l 1
+ 0 230 l 1
+ 227 230 l 1
+ 227 320 l 1
+EndSplineSet
+EndChar
+StartChar: SF530000
+Encoding: 9579 9579 39
+Width: 525
+Flags: HW
+Fore
+307 240 m 1
+ 217 240 l 1
+ 217 -355 l 1
+ 147 -355 l 1
+ 147 240 l 1
+ -0 240 l 1
+ -0 310 l 1
+ 147 310 l 1
+ 147 837 l 1
+ 217 837 l 1
+ 217 310 l 1
+ 307 310 l 1
+ 307 837 l 1
+ 377 837 l 1
+ 377 310 l 1
+ 525 310 l 1
+ 525 240 l 1
+ 377 240 l 1
+ 377 -355 l 1
+ 307 -355 l 1
+ 307 240 l 1
+EndSplineSet
+EndChar
+StartChar: uni262D
+Encoding: 9773 9773 40
+Width: 525
+Flags: HW
+TeX: 117 0 0 0
+Fore
+132 130 m 2
+ 132 118 l 2
+ 132 108 128 102 120 102 c 0
+ 91 102 84 0 37 0 c 0
+ 24 0 18 7 18 18 c 0
+ 18 64 89 102 89 128 c 0
+ 89 148 93 153 104 153 c 0
+ 112 153 115 155 123 166 c 2
+ 132 180 l 1
+ 155 165 l 2
+ 216 126 264 115 298 115 c 0
+ 336 115 356 128 356 129 c 0
+ 356 135 311 186 178 363 c 1
+ 128 301 l 1
+ 84 357 l 1
+ 188 486 l 1
+ 264 470 l 1
+ 203 393 l 1
+ 373 190 l 1
+ 396 165 l 1
+ 401 165 431 218 431 295 c 0
+ 431 409 361 510 276 580 c 0
+ 269 587 263 592 263 593 c 1
+ 301 593 496 478 496 267 c 0
+ 496 212 484.782 159.129 460 117 c 2
+ 450 100 l 1
+ 472 72 l 2
+ 487 55 496 42 496 38 c 0
+ 496 17 470 -1 464 -1 c 0
+ 460 -1 454 5 436 29 c 2
+ 409 62 l 1
+ 393 54 l 2
+ 373 44 351 39 328 39 c 0
+ 268 39 204.502 74.4977 151 128 c 0
+ 144 135 139 138 136 138 c 0
+ 132 138 132 134 132 130 c 2
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont

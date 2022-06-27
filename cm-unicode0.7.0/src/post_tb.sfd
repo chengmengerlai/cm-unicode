@@ -1,0 +1,94 @@
+SplineFontDB: 3.0
+FontName: post_tb
+FullName: post_tb
+FamilyName: post_tb
+Weight: Medium
+Copyright: Created by Andrey V. Panov with FontForge 2.0 (http://fontforge.sf.net)
+UComments: "2009-4-8: Created." 
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+LayerCount: 2
+Layer: 0 0 "+BBcEMAQ0BD0EOAQ5 +BD8EOwQwBD0A"  1
+Layer: 1 0 "+BB8ENQRABDUENAQ9BDgEOQAA +BD8EOwQwBD0A"  0
+NeedsXUIDChange: 1
+XUID: [1021 513 629268104 5576657]
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1239176291
+ModificationTime: 1239177071
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 0
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+DEI: 91125
+Encoding: UnicodeBmp
+UnicodeInterp: none
+NameList: Adobe Glyph List
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 1
+WinInfo: 1024 16 16
+BeginChars: 65536 1
+
+StartChar: uni0467
+Encoding: 1127 1127 0
+Width: 525
+Flags: HMW
+HStem: -0 75<24.3071 88 187.399 224 300 336.601 436 499.693> 118 69<198 224 300 325> 428 20G<244.5 279.5>
+VStem: 22 161<2.24142 72.9638> 185 154<2.50834 72.7863> 224 76<75 118> 341 161<2.24142 72.9638>
+DStem2: 88 75 160 74 0.323753 0.946141<13.6043 68.8506 141.581 339.229> 320 414 262 374 0.323753 -0.946141<19.068 216.393 289.447 344.242>
+LayerCount: 2
+Fore
+SplineSet
+22 38 m 0xd6
+ 22 73 46 75 60 75 c 2
+ 88 75 l 1
+ 204 414 l 2
+ 215 445 237 448 252 448 c 2
+ 272 448 l 2
+ 287 448 309 445 320 414 c 2
+ 436 75 l 1
+ 464 75 l 2
+ 478 75 502 73 502 38 c 0
+ 502 3 478 0 464 0 c 2
+ 379 0 l 2
+ 365 0 341 3 341 38 c 0
+ 341 52 347 67 364 74 c 1
+ 349 118 l 1
+ 300 118 l 1
+ 300 75 l 1xd6
+ 314 75 339 73 339 38 c 0xda
+ 339 3 314 0 300 0 c 2
+ 224 -0 l 2xd6
+ 210 -0 185 3 185 38 c 0xda
+ 185 73 210 75 224 75 c 1
+ 224 118 l 1
+ 175 118 l 1
+ 160 74 l 1
+ 177 67 183 52 183 38 c 0
+ 183 3 159 0 145 -0 c 2
+ 60 -0 l 2
+ 46 0 22 3 22 38 c 0xd6
+198 187 m 1
+ 325 187 l 1
+ 262 374 l 1
+ 198 187 l 1
+EndSplineSet
+EndChar
+EndChars
+EndSplineFont
