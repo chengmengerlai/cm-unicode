@@ -1,7 +1,7 @@
 ### Computer Modern Unicode fonts
 
 
-Computer Modern Unicode 字体是使用 mftrace 和 autotrace 后端和 fontforge（以前的 pfaedit）从metafont 转换而来的。它们的主要目的是创建免费的优质字体，用于支持多种语言的 X 应用程序。目前，字体包含来自 Latin1（Metafont ec、tc、vnr）、西里尔文（lh）和希腊文（cbgreek，如果可用）代码集和 IPA 扩展（来自tipa）的字形。也欢迎使用其他字母。现在这个集合包含 33 种字体。最好在启用抗锯齿的情况下使用这些字体。
+Computer Modern Unicode 字体是使用 mftrace 和 autotrace 后端和 fontforge（以前的 pfaedit）从 metafont 转换而来的。它们的主要目的是创建免费的优质字体，用于支持多种语言的 X 应用程序。目前，字体包含来自 Latin1（Metafont ec、tc、vnr）、西里尔文（lh）和希腊文（cbgreek，如果可用）代码集和 IPA 扩展（来自tipa）的字形。也欢迎使用其他字母。现在这个集合包含 33 种字体。最好在启用抗锯齿的情况下使用这些字体。
 
 在这里，你可以看到 [CMUSerif-Roman](https://cm-unicode.sourceforge.io/cmunrm.pdf) (pdf ~600kb) 和 [CMUSerif-Italic](https://cm-unicode.sourceforge.io/cmunti.pdf) 字体中的 Unicode 字形覆盖率。
 
