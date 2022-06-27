@@ -1,0 +1,29 @@
+#!/usr/local/bin/fontforge
+# Copyright (C) 2006 Andrey V. Panov
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+# This fontforge script for recoding bitmap fonts generated from cmun*-bm.sfd files
+# adjusts parameters of bitmap fonts for X
+#
+i = 1
+while ( i < $argc )
+ Print($argv[i])
+ Open($argv[i])
+ Reencode("unicode",1)
+ Generate($fontname+".bdf","bdf")
+ Close()
+ i++
+endloop
