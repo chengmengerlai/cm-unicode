@@ -1,0 +1,182 @@
+# Copyright (C) 2007, 2009 Andrey V. Panov
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+#
+# This fontforge script for addition of opentype tags for replacement by .sc
+# capitals
+
+grk_lang = $1;
+grk_lang_c2sc = $2;
+#
+# Select("alpha"); AddPosSub(grk_lang,"Alpha.sc");
+# Select("beta"); AddPosSub(grk_lang,"Beta.sc");
+# Select("sigma1"); AddPosSub(grk_lang,"Sigma.sc");
+# Select("delta"); AddPosSub(grk_lang,"uni0394.sc");
+# Select("epsilon"); AddPosSub(grk_lang,"Epsilon.sc");
+# Select("phi"); AddPosSub(grk_lang,"Phi.sc");
+# Select("gamma"); AddPosSub(grk_lang,"Gamma.sc");
+# Select("eta"); AddPosSub(grk_lang,"Eta.sc");
+# Select("iota"); AddPosSub(grk_lang,"Iota.sc");
+# Select("theta"); AddPosSub(grk_lang,"Theta.sc");
+# Select("kappa"); AddPosSub(grk_lang,"Kappa.sc");
+# Select("lambda"); AddPosSub(grk_lang,"Lambda.sc");
+# Select("uni03BC"); AddPosSub(grk_lang,"Mu.sc");
+# Select("nu"); AddPosSub(grk_lang,"Nu.sc");
+# Select("omicron"); AddPosSub(grk_lang,"Omicron.sc");
+# Select("pi"); AddPosSub(grk_lang,"Pi.sc");
+# Select("chi"); AddPosSub(grk_lang,"Chi.sc");
+# Select("rho"); AddPosSub(grk_lang,"Rho.sc");
+# Select("sigma"); AddPosSub(grk_lang,"Sigma.sc");
+# Select("tau"); AddPosSub(grk_lang,"Tau.sc");
+# Select("upsilon"); AddPosSub(grk_lang,"Upsilon.sc");
+# Select("omega"); AddPosSub(grk_lang,"uni03A9.sc");
+# Select("xi"); AddPosSub(grk_lang,"Xi.sc");
+# Select("psi"); AddPosSub(grk_lang,"Psi.sc");
+# Select("zeta"); AddPosSub(grk_lang,"Zeta.sc");
+# Select("uni037A"); AddPosSub(grk_lang,"uni1FBE.sc");
+Select("uni1F70"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F01"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F00"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F03"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1FB2"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F81"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F80"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F83"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F71"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F05"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F04"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F02"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1FB4"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F85"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F84"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F82"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1FB6"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F07"); AddPosSub(grk_lang,"Alpha.sc");
+Select("uni1F06"); AddPosSub(grk_lang,"Alpha.sc");
+#Select("uni03DD"); AddPosSub(grk_lang,"uni03DC.sc");
+Select("uni1FB7"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F87"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F86"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1F74"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F21"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F20"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1FC2"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F91"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F90"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F75"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F25"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F24"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F23"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1FC4"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F95"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F94"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F93"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1FC6"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F27"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F26"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1F22"); AddPosSub(grk_lang,"Eta.sc");
+Select("uni1FC7"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F97"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F96"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F92"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1F7C"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F61"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F60"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F63"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1FF2"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA1"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA0"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA3"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1F7D"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F65"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F64"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F62"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1FF4"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA5"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA4"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA2"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FF6"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F67"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1F66"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("uni1FF7"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA7"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FA6"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1F76"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F31"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F30"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F33"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F7A"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F51"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F50"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F53"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F77"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F35"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F34"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F32"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F7B"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F55"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F54"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F52"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1FD6"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F37"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1F36"); AddPosSub(grk_lang,"Iota.sc");
+Select("uni1FE6"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F57"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F56"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("uni1F72"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F11"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F10"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F13"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F78"); AddPosSub(grk_lang,"Omicron.sc");
+Select("uni1F41"); AddPosSub(grk_lang,"Omicron.sc");
+Select("uni1F40"); AddPosSub(grk_lang,"Omicron.sc");
+Select("uni1F43"); AddPosSub(grk_lang,"Omicron.sc");
+Select("uni1F73"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F15"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F14"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F12"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("uni1F79"); AddPosSub(grk_lang,"Omicron.sc");
+Select("uni1F45"); AddPosSub(grk_lang,"Omicron.sc");
+Select("uni1F44"); AddPosSub(grk_lang,"Omicron.sc");
+Select("uni1F42"); AddPosSub(grk_lang,"Omicron.sc");
+#Select("iotadieresis"); AddPosSub(grk_lang,"Iotadieresis.sc");
+Select("uni1FD2"); AddPosSub(grk_lang,"Iotadieresis.sc");
+Select("uni1FD3"); AddPosSub(grk_lang,"Iotadieresis.sc");
+Select("uni1FD7"); AddPosSub(grk_lang,"Iotadieresis.sc");
+#Select("upsilondieresis"); AddPosSub(grk_lang,"Upsilondieresis.sc");
+Select("uni1FE2"); AddPosSub(grk_lang,"Upsilondieresis.sc");
+Select("uni1FE3"); AddPosSub(grk_lang,"Upsilondieresis.sc");
+Select("uni1FE7"); AddPosSub(grk_lang,"Upsilondieresis.sc");
+Select("uni1FB3"); AddPosSub(grk_lang,"uni1FBC.sc");
+Select("uni1FC3"); AddPosSub(grk_lang,"uni1FCC.sc");
+Select("uni1FF3"); AddPosSub(grk_lang,"uni1FFC.sc");
+Select("uni1FE5"); AddPosSub(grk_lang,"Rho.sc");
+Select("uni1FE4"); AddPosSub(grk_lang,"Rho.sc");
+Select("alphatonos"); AddPosSub(grk_lang,"Alpha.sc");
+Select("epsilontonos"); AddPosSub(grk_lang,"Epsilon.sc");
+Select("etatonos"); AddPosSub(grk_lang,"Eta.sc");
+Select("iotatonos"); AddPosSub(grk_lang,"Iota.sc");
+Select("omicrontonos"); AddPosSub(grk_lang,"Omicron.sc");
+Select("upsilontonos"); AddPosSub(grk_lang,"Upsilon.sc");
+Select("omegatonos"); AddPosSub(grk_lang,"uni03A9.sc");
+Select("iotadieresistonos"); AddPosSub(grk_lang,"Iotadieresis.sc");
+Select("upsilondieresistonos"); AddPosSub(grk_lang,"Upsilondieresis.sc");
+Select("Alphatonos"); AddPosSub(grk_lang_c2sc,"Alpha.sc");
+Select("Epsilontonos"); AddPosSub(grk_lang_c2sc,"Epsilon.sc");
+Select("Etatonos"); AddPosSub(grk_lang_c2sc,"Eta.sc");
+Select("Iotatonos"); AddPosSub(grk_lang_c2sc,"Iota.sc");
+Select("Omicrontonos"); AddPosSub(grk_lang_c2sc,"Omicron.sc");
+Select("Upsilontonos"); AddPosSub(grk_lang_c2sc,"Upsilon.sc");
+Select("Omegatonos"); AddPosSub(grk_lang_c2sc,"uni03A9.sc");
