@@ -144,7 +144,7 @@ fc-cache -f
 
 字体 CMUTypewriterVariable 和 CMUTypewriterVariable-Italic 由于家族名称过长，无法在 Windows 下安装。
 
-0.4.1 之前的opentype 字体版本可能会导致Mac OS X 10.4 (Tiger) 下的应用程序崩溃。
+0.4.1 之前的 opentype 字体版本可能会导致Mac OS X 10.4 (Tiger) 下的应用程序崩溃。
 
 目前 X 应用程序不完全支持 opentype 字体。大多数程序，例如基于 GNOME 或 qt-3.x 的程序 (KDE 3.x)，可以渲染 otf 字体但不能打印。
 
@@ -154,6 +154,6 @@ OpenOffice.org 根本不支持 otf 字体（[Issue 16032](http://www.openoffice.
 
 qt 4.1、scribus、inkscape 和 seamonkey (firefox 1.5) 支持使用 otf 字体打印。
 
-作为使用 Qt 3.3 打印的一种解决方法，在 Ghostscript 的 Fontmap 文件中的 Fontmap.CMU 之后调用 Fontmap.CMU.alias。  它将替代一些字体。
+作为使用 Qt 3.3 打印的一种解决方法，在 Ghostscript 的 Fontmap 文件中的 Fontmap.CMU 之后调用 Fontmap.CMU.alias。它将替代一些字体。
 
 过时的 mkfontscale 无法识别 Type 1 字体名称中的 SemiBold 样式选项。使用提供的 fonts.scale 文件。
