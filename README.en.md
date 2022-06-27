@@ -8,4 +8,4 @@ The versions of fonts prior to 0.7.0 are distributed under the terms of X11 Lice
 
 The latest development version is 0.7.0.
 
-There is project page for the fonts at [SourceForge.net]: https://sourceforge.net/projects/cm-unicode/.
+There is project page for the fonts at [GitHub 地址](https://sourceforge.net/projects/cm-unicode/)
