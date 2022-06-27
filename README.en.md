@@ -56,7 +56,9 @@ cd cm-unicode-VERSION
 
 where VERSION is version number of this font pack. Then create cm-unicode/ directory at the place, where your X stores fonts, for example /usr/X11R6/lib/X11/fonts :
 
-`mkdir -p /usr/X11R6/lib/X11/fonts/cm-unicode`
+```
+mkdir -p /usr/X11R6/lib/X11/fonts/cm-unicod
+```
 
 You should become root to do it. Then copy font files there:
 
@@ -87,17 +89,23 @@ Currently mkfontscale and mkfontdir may produce errors, so copy fonts.dir and fo
 
 Then add
 
-`FontPath     "/usr/X11R6/lib/X11/fonts/cm-unicode/" `
+```
+FontPath     "/usr/X11R6/lib/X11/fonts/cm-unicode/" 
+```
 
 to "Files" Section of etc/X11/xorg.conf (/etc/X11/XF86Config). On the next run X.Org (XFree86) will load these fonts.
 
 If you are using fontconfig (X.Org, XFree86-4.3, may be installed on XFree86-4.2) you should add a line
 
-`<dir>/usr/X11R6/lib/X11/fonts/cm-unicode</dir>`
+```
+<dir>/usr/X11R6/lib/X11/fonts/cm-unicode</dir>
+```
 
 to /etc/fonts/fonts.conf or better to /etc/fonts/local.conf then run
 
-`fc-cache`
+```
+fc-cache
+```
 
 Installation for ghostscript
 
@@ -113,7 +121,9 @@ ln -s /usr/X11R6/lib/X11/fonts/cm-unicode/*.pfb .
 
 Then go to the ghostscript library directory, for example
 
-`cd /usr/share/ghostscript/?.??/lib`
+```
+cd /usr/share/ghostscript/?.??/lib
+```
 
 where ?.?? is ghostscript version. Copy Fontmap.CMU from tarball:
 
@@ -124,14 +134,18 @@ cp /tmp/cm-unicode-VERSION/Fontmap.CMU
 
 Then add following line to Fontmap file:
 
-`(Fontmap.CMU) .runlibfile`
+```
+(Fontmap.CMU) .runlibfile
+```
 
 ### Warnings
 
 
 After upgrade run
 
-`fc-cache -f`
+```
+fc-cache -f
+```
 
 To embed these fonts into pdf files using ps2pdf script you should use ghostscript-8.x (8.15 is OK).
 
