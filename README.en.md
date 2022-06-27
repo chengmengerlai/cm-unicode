@@ -7,7 +7,7 @@ Here you can see Unicode glyph coverage in [CMUSerif-Roman](https://cm-unicode.s
 
 Look at this [table](https://cm-unicode.sourceforge.io/font_table.html) for more description.
 
-Since version 0.7.0 the license is changed to [SIL Open Font License (OFL)](scripts.sil.org/OFL).
+Since version 0.7.0 the license is changed to [SIL Open Font License (OFL)](https://scripts.sil.org/OFL).
 
 The latest development version is 0.7.0.
 
