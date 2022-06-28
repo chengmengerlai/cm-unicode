@@ -15,7 +15,7 @@ Computer Modern Unicode 字体是使用 mftrace 和 autotrace 后端和 fontforg
 
 [SourceForge.net](https://sourceforge.net/projects/cm-unicode/) 上有字体的项目页面。
 
-### 新闻
+### 消息
 CM Unicode 0.7.0（2009 年 6 月 18 日）（开发版）
 
 许可证更改为 OFL 1.1
